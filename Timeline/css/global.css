@@ -31,8 +31,13 @@ header #export, header #print {
 	margin:0 auto;
 }
 
-.clear { clear:both; }
-#timeline, #customize { margin:0 auto; }
+.clear { 
+	clear:both; 
+}
+
+#timeline, #customize { 
+	margin:0 auto; 
+}
 
 #customize {
 	width:95%;
@@ -250,13 +255,27 @@ a.delete:hover, #removeTitleBtn:hover {
 	right:9px;
 }
 
-.timeBlockBottom .bottom, .timeBlockTop  .top { border-right:4px solid #ccc; }
+.timeBlockBottom .bottom, .timeBlockTop  .top { 
+	border-right:4px solid #ccc; 
+}
 
-.timeBlockTop .mileDwrapper { top: 5px; right:-15%; }
-.timeBlockBottom .mileDwrapper { bottom:60px; right:-18%; }
+.timeBlockTop .mileDwrapper { 
+	top: 5px; 
+	right:-15%; 
+}
 
-.timeBlockTop .mileTwrapper  { bottom: 55px;  }
-.timeBlockBottom .mileTwrapper { top:108px;}
+.timeBlockBottom .mileDwrapper { 
+	bottom:60px; 
+	right:-18%; 
+}
+
+.timeBlockTop .mileTwrapper  { 
+	bottom: 55px; 
+}
+
+.timeBlockBottom .mileTwrapper { 
+	top:108px;
+}
 
 .highlight { 
 	background-color:yellow; 
