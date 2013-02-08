@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Interactive Timeline</title>
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+	<script type="text/javascript" src="js/modernizr.custom.07140.js"></script>
+	<script type="text/javascript" src="js/knockout-2.2.0.js"></script>
+	<script>
+		$(document).ready(function(){
+		//	ko.applyBindings(new TaskListViewModel());
+		
+		
+		
+		var arr = [{ "title": "Project 1", "date": "01/12/2013"},{ "title": "Project 2", "date": "02/02/2013" }, { "title": "Project 3", "date": "01/02/2013" }, { "title": "Project 4", "date": "01/04/2013" }, { "title": "Project 5", "date": "03/05/2013" }, { "title": "Project 6", "date": "05/06/2013" }];
+		//var arr = $.makeArray(arrF);
+		
+		/*
+		monthCanv = [/^(0[1-9]|[12][0-9]|3[01])[- /.](0[1]|0[0])[- /.](19|20)\d\d$/, /^(0[1-9]|[12][0-9]|3[01])[- /.](0[2]|0[0])[- /.](19|20)\d\d$/, /^(0[1-9]|[12][0-9]|3[01])[- /.](0[3]|0[0])[- /.](19|20)\d\d$/, /^(0[1-9]|[12][0-9]|3[01])[- /.](0[4]|0[0])[- /.](19|20)\d\d$/, /^(0[1-9]|[12][0-9]|3[01])[- /.](0[5]|0[0])[- /.](19|20)\d\d$/, /^(0[1-9]|[12][0-9]|3[01])[- /.](0[6]|0[0])[- /.](19|20)\d\d$/, /^(0[1-9]|[12][0-9]|3[01])[- /.](0[7]|0[0])[- /.](19|20)\d\d$/, /^(0[1-9]|[12][0-9]|3[01])[- /.](0[8]|0[0])[- /.](19|20)\d\d$/, /^(0[1-9]|[12][0-9]|3[01])[- /.](0[9]|0[0])[- /.](19|20)\d\d$/, /^(0[1-9]|[12][0-9]|3[01])[- /.](0[0]|1[010])[- /.](19|20)\d\d$/, /^(0[1-9]|[12][0-9]|3[01])[- /.](0[0]|1[011])[- /.](19|20)\d\d$/, /^(0[1-9]|[12][0-9]|3[01])[- /.](0[0]|1[012])[- /.](19|20)\d\d$/];
+		*/
+		
+			/*	
+				regexJan = /^(0[1-9]|[12][0-9]|3[01])[- /.](0[1]|0[0])[- /.](19|20)\d\d$/;
+				regexFeb = /^(0[1-9]|[12][0-9]|3[01])[- /.](0[2]|0[0])[- /.](19|20)\d\d$/;
+				regexMar = /^(0[1-9]|[12][0-9]|3[01])[- /.](0[3]|0[0])[- /.](19|20)\d\d$/;
+				regexApr = /^(0[1-9]|[12][0-9]|3[01])[- /.](0[4]|0[0])[- /.](19|20)\d\d$/;
+				regexMay = /^(0[1-9]|[12][0-9]|3[01])[- /.](0[5]|0[0])[- /.](19|20)\d\d$/;
+				regexJune = /^(0[1-9]|[12][0-9]|3[01])[- /.](0[6]|0[0])[- /.](19|20)\d\d$/;
+				regexJul = /^(0[1-9]|[12][0-9]|3[01])[- /.](0[7]|0[0])[- /.](19|20)\d\d$/;
+				regexAug = /^(0[1-9]|[12][0-9]|3[01])[- /.](0[8]|0[0])[- /.](19|20)\d\d$/;
+				regexSept = /^(0[1-9]|[12][0-9]|3[01])[- /.](0[9]|0[0])[- /.](19|20)\d\d$/;
+				regexOct = /^(0[1-9]|[12][0-9]|3[01])[- /.](0[0]|1[010])[- /.](19|20)\d\d$/;
+				regexNov = /^(0[1-9]|[12][0-9]|3[01])[- /.](0[0]|1[011])[- /.](19|20)\d\d$/;
+				regexDec = /^(0[1-9]|[12][0-9]|3[01])[- /.](0[0]|1[012])[- /.](19|20)\d\d$/;
+			*/
+				
+		var dimensions = { width: 10, height: 15, length: 20 };		
+		
+			//var checkNow = dateValues.match(monthCanv[11]);
+				/*var isDec = function(x) {
+					return data(x).match(regexDec);
+				}
+				
+				var testDec = function (x) {
+					if(isDec(x)) {
+						return x;
+					} else {
+						return "nothing";
+					}
+				}*/
+		$.map(arr, function(value, key) {
+			return key;
+			//console.log(key);
+		});
+
+		 var dateTarget = $.map(arr, function(value, key) {
+			var dataValues = value.date;
+			var newDate = new Date(value.date);
+			//return newDate;
+			var b = newDate.getMonth();
+			if (b == 0) {
+				return newDate; }
+			/*} else if (b == 1) {
+				return newDate;
+			}*/
+		});
+		console.log(dateTarget);
+		console.log(dateTarget.length);
+		/*var a = new Date();
+		var b = a.getMonth();
+		console.log("the month is: " + b);*/
+
+		for(j=0;j<arr.length;j++){
+
+			/*$("div.array").text(arr[j].join(", "));
+		 
+			arr = jQuery.map(arr[j], function(n, i){
+			  return (n.toUpperCase() + i);
+			});
+			$("p.array").text(arr[j].join(", "));*/
+			//console.log(arr[j].date);
+			//arr = jQuery.map(arr[j], function (a) {
+			 // return a + a;
+			//});
+			//$("span.array").text(arr[j].date);
+		}
+		
+		});//end document
+		
+		function Task(data) {
+			this.title = ko.observable(data.title);
+			this.date = ko.observable(data.date);
+		   // this.isDone = ko.observable(data.isDone);
+		}
+
+		function TaskListViewModel() {
+			// Data
+			var self = this;
+			self.tasks = ko.observableArray([]);
+			self.newTaskText = ko.observable();
+			self.itemToAdd = ko.observable("");
+			self.allItems = ko.observableArray([]); // Initial items
+			self.newDateText = ko.observable();
+			// self.incompleteTasks = ko.computed(function() {
+			// return ko.utils.arrayFilter(self.tasks(), function(task) { return !task.isDone() });
+			// });
+
+			// Operations
+		   /* self.addTask = function() {
+				self.tasks();
+				self.tasks.push(new Task({ title: this.newTaskText()}));
+				
+				console.log(self.tasks)
+				self.newTaskText("");
+			   // self.newDateText("");
+			};*/
+			
+			self.addItem = function () {
+				self.tasks();
+			   // if (((self.itemToAdd()&&self.newDateText()) != "") && (self.tasks.indexOf((this.itemToAdd()&&this.newDateText())) < 0)) // Prevent blanks and duplicates
+					self.tasks.push(new Task({ title: this.itemToAdd(), date: this.newDateText()}));
+				self.itemToAdd(""); // Clear the text box
+				self.newDateText("");
+			};
+			
+			self.sortItems = function() {
+				self.tasks.sort(/*function(a, b){
+						var a1= a.date, b1= b.date;
+						if(a1== b1) return 0;
+						return a1 > b1? 1: -1;
+					}*/);
+			};
+			   
+			self.addMore = function() {
+				self.tasks();
+				self.tasks.push(new Task({ title: "titleTest", date: "dateTest" }));
+			};
+			
+			self.sortAll = function() {
+				self.tasks();
+				self.tasks.sort();
+			};
+
+			self.removeTask = function(task) { self.tasks.remove(task) };
+		}
+	</script>
+</head>
+<body>
+
+   <!-- <form data-bind="submit:addItem">
+        Add title: <input type="text" data-bind='value:itemToAdd, valueUpdate: "afterkeydown"' />
+        <br/>
+        Add date: <input type="text" data-bind='value:newDateText, valueUpdate: "afterkeydown"' />
+        <button type="submit" data-bind="enable: itemToAdd().length > 0">Add</button>
+    </form> 
+    <article>
+        <ul data-bind="foreach: tasks">
+            <li><span data-bind="text: title"></span></li>
+            <li><span data-bind="text: date"></span></li>
+            <li><a href="#" data-bind="click: $root.removeTask">Remove</a></li>
+        </ul>
+    <article>
+    <button data-bind="click: addMore">Add More</button>
+	<button data-bind="click: sortAll">Sort it all out</button>-->
+	<br/>
+	<hr/><br/><br/><br/>
+	<button id="button">Button</button>
+	<div class="array"></div>
+	<p class="array"></p>
+	<span class="array"></span>
+	
+	
+</body>
+</html>
