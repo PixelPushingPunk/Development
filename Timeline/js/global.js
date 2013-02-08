@@ -6,12 +6,15 @@ jQuery(document).ready(function($){
 	else { console.log("Sorry! No web storage support.."); }
 	
 	//init Knockout
+	//
 	ko.applyBindings(new TaskListViewModel());
 	
 	//init Simple Colour
+	//
 	$('#titleColour, #dateColour, #lineColour, #bgColour, #timelineTitleColour').simpleColor();
 	
 	//init Datepicker
+	//
 	$('#datepicker').datepicker({
 		dateFormat: "mm-dd-yy",
 		beforeShow: function (input, inst) {
@@ -22,17 +25,20 @@ jQuery(document).ready(function($){
 			}, 1);
 		}
 	});
-	console.log('testGitHubChanges');
+
 	//Init Placeholder
+	//
 	$('input, textarea').placeholder();
 	
 	//Highlight tasks
+	//
 	$('body, html').on('click', '.numTasksLeft', function(){
 		$('span.completeTasks strong').addClass('highlight');
 		setTimeout(removeHighlight, 500);
 	});
 		
 	//Submit task btn
+	//
 	$('.completeTasks').hide();
 	$('#submitTaskBtn').on('click', function(){
 		$('.completeTasks').fadeIn();
@@ -40,12 +46,14 @@ jQuery(document).ready(function($){
 	});
 		
 	//Timeline title colour
+	//
 	$('input#timelineTitleColour').change(function(){
 		var timelineTitleColourVal = $('input#timelineTitleColour').val();
 		$('.timelineTitle').css({'color': timelineTitleColourVal});
 	});
 	
 	//Timeline title size
+	//
 	$('#timelineTitleSize').val(25);
 	$('#timelineTitleSizeBtn').on('click', function(){
 		var timelineTitleSizeVal = ($('#timelineTitleSize').val()) + 'px';
@@ -54,12 +62,14 @@ jQuery(document).ready(function($){
 	});
 	
 	//Title colour picker
+	//
 	$('input#titleColour').change(function(){
 		var titleColourVal = $('input#titleColour').val();
 		$('.mileStoneTitle').css({'color': titleColourVal});
 	});
 	
 	//Title size
+	//
 	$('#titleSize').val(16);
 	$('#titleSizeBtn').on('click', function(){
 		var titleSizeVal = ($('#titleSize').val()) + 'px';
@@ -69,12 +79,14 @@ jQuery(document).ready(function($){
 	});
 	
 	//Date colour picker
+	//
 	$('input#dateColour').change(function(){
 		var dateColourVal = $('input#dateColour').val();
 		$('.mileStoneDate').css({'color': dateColourVal});
 	});
 
 	//Datesize
+	//
 	$('#dateSize').val(12);
 	$('#dateSizeBtn').on('click', function(){
 		var dateSizeVal = ($('#dateSize').val()) + 'px';
@@ -84,23 +96,27 @@ jQuery(document).ready(function($){
 	});	
 	
 	//Line colour picker
+	//
 	$('input#lineColour').change(function(){	
 		var lineColourVal = $('input#lineColour').val();
 		$('.top, .bottom').css({'border-bottom-color': lineColourVal, 'border-right-color':lineColourVal});
 	});
 	
 	//Background colour picker
+	//
 	$('input#bgColour').change(function(){
 		var bgColourVal = $('input#bgColour').val();
 		$('.mileTwrapper, .mileDwrapper').css({'background-color': bgColourVal});
 	});
 	
 	//Line thickness remove error
+	//
 	$('input#thick').on('blur', function(){
 		$('.error').fadeOut('fast');
 	});	
 	
 	//Character validation
+	//
 	$('#task').on({
 		focus: function(){
 			$('.characterError').fadeIn('fast');
@@ -124,6 +140,7 @@ jQuery(document).ready(function($){
 	});
 	
 	//Print
+	//
 	$('#print').on('click', function() {
 		window.print();
 		return false;
@@ -132,6 +149,7 @@ jQuery(document).ready(function($){
 /*----------------------------------------------------------------------*/
 /* Scroller                                  						*/
 /*----------------------------------------------------------------------*/
+
 	$('a.gorightpeople').click(function(e) {	  
 		var currentLeft = $('#timeWrapper').css('left');
 		var currentWidth = $('.timeBlocks').width();
@@ -174,6 +192,7 @@ jQuery(document).ready(function($){
 	});	
 	
 	//Canvas Support
+	//
 	try {
 		document.createElement("canvas").getContext("2d");
 		//HTML5 Canvas is supported in your browser
@@ -185,17 +204,6 @@ jQuery(document).ready(function($){
 		$('.cNotSupport').show();
 	}
 	
-	//canvas clone
-	/*$('#export').on('click', function(){	
-		//$('#timeWrapper').clone().appendTo('#clone');
-		//$('#clone #timeWrapper').css({'left':'0px'});
-		//$('#clone #timeInner').prepend('<div class="circle"></div>');
-		$('#timeline, #customize').css('display','none');
-		$('#export').css('display','none');
-		$('#back, #print, #canvasPlay').css('display','block'); //#clone
-		
-	});*/
-	
 	$('#back').on('click', function(){
 		$('#timeline, #customize').css('display','block');
 		$('#export').css('display','block');
@@ -206,19 +214,22 @@ jQuery(document).ready(function($){
 		return false;
 	});
 	
-	//Kinetic canvas	
+	//Kinetic canvas
+	//	
 	$('#clear').on('click', function() {
 		clearCanvas();
 		return false;
 	});
 	
 	//Save as image
+	//
 	$('#save').on('click', function() {
 		saveImage();
 		return false;
 	});
 	
 	//Save as JSON and generate timeline - Preview button
+	//
 	$('#saveJSON').on('click', function(){
 		$('#timeline, #customize').css('display','none');
 		$('#export').css('display','none');
@@ -233,9 +244,6 @@ jQuery(document).ready(function($){
 			data.sort(function(a,b){
 				a = new Date(a.date);
 				b = new Date(b.date);
-				//if (a > b) return 1;
-				//if (a < b) return -1;
-				//return 0;
 				return a<b?-1:a>b?1:0;
 			});	
 		}
@@ -251,52 +259,34 @@ jQuery(document).ready(function($){
 			}
 		hideCanvasSupport()	
 	});
-	
-	/*$('#generateTimeline').on('click', function(){
-		var jsonVal = $('#jsonVal').val();
-		data = JSON.parse(jsonVal);	
-			for (i = 0; i < data.length; i++){
-				console.log('data title ' + data[i].title + 'data date: ' + data[i].date);
-			}
-		dataLength = data.length;
-		console.log('data length: ' + dataLength);	
-		generateTimeline2();
-	});*/
-	
-	//var data = [{ "title": "Project 1", "date": "01/01/2013"},{ "title": "Project 2", "date": "01/02/2013" }, { "title": "Project 3", "date": "01/03/2013" }, { "title": "Project 4", "date": "01/04/2013" }, { "title": "Project 5", "date": "01/05/2013" }, { "title": "Project 6", "date": "01/06/2013" }];
-	//var dataLength = data.length;
-
-	/*var arr = [ "one", "two", "three", "four", "five" ];
-	var obj = { one:1, two:2, three:3, four:4, five:5 };
-	
-	$.each(data, function(title, date) {
-		console.log('title: ' + this.title + ' date: ' + this.date);
-	});
-
-	$.each(obj, function(i, val) {
-		console.log('i: ' + i + ' and val: ' +val);
-	});*/
-	
-	// bind event handler to clear button
-	
+		
 });//END document.ready
 
 /*----------------------------------------------------------------------*/
 /* Canvas Functions                                           			*/
 /*----------------------------------------------------------------------*/
+
+	// Remove highlight from task check box
+	//
 	function removeHighlight(){
 		$('span.completeTasks strong').removeClass('highlight');
 	}
 
+	// Hide canvas support text
+	//
 	function hideCanvasSupport() {
 		$('.cSupport, .cNotSupport').hide();
 	}
 	
+	// Clear canvas
+	//
    	function clearCanvas() {
         stage.clear();
 		$('#imgWrapper').hide();
 	}
 	
+	// Count obj function
+	//
 	function countProperties(obj) {
 		var prop;
 		var propCount = 0;
@@ -308,6 +298,8 @@ jQuery(document).ready(function($){
 		alert(propCount);
 	}
 	
+	// Generate timeline
+	//
 	function generateTimeline2(){
 		var janWidth = 0; var febWidth = 0; var marWidth = 0; var aprilWidth = 0; var mayWidth = 0; var juneWidth = 0; var julWidth = 0; var augWidth = 0; var septWidth = 0; var octWidth = 0; var novWidth = 0; var decWidth = 0;
 		var canvasWidth = (dataLength * 150) + 250;
@@ -780,6 +772,7 @@ jQuery(document).ready(function($){
 /*----------------------------------------------------------------------*/
 /* Extended KO Bindings                                    */
 /*----------------------------------------------------------------------*/
+
 ko.bindingHandlers.sortable = {
     init: function (element, valueAccessor) {
         // cached vars for sorting events
@@ -827,17 +820,23 @@ ko.bindingHandlers.sortable = {
 };
 
 
-	//Knockout Functions
+	// Knockout Functions
+	// Task object
+	//
 	function Task(data) {
 		this.title = ko.observable(data.title).extend({ required: "Please enter a task name" });
 		this.date = ko.observable(data.date);
 		this.isDone = ko.observable(data.isDone);	
 	}
 
+	// Timeline title object
+	//
 	function tfTitle(data) {
 		this.timelineTitle = ko.observable(data.timelineTitle);
 	}
 
+	// View model
+	//
 	function TaskListViewModel() {
 		// Data
 		var self = this;
@@ -845,19 +844,11 @@ ko.bindingHandlers.sortable = {
 		self.tasks = ko.observableArray([]);
 		self.titleTimeline = ko.observableArray([]);
 		
-		/*this.itemToAdd = ko.observable("");*/
-		
 		self.newTaskText = ko.observable();
 		self.newDateText = ko.observable();
 		self.incompleteTasks = ko.computed(function() {
 			return ko.utils.arrayFilter(self.tasks(), function(task) { return !task.isDone() });
 		});
-		
-		/*this.addItem = function () {
-			if ((this.itemToAdd() != "") && (this.allItems.indexOf(this.itemToAdd()) < 0)) // Prevent blanks and duplicates
-            this.allItems.push(this.itemToAdd());
-			this.itemToAdd(""); // Clear the text box
-		};*/
 		
 		self.newTimelineTitle = ko.observable();
 		
@@ -905,9 +896,11 @@ ko.bindingHandlers.sortable = {
 		
 	}
 	
+	// Timeblock style creation
+	//
 	function timeBlocksAddTaskStyle() {
 				$('.timeBlocks').removeClass('timeBlockBottom').removeClass('timeBlockTop');
-			//add classes
+				//add classes
 				$('.timeBlocks:odd').addClass('timeBlockBottom');
 				$('.timeBlocks:even').addClass('timeBlockTop');
 					
@@ -944,6 +937,8 @@ ko.bindingHandlers.sortable = {
 				$('#timeInner, #timeWrapper').css({'width': totalTimeWidth});
 	}
 	
+	// Timeblock remove style
+	//
 	function timeBlocksRemoveTaskStyle() {
 			//add classes
 			$('.timeBlocks').removeClass('timeBlockBottom').removeClass('timeBlockTop');
@@ -958,6 +953,8 @@ ko.bindingHandlers.sortable = {
 			}
 	}
 	
+	// Thick validation
+	//
 	function thickValidation() {
 			var thickRegEx = "^[0-9]+$";
 			var thickValidation = $('input#thick').val();
@@ -973,6 +970,8 @@ ko.bindingHandlers.sortable = {
 			}
 	}
 	
+	// Title colour
+	//
 	function titleColour(){
 		//reconfigure title colour
 		var timelineTitleColourValx = $('input#timelineTitleColour').val();

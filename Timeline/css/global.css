@@ -14,8 +14,15 @@ header {
 	overflow:hidden;
 }
 
-header h1 { float:left; margin:10px 0 0; }
-header #export, header #print { float:right; }
+header h1 { 
+	float:left; 
+	margin:10px 0 0; 
+	font-size:40px; 
+}
+
+header #export, header #print { 
+	float:right; 
+}
 
 #wrapper {
 	width:75%;
@@ -415,8 +422,8 @@ span.completeTasks {
 }
 
 #noData h1 {
-	font-size:35px;
-	font-style:italic;
+	font-size:25px;
+	font-style:normal;
 	font-weight:normal;
 }
 
