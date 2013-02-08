@@ -87,7 +87,6 @@
 					<label for="timelineTitle">Add Timeline Title</label> <input id="timelineTitle" type="text" name="timelineTitle" class="inputStyle" data-bind="value: newTimelineTitle" placeholder="Add a timeline title"/> 
 					<button id="submitTitleBtn" type="submit">Add</button>
 				</form>
-				<button data-bind="click: sortItems, enable: tasks().length > 1">Sort</button>
 				<div class="clear"></div>
 				<form id="taskForm" data-bind="submit: addTask">
 					<label for="task">Add task: </label> <input id="task" type="text" name="task" class="inputStyle" data-bind="value: newTaskText" placeholder="What needs to be done?" maxlength="50"/>
