@@ -22,7 +22,7 @@ jQuery(document).ready(function($){
 			}, 1);
 		}
 	});
-	
+	console.log('testGitHubChanges');
 	//Init Placeholder
 	$('input, textarea').placeholder();
 	
