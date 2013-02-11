@@ -239,8 +239,9 @@ jQuery(document).ready(function($){
 		var jsonVal = $('#jsonVal').val();
 		data = JSON.parse(jsonVal);
 		//data = $.makeArray(dataF);		
-		for (i = 0; i < data.length; i++) {	
-			console.log("REAL: "+ data[i].date);
+		for (i = 0; i < data.length; i++) {
+			var realDate = new Date(data[i].date);	
+			console.log("REAL: "+ realDate);
 			data.sort(function(a,b){
 				a = new Date(a.date);
 				b = new Date(b.date);
@@ -417,7 +418,10 @@ jQuery(document).ready(function($){
 			//	
 			var dataValues = data[i].date;
 			var newDate = new Date(dataValues);
+
+			console.log("DATE VALES: " +newDate);
 			var month = newDate.getMonth();
+			var year = newDate.getYear();
 
 				if (month == 0) {	 
 					//JAN
