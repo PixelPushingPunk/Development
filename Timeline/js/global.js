@@ -240,11 +240,13 @@ jQuery(document).ready(function($){
 		data = JSON.parse(jsonVal);
 		//data = $.makeArray(dataF);		
 		for (i = 0; i < data.length; i++) {
-			var realDate = new Date(data[i].date);	
-			console.log("REAL: "+ realDate);
 			data.sort(function(a,b){
-				a = new Date(a.date);
-				b = new Date(b.date);
+				var getDateA = new Date(a.date);
+				var getDateB = new Date(b.date);
+				a = getDateA.getFullYear() + '-' + getDateA.getMonth() + '-' + getDateA.getDate();
+				b = getDateB.getFullYear() + '-' + getDateB.getMonth() + '-' + getDateB.getDate();
+				//a = new Date(a.date);
+				//b = new Date(b.date);
 				return a<b?-1:a>b?1:0;
 			});	
 		}
@@ -305,6 +307,7 @@ jQuery(document).ready(function($){
 		// Set defualt variables
 		//
 		var janWidth = 0; var febWidth = 0; var marWidth = 0; var aprilWidth = 0; var mayWidth = 0; var juneWidth = 0; var julWidth = 0; var augWidth = 0; var septWidth = 0; var octWidth = 0; var novWidth = 0; var decWidth = 0;
+		//var janWidth; var febWidth; var marWidth; var aprilWidth; var mayWidth; var juneWidth; var julWidth; var augWidth; var septWidth; var octWidth; var novWidth; var decWidth;
 		var janGroup; var febGroup; var marGroup; var aprilGroup; var mayGroup; var juneGroup; var julGroup; var augGroup; var septGroup; var octGroup; var novGroup; var decGroup;	
 		var janText; var febText; var marText; var aprilText; var mayText; var juneText; var julText; var augText; var septText; var octText; var novText; var decText;
 		var textText; var dateText; var timelineText; 
@@ -381,6 +384,7 @@ jQuery(document).ready(function($){
 
 		// Create new month groups
 		//
+		monthGroup = new Kinetic.Group({ draggable:true });
 		janGroup = new Kinetic.Group({ draggable:true });
 		febGroup = new Kinetic.Group({ draggable:true });
 		marGroup = new Kinetic.Group({ draggable:true });
@@ -393,7 +397,11 @@ jQuery(document).ready(function($){
 		octGroup = new Kinetic.Group({ draggable:true }); 
 		novGroup = new Kinetic.Group({ draggable:true });	
 		decGroup = new Kinetic.Group({ draggable:true });			
-			
+		
+		//monthText = new Kinetic.Text({});
+		//monthLine = new Kinetic.Line({});
+
+
 		// Loop through all values in array and position top and bottom
 		//
 		var num = 0;			
@@ -417,20 +425,31 @@ jQuery(document).ready(function($){
 			// Order by month
 			//	
 			var dataValues = data[i].date;
-			var newDate = new Date(dataValues);
+			var getDate = new Date(dataValues);
+			var month = getDate.getMonth();
+			var getYear = getDate.getFullYear();
+
+			var newDate = getDate.getDate() + '-' + ((getDate.getMonth())+(1)) + '-' + getDate.getFullYear();
+			//var newDate = getDate.format("dd-mm-yy");
+			//var newDate = new Date(dataValues);
 
 			console.log("DATE VALES: " +newDate);
-			var month = newDate.getMonth();
-			var yearFull = newDate.getFullYear();
-			var year = newDate.getYear();
-
-			/*data.sort(function(a,b){
-				dateA = new Date(a.date);
-				dateB = new Date(b.date);
-				a = dateA.getFullYear();
-				b = dateB.getFullYear();
-				return a<b?-1:a>b?1:0;
-			});	*/
+			
+			//var yearFull = getDate.getFullYear();
+			//var year = getDate.getYear();
+			/*if (month == 0) {
+				generateLinesPerMonth();
+				generateMonthGroup(janGroup, -30);
+				generateMonthTextLine(janWidth, janText, janLine);
+			} else if (month == 1) {
+				generateLinesPerMonth();
+				generateMonthGroup(febGroup, 0);
+				generateMonthTextLine(febWidth, febText, febLine);	
+			} else if (month == 2) {
+				generateLinesPerMonth();
+				generateMonthGroup(marGroup, 30);
+				generateMonthTextLine(marWidth, marText, marLine);
+			}*/
 				if (month == 0) {	 
 					//JAN
 					var monthVal = "Jan";
@@ -444,6 +463,7 @@ jQuery(document).ready(function($){
 					janGroup.setWidth(xPos);
 					janWidth = janGroup.getWidth();
 					janGroup.move(-30, 0);
+					//generateMonthGroup(janGroup, janWidth, -30);
 					layer.add(janGroup);
 				} else if (month == 1) { 
 					//FEB
@@ -458,6 +478,7 @@ jQuery(document).ready(function($){
 					febGroup.setWidth(xPos);
 					febWidth = febGroup.getWidth();
 					febGroup.move(0, 0);
+					//generateMonthGroup(febGroup, febWidth, 0);
 					layer.add(febGroup);
 				} else if  (month == 2) { 
 					//MAR
@@ -600,6 +621,9 @@ jQuery(document).ready(function($){
 					decGroup.move(300, 0);
 					layer.add(decGroup);
 				} else { }
+
+			
+			
 				
 		}//end loop
 
@@ -609,14 +633,14 @@ jQuery(document).ready(function($){
 			if (i % 2) {
 				// if value is odd
 				textText = new Kinetic.Text({ x: xPosText, y: textTitlePosBottom, text: data[i].title, fontSize: textSize, fontFamily: 'Arial', fill: textColour, width: 150, draggable: true });
-				dateText = new Kinetic.Text({ x: xPosDate, y: dateTitlePosBottom, text: data[i].date, fontSize: dateSize, fontFamily: 'Arial', fill: dateColour, draggable: true });				
+				dateText = new Kinetic.Text({ x: xPosDate, y: dateTitlePosBottom, text: newDate, fontSize: dateSize, fontFamily: 'Arial', fill: dateColour, draggable: true });				
 				textText.setOffset({ x: textText.getWidth() / 2 });								
 				dateText.setOffset({ x: dateText.getWidth() / 2 });		
 				redLine = new Kinetic.Line({ points: [xPos, yPos, xPos2, yPos, xPos2, bottomTitlePos], stroke: lineColour, strokeWidth: lineThick, lineCap: 'round', lineJoin: 'round' });
 			} else {
 				// if value is even
 				textText = new Kinetic.Text({ x: xPosText, y: textTitlePosTop, text: data[i].title, fontSize: textSize, fontFamily: 'Arial', fill: textColour, width:150, draggable: true });				
-				dateText = new Kinetic.Text({ x: xPosDate, y: dateTitlePosTop, text: data[i].date, fontSize: dateSize, fontFamily: 'Arial', fill: dateColour, draggable: true });								
+				dateText = new Kinetic.Text({ x: xPosDate, y: dateTitlePosTop, text: newDate, fontSize: dateSize, fontFamily: 'Arial', fill: dateColour, draggable: true });								
 				textText.setOffset({ x: textText.getWidth() / 2 });
 				textText.setOffset({ y: textText.getHeight() / 2 });				
 				dateText.setOffset({ x: dateText.getWidth() / 2 });							
@@ -632,6 +656,33 @@ jQuery(document).ready(function($){
 			textText.on('mouseout', function() { document.body.style.cursor = 'default'; });
 			dateText.on('mouseover', function() { document.body.style.cursor = 'pointer'; });
 			dateText.on('mouseout', function() { document.body.style.cursor = 'default'; });
+		}
+
+		function generateMonthGroup(monthGroup, monthWidth, groupPos) {
+			monthGroup.on('mouseover', function() { document.body.style.cursor = 'move'; });
+			monthGroup.on('mouseout', function() { document.body.style.cursor = 'default'; });
+			monthGroup.add(textText);
+			monthGroup.add(dateText);
+			monthGroup.add(redLine);
+			//monthGroup.add(timelineText);
+			monthGroup.setWidth(xPos);
+			monthWidth = monthGroup.getWidth();
+			monthGroup.move(groupPos, 0);
+		}
+
+		function generateMonthTextLine(monthWidth, monthText, monthLine) {
+			var monthTextYpos = 50;
+			var monthLineXplus = 25;
+			var monthLineYpos = canvasHeight - 50;
+			var monthLinePosition = 70;
+			var monthLineThick = 1;
+			var monthTextFont = 16;
+			var monthLineColor = "#000000";
+			monthText = Kinetic.Text({ x: monthWidth, y: monthTextYpos, text: "JAN", fontSize:  16, fontFamily: 'Arial', fill: timelineTextColour, draggable: true });
+			//monthLine = Kinetic.Line({ points: [monthWidth+monthLineXplus, monthLinePosition, monthWidth+monthLineXplus, monthLineYpos], stroke: monthLineColor, strokeWidth: monthLineThick, lineCap: 'square', lineJoin: 'square' });	
+								
+			monthGroup.add(monthText);
+			monthGroup.add(monthLine);
 		}
 			
 		var stageWidthHalf = stage.getWidth() / 2;
@@ -707,6 +758,7 @@ jQuery(document).ready(function($){
 		decText = new Kinetic.Text({ x:  decWidth, y: monthTextYpos, text: "DEC", fontSize:  monthTextFont, fontFamily: 'Arial', fill: timelineTextColour, draggable: true });
 		decLine = new Kinetic.Line({ points: [decWidth+monthLineXplus, monthLinePosition, decWidth+monthLineXplus, monthLineYpos], stroke: monthLineColor, strokeWidth: monthLineThick, lineCap: 'square', lineJoin: 'square' });
 		
+
 		// Generate grid lines in the background
 		//		
 		(function generateGraphLines() {
@@ -738,6 +790,7 @@ jQuery(document).ready(function($){
 		//
 		janGroup.add(janText); febGroup.add(febText); marGroup.add(marText); aprilGroup.add(aprilText); mayGroup.add(mayText); juneGroup.add(juneText); julGroup.add(julText); augGroup.add(augText); septGroup.add(septText); octGroup.add(octText); novGroup.add(novText); decGroup.add(decText);
 		janGroup.add(janLine); febGroup.add(febLine); marGroup.add(marLine); aprilGroup.add(aprilLine); mayGroup.add(mayLine); juneGroup.add(juneLine); julGroup.add(julLine); augGroup.add(augLine); septGroup.add(septLine); octGroup.add(octLine); novGroup.add(novLine); decGroup.add(decLine);
+		
 		layer.add(timelineText);
 		stage.add(layer);
 	}
