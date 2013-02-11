@@ -396,7 +396,7 @@ jQuery(document).ready(function($){
 		septGroup = new Kinetic.Group({ draggable:true }); 
 		octGroup = new Kinetic.Group({ draggable:true }); 
 		novGroup = new Kinetic.Group({ draggable:true });	
-		decGroup = new Kinetic.Group({ draggable:true });			
+		decGroup = new Kinetic.Group({ draggable:true });		
 		
 		//monthText = new Kinetic.Text({});
 		//monthLine = new Kinetic.Line({});
@@ -425,15 +425,13 @@ jQuery(document).ready(function($){
 			// Order by month
 			//	
 			var dataValues = data[i].date;
+			var presentDate = new Date();
+			var presentYear = presentDate.getFullYear();
 			var getDate = new Date(dataValues);
 			var month = getDate.getMonth();
 			var getYear = getDate.getFullYear();
 
 			var newDate = getDate.getDate() + '-' + ((getDate.getMonth())+(1)) + '-' + getDate.getFullYear();
-			//var newDate = getDate.format("dd-mm-yy");
-			//var newDate = new Date(dataValues);
-
-			console.log("DATE VALES: " +newDate);
 			
 			//var yearFull = getDate.getFullYear();
 			//var year = getDate.getYear();
@@ -450,16 +448,11 @@ jQuery(document).ready(function($){
 				generateMonthGroup(marGroup, 30);
 				generateMonthTextLine(marWidth, marText, marLine);
 			}*/
+			if (presentYear == getYear) {
 				if (month == 0) {	 
 					//JAN
-					var monthVal = "Jan";
 					generateLinesPerMonth();
-					janGroup.on('mouseover', function() { document.body.style.cursor = 'move'; });
-					janGroup.on('mouseout', function() { document.body.style.cursor = 'default'; });
-					janGroup.add(textText);
-					janGroup.add(dateText);
-					janGroup.add(redLine);
-					janGroup.add(timelineText);
+					generateMonthGroup(janGroup);
 					janGroup.setWidth(xPos);
 					janWidth = janGroup.getWidth();
 					janGroup.move(-30, 0);
@@ -467,14 +460,8 @@ jQuery(document).ready(function($){
 					layer.add(janGroup);
 				} else if (month == 1) { 
 					//FEB
-					var monthVal = "Feb";
 					generateLinesPerMonth();
-					febGroup.on('mouseover', function() { document.body.style.cursor = 'move'; });
-					febGroup.on('mouseout', function() { document.body.style.cursor = 'default'; });
-					febGroup.add(textText);
-					febGroup.add(dateText);
-					febGroup.add(redLine);
-					febGroup.add(timelineText);
+					generateMonthGroup(febGroup)
 					febGroup.setWidth(xPos);
 					febWidth = febGroup.getWidth();
 					febGroup.move(0, 0);
@@ -482,145 +469,86 @@ jQuery(document).ready(function($){
 					layer.add(febGroup);
 				} else if  (month == 2) { 
 					//MAR
-					var monthVal = "Mar";
 					generateLinesPerMonth();
-					marGroup.on('mouseover', function() { document.body.style.cursor = 'move'; });
-					marGroup.on('mouseout', function() { document.body.style.cursor = 'default'; });
-					marGroup.add(textText);
-					marGroup.add(dateText);
-					marGroup.add(redLine);
-					marGroup.add(timelineText);
+					generateMonthGroup(marGroup);
 					marGroup.setWidth(xPos);
 					marWidth = marGroup.getWidth();					
 					marGroup.move(30, 0);
 					layer.add(marGroup);
 				} else if (month == 3) { 
 					//APR
-					var monthVal = "April";
 					generateLinesPerMonth();
-					aprilGroup.on('mouseover', function() { document.body.style.cursor = 'move'; });
-					aprilGroup.on('mouseout', function() { document.body.style.cursor = 'default'; });
-					aprilGroup.add(textText);
-					aprilGroup.add(dateText);
-					aprilGroup.add(redLine);
-					aprilGroup.add(timelineText);
+					generateMonthGroup(aprilGroup);
 					aprilGroup.setWidth(xPos);
 					aprilWidth = aprilGroup.getWidth();
 					aprilGroup.move(60, 0);
 					layer.add(aprilGroup);
 				} else if (month == 4) {
 					//MAY
-					var monthVal = "May";
 					generateLinesPerMonth();
-					mayGroup.on('mouseover', function() { document.body.style.cursor = 'move'; });
-					mayGroup.on('mouseout', function() { document.body.style.cursor = 'default'; });
-					mayGroup.add(textText);
-					mayGroup.add(dateText);
-					mayGroup.add(redLine);
-					mayGroup.add(timelineText);
+					generateMonthGroup(mayGroup);
 					mayGroup.setWidth(xPos);
 					mayWidth = mayGroup.getWidth();
 					mayGroup.move(90, 0);
 					layer.add(mayGroup);
 				} else if (month == 5) { 
 					//JUNE
-					var monthVal = "June";
 					generateLinesPerMonth();
-					juneGroup.on('mouseover', function() { document.body.style.cursor = 'move'; });
-					juneGroup.on('mouseout', function() { document.body.style.cursor = 'default'; });
-					juneGroup.add(textText);
-					juneGroup.add(dateText);
-					juneGroup.add(redLine);
-					juneGroup.add(timelineText);
+					generateMonthGroup(juneGroup);
 					juneGroup.setWidth(xPos);
 					juneWidth = juneGroup.getWidth();
 					juneGroup.move(120, 0);
 					layer.add(juneGroup);
 				} else if (month == 6) { 
 					//JULY
-					var monthVal = "July";
 					generateLinesPerMonth();
-					julGroup.on('mouseover', function() { document.body.style.cursor = 'move'; });
-					julGroup.on('mouseout', function() { document.body.style.cursor = 'default'; });
-					julGroup.add(textText);
-					julGroup.add(dateText);
-					julGroup.add(redLine);
-					julGroup.add(timelineText);
+					generateMonthGroup(julGroup);
 					julGroup.setWidth(xPos);
 					julWidth = julGroup.getWidth();
 					julGroup.move(150, 0);
 					layer.add(julGroup);
 				}  else if (month == 7) { 
 					//AUG
-					var monthVal = "Aug";
 					generateLinesPerMonth();
-					augGroup.on('mouseover', function() { document.body.style.cursor = 'move'; });
-					augGroup.on('mouseout', function() { document.body.style.cursor = 'default'; });
-					augGroup.add(textText);
-					augGroup.add(dateText);
-					augGroup.add(redLine);
-					augGroup.add(timelineText);
+					generateMonthGroup(augGroup);
 					augGroup.setWidth(xPos);
 					augWidth = augGroup.getWidth();
 					augGroup.move(180, 0);
 					layer.add(augGroup);
 				} else if (month == 8) { 
 					//SEPT
-					var monthVal = "Sept";
 					generateLinesPerMonth();
-					septGroup.on('mouseover', function() { document.body.style.cursor = 'move'; });
-					septGroup.on('mouseout', function() { document.body.style.cursor = 'default'; });
-					septGroup.add(textText);
-					septGroup.add(dateText);
-					septGroup.add(redLine);
-					septGroup.add(timelineText);
+					generateMonthGroup(septGroup);
 					septGroup.setWidth(xPos);
 					septWidth = septGroup.getWidth();
 					septGroup.move(210, 0);
 					layer.add(septGroup);
 				} else if (month == 9) { 
 					//OCT
-					var monthVal = "Oct";
 					generateLinesPerMonth();
-					octGroup.on('mouseover', function() { document.body.style.cursor = 'move'; });
-					octGroup.on('mouseout', function() { document.body.style.cursor = 'default'; });
-					octGroup.add(textText);
-					octGroup.add(dateText);
-					octGroup.add(redLine);
-					octGroup.add(timelineText);
+					generateMonthGroup(octGroup);
 					octGroup.setWidth(xPos);
 					octWidth = octGroup.getWidth();
 					octGroup.move(240, 0);
 					layer.add(octGroup);
 				} else if (month == 10) { 
 					//NOV
-					var monthVal = "Nov";
 					generateLinesPerMonth();
-					novGroup.on('mouseover', function() { document.body.style.cursor = 'move'; });
-					novGroup.on('mouseout', function() { document.body.style.cursor = 'default'; });
-					novGroup.add(textText);
-					novGroup.add(dateText);
-					novGroup.add(redLine);
-					novGroup.add(timelineText);
+					generateMonthGroup(novGroup);
 					novGroup.setWidth(xPos);
 					novWidth = novGroup.getWidth();
 					novGroup.move(270, 0);
 					layer.add(novGroup);
 				} else if (month == 11) { 
 					//DEC
-					var monthVal = "Dec";
 					generateLinesPerMonth();
-					decGroup.on('mouseover', function() { document.body.style.cursor = 'move'; });
-					decGroup.on('mouseout', function() { document.body.style.cursor = 'default'; });
-					decGroup.add(textText);
-					decGroup.add(dateText);
-					decGroup.add(redLine);
-					decGroup.add(timelineText);
+					generateMonthGroup(decGroup);
 					decGroup.setWidth(xPos);
 					decWidth = decGroup.getWidth();
 					decGroup.move(300, 0);
 					layer.add(decGroup);
 				} else { }
+			} else {}
 
 			
 			
@@ -630,6 +558,11 @@ jQuery(document).ready(function($){
 		// Generate the top and bottom task, date and lines
 		//
 		function generateLinesPerMonth() {
+			/*monthGroup.on('mouseover', function() { document.body.style.cursor = 'move'; });
+			monthGroup.on('mouseout', function() { document.body.style.cursor = 'default'; });
+			monthGroup.add(textText);
+			monthGroup.add(dateText);
+			monthGroup.add(redLine);*/
 			if (i % 2) {
 				// if value is odd
 				textText = new Kinetic.Text({ x: xPosText, y: textTitlePosBottom, text: data[i].title, fontSize: textSize, fontFamily: 'Arial', fill: textColour, width: 150, draggable: true });
@@ -658,16 +591,16 @@ jQuery(document).ready(function($){
 			dateText.on('mouseout', function() { document.body.style.cursor = 'default'; });
 		}
 
-		function generateMonthGroup(monthGroup, monthWidth, groupPos) {
+		function generateMonthGroup(monthGroup) {
 			monthGroup.on('mouseover', function() { document.body.style.cursor = 'move'; });
 			monthGroup.on('mouseout', function() { document.body.style.cursor = 'default'; });
 			monthGroup.add(textText);
 			monthGroup.add(dateText);
 			monthGroup.add(redLine);
 			//monthGroup.add(timelineText);
-			monthGroup.setWidth(xPos);
-			monthWidth = monthGroup.getWidth();
-			monthGroup.move(groupPos, 0);
+			//monthGroup.setWidth(xPos);
+			//monthWidth = monthGroup.getWidth();
+			//monthGroup.move(groupPos, 0);
 		}
 
 		function generateMonthTextLine(monthWidth, monthText, monthLine) {
@@ -679,7 +612,7 @@ jQuery(document).ready(function($){
 			var monthTextFont = 16;
 			var monthLineColor = "#000000";
 			monthText = Kinetic.Text({ x: monthWidth, y: monthTextYpos, text: "JAN", fontSize:  16, fontFamily: 'Arial', fill: timelineTextColour, draggable: true });
-			//monthLine = Kinetic.Line({ points: [monthWidth+monthLineXplus, monthLinePosition, monthWidth+monthLineXplus, monthLineYpos], stroke: monthLineColor, strokeWidth: monthLineThick, lineCap: 'square', lineJoin: 'square' });	
+			monthLine = Kinetic.Line({ points: [monthWidth+monthLineXplus, monthLinePosition, monthWidth+monthLineXplus, monthLineYpos], stroke: monthLineColor, strokeWidth: monthLineThick, lineCap: 'square', lineJoin: 'square' });	
 								
 			monthGroup.add(monthText);
 			monthGroup.add(monthLine);
@@ -940,58 +873,58 @@ ko.bindingHandlers.sortable = {
 	// Timeblock style creation
 	//
 	function timeBlocksAddTaskStyle() {
-				$('.timeBlocks').removeClass('timeBlockBottom').removeClass('timeBlockTop');
-				//add classes
-				$('.timeBlocks:odd').addClass('timeBlockBottom');
-				$('.timeBlocks:even').addClass('timeBlockTop');
+		$('.timeBlocks').removeClass('timeBlockBottom').removeClass('timeBlockTop');
+		//add classes
+		$('.timeBlocks:odd').addClass('timeBlockBottom');
+		$('.timeBlocks:even').addClass('timeBlockTop');
 					
-				//calculuate title horizontal position
-				var mTitleWidth = $('.mileTwrapper').width();
-				var mTitleRight = -(mTitleWidth / 3.598599604963728)+'%'; //4.75
-				$('.mileTwrapper').css({'right': mTitleRight});
+		//calculuate title horizontal position
+		var mTitleWidth = $('.mileTwrapper').width();
+		var mTitleRight = -(mTitleWidth / 3.598599604963728)+'%'; //4.75
+		$('.mileTwrapper').css({'right': mTitleRight});
 				
-				//reconfigure line thickness
-				$('input#thick').val(4);
-				var lineThicknessValx = $('input#thick').val();
-				$('.top').css({'border-bottom-width': lineThicknessValx});
+		//reconfigure line thickness
+		$('input#thick').val(4);
+		var lineThicknessValx = $('input#thick').val();
+		$('.top').css({'border-bottom-width': lineThicknessValx});
 
-				//reconfigure title colour
-				var titleColourValx = $('input#titleColour').val();
-				$('.mileStoneTitle').css({'color': titleColourValx});
+		//reconfigure title colour
+		var titleColourValx = $('input#titleColour').val();
+		$('.mileStoneTitle').css({'color': titleColourValx});
 				
-				//reconfigure date colour
-				var dateColourValx = $('input#dateColour').val();
-				$('.mileStoneDate').css({'color': dateColourValx});
+		//reconfigure date colour
+		var dateColourValx = $('input#dateColour').val();
+		$('.mileStoneDate').css({'color': dateColourValx});
 				
-				//reconfigure line colour
-				var lineColourValx = $('input#lineColour').val();
-				$('.top, .bottom').css({'border-bottom-color':lineColourValx, 'border-right-color':lineColourValx});
+		//reconfigure line colour
+		var lineColourValx = $('input#lineColour').val();
+		$('.top, .bottom').css({'border-bottom-color':lineColourValx, 'border-right-color':lineColourValx});
 				
-				//reconfigure bg colour
-				var bgColourValx = $('input#bgColour').val();
-				$('.mileTwrapper, .mileDwrapper').css({'background-color': bgColourValx});
+		//reconfigure bg colour
+		var bgColourValx = $('input#bgColour').val();
+		$('.mileTwrapper, .mileDwrapper').css({'background-color': bgColourValx});
 				
-				//update time inner width
-				var articleWidth = $('.timeBlocks').width();
-				var timeInnerWidth = $('#timeInner').width();
-				var totalTimeWidth = timeInnerWidth + articleWidth + 200;
-				$('#timeInner, #timeWrapper').css({'width': totalTimeWidth});
+		//update time inner width
+		var articleWidth = $('.timeBlocks').width();
+		var timeInnerWidth = $('#timeInner').width();
+		var totalTimeWidth = timeInnerWidth + articleWidth + 200;
+		$('#timeInner, #timeWrapper').css({'width': totalTimeWidth});
 	}
 	
 	// Timeblock remove style
 	//
 	function timeBlocksRemoveTaskStyle() {
-			//add classes
-			$('.timeBlocks').removeClass('timeBlockBottom').removeClass('timeBlockTop');
-			$('.timeBlocks:odd').addClass('timeBlockBottom');
-			$('.timeBlocks:even').addClass('timeBlockTop');
+		//add classes
+		$('.timeBlocks').removeClass('timeBlockBottom').removeClass('timeBlockTop');
+		$('.timeBlocks:odd').addClass('timeBlockBottom');
+		$('.timeBlocks:even').addClass('timeBlockTop');
 			
-			//check tasks
-			if($('.timeBlocks').is(':visible')){
-				$('#noData').fadeOut('fast');
-			} else {
-				$('#noData').fadeIn('fast');
-			}
+		//check tasks
+		if($('.timeBlocks').is(':visible')){
+			$('#noData').fadeOut('fast');
+		} else {
+			$('#noData').fadeIn('fast');
+		}
 	}
 	
 	// Thick validation
