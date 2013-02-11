@@ -314,7 +314,6 @@ jQuery(document).ready(function($){
 		var canvasHeight = 420;
 		var canvasWrapperWidth = canvasWidth + 100;
 		var containerWidth = canvasWidth;
-
 		var setCanvasWidth = $('#canvasWrapper').css({'width': canvasWrapperWidth});
 		var seteContainerWidth = $('#container').css('width', containerWidth);
 
@@ -354,6 +353,31 @@ jQuery(document).ready(function($){
 		timelineText.on('mouseover', function() { document.body.style.cursor = 'pointer'; });
 		timelineText.on('mouseout', function() { document.body.style.cursor = 'default'; });
 
+		// Create month group text width array
+		//
+		var monthValueArr = [
+			{ group:"janGroup", month:"JAN", text:"janText", width:"janWidth", line:"janLine" }, 
+			{ group:"febGroup", month:"FEB", text:"febText", width:"febWidth", line:"febLine" }, 
+			{ group:"marGroup", month:"MAR", text:"marText", width:"marWidth", line:"marLine" }, 
+			{ group:"aprilGroup", month:"APRIL", text:"aprilText", width:"aprilWidth", line:"aprilLine" }, 
+			{ group:"mayGroup", month:"MAY", text:"mayText", width:"mayWidth", line:"mayLine" }, 
+			{ group:"juneGroup", month:"JUNE", text:"juneText", width:"juneWidth", line:"juneLine" }, 
+			{ group:"julGroup", month:"JUL", text:"julText", width:"julWidth", line:"julyLine" }, 
+			{ group:"augGroup", month:"AUG", text:"augText", width:"augWidth", line:"augLine" }, 
+			{ group:"septGroup", month:"SEPT", text:"septText", width:"septWidth", line:"septLine"}, 
+			{ group:"octGroup", month:"OCT", text:"octText", width:"octWidth", line:"octLine" }, 
+			{ group:"novGroup", month:"NOV", text:"novText", width:"novWidth", line:"novLine" }, 
+			{ group:"decGroup", month:"DEC", text:"decText", width:"decWidth", line:"decLine" }
+		];
+
+		/*
+		for(k=0; k<monthValueArr.length; k++) {
+			var monthGroup = monthValueArr[k].group;
+			monthGroup = new Kinetic.Group({ draggable:true });
+			console.log(monthGroup);
+		}
+		*/
+
 		// Create new month groups
 		//
 		janGroup = new Kinetic.Group({ draggable:true });
@@ -368,7 +392,7 @@ jQuery(document).ready(function($){
 		octGroup = new Kinetic.Group({ draggable:true }); 
 		novGroup = new Kinetic.Group({ draggable:true });	
 		decGroup = new Kinetic.Group({ draggable:true });			
-				
+			
 		// Loop through all values in array and position top and bottom
 		//
 		var num = 0;			
@@ -586,20 +610,97 @@ jQuery(document).ready(function($){
 				dateText.setOffset({ x: dateText.getWidth() / 2 });							
 				redLine = new Kinetic.Line({ points: [xPos, yPos, xPos2, yPos, xPos2, topTitlePos], stroke: lineColour, strokeWidth: lineThick, lineCap: 'round', lineJoin: 'round' });					
 			}
+			// reposition line, date and task text
 			redLine.move(-130, 0);
 			dateText.move(-130,0);
 			textText.move(-130, 0);
+
+			// Mouse over and out states
 			textText.on('mouseover', function() { document.body.style.cursor = 'pointer'; });
 			textText.on('mouseout', function() { document.body.style.cursor = 'default'; });
 			dateText.on('mouseover', function() { document.body.style.cursor = 'pointer'; });
 			dateText.on('mouseout', function() { document.body.style.cursor = 'default'; });
 		}
+			
+		var stageWidthHalf = stage.getWidth() / 2;
+
+		/*
+		for (m = 0; m < monthValueArr.length; m++){
+			var monthText = monthValueArr[m].text;
+			monthText = new Kinetic.Text({ 
+				x: monthValueArr[m].width, 
+				y: 50, 
+				text: monthValueArr[m].month, 
+				fontSize:  16, 
+				fontFamily: 'Arial', 
+				fill: timelineTextColour, 
+				draggable: true 
+			});
+
+			var monthLine = monthValueArr[m].line;
+			var monthLineWidth = (monthValueArr[m].month) + 25;
+			monthLine = new Kinetic.Line({ 
+				points: [monthLineWidth, 0, monthLineWidth, 420], 
+				stroke: lineColour, 
+				strokeWidth: lineThick, 
+				lineCap: 'square', 
+				lineJoin: 'square' 
+			});
+
+			//var monthGroup = monthValueArr[m].group;
+			//monthGroup.add(monthValueArr[m].text);
+		}
+		*/
+		
+		var monthTextYpos = 50;
+		var monthLineXplus = 25;
+		var monthLinePosition = 70;
+		var monthLineThick = 1;
+		var monthTextFont = 16;
+		janText = new Kinetic.Text({ x: janWidth, y: monthTextYpos, text: "JAN", fontSize:  16, fontFamily: 'Arial', fill: timelineTextColour, draggable: true });
+		janLine = new Kinetic.Line({ points: [janWidth+monthLineXplus, monthLinePosition, janWidth+monthLineXplus, 420], stroke: lineColour, strokeWidth: monthLineThick, lineCap: 'square', lineJoin: 'square' });
+			
+		febText = new Kinetic.Text({ x:  febWidth, y: monthTextYpos, text: "FEB", fontSize:  monthTextFont, fontFamily: 'Arial', fill: timelineTextColour, draggable: true });
+		febLine = new Kinetic.Line({ points: [febWidth+monthLineXplus, monthLinePosition, febWidth+monthLineXplus, 420], stroke: lineColour, strokeWidth: monthLineThick, lineCap: 'square', lineJoin: 'square' });
+		
+		marText = new Kinetic.Text({ x: marWidth, y: monthTextYpos, text: "MAR", fontSize:  monthTextFont, fontFamily: 'Arial', fill: timelineTextColour, draggable: true });
+		marLine = new Kinetic.Line({ points: [marWidth+monthLineXplus, monthLinePosition, marWidth+monthLineXplus, 420], stroke: lineColour, strokeWidth: monthLineThick, lineCap: 'square', lineJoin: 'square' });
+
+		aprilText = new Kinetic.Text({ x:  aprilWidth, y: monthTextYpos, text: "APRIL", fontSize:  monthTextFont, fontFamily: 'Arial', fill: timelineTextColour, draggable: true });
+		aprilLine = new Kinetic.Line({ points: [aprilWidth+monthLineXplus, monthLinePosition, aprilWidth+monthLineXplus, 420], stroke: lineColour, strokeWidth: monthLineThick, lineCap: 'square', lineJoin: 'square' });
+
+		mayText = new Kinetic.Text({ x:  mayWidth, y: monthTextYpos, text: "MAY", fontSize:  monthTextFont, fontFamily: 'Arial', fill: timelineTextColour, draggable: true });
+		mayLine = new Kinetic.Line({ points: [mayWidth+monthLineXplus, monthLinePosition, mayWidth+monthLineXplus, 420], stroke: lineColour, strokeWidth: monthLineThick, lineCap: 'square', lineJoin: 'square' });
+
+		juneText = new Kinetic.Text({ x:  juneWidth, y: monthTextYpos, text: "JUNE", fontSize:  monthTextFont, fontFamily: 'Arial', fill: timelineTextColour, draggable: true });
+		juneLine = new Kinetic.Line({ points: [juneWidth+monthLineXplus, monthLinePosition, juneWidth+monthLineXplus, 420], stroke: lineColour, strokeWidth: monthLineThick, lineCap: 'square', lineJoin: 'square' });
+
+		julText = new Kinetic.Text({ x:  julWidth, y: monthTextYpos, text: "JUL", fontSize:  monthTextFont, fontFamily: 'Arial', fill: timelineTextColour, draggable: true	});
+		julLine = new Kinetic.Line({ points: [julWidth+monthLineXplus, monthLinePosition, julWidth+monthLineXplus, 420], stroke: lineColour, strokeWidth: monthLineThick, lineCap: 'square', lineJoin: 'square' });
+
+		augText = new Kinetic.Text({ x:  augWidth, y: monthTextYpos, text: "AUG", fontSize:  monthTextFont, fontFamily: 'Arial', fill: timelineTextColour, draggable: true	});
+		augLine = new Kinetic.Line({ points: [augWidth+monthLineXplus, monthLinePosition, augWidth+monthLineXplus, 420], stroke: lineColour, strokeWidth: monthLineThick, lineCap: 'square', lineJoin: 'square' });
+
+		septText = new Kinetic.Text({ x:  septWidth, y: monthTextYpos, text: "SEPT", fontSize:  monthTextFont, fontFamily: 'Arial', fill: timelineTextColour, draggable: true });
+		septLine = new Kinetic.Line({ points: [septWidth+monthLineXplus, monthLinePosition, septWidth+monthLineXplus, 420], stroke: lineColour, strokeWidth: monthLineThick, lineCap: 'square', lineJoin: 'square' });
+
+		octText = new Kinetic.Text({ x: octWidth, y: monthTextYpos, text: "OCT", fontSize:  monthTextFont, fontFamily: 'Arial', fill: timelineTextColour, draggable: true });
+		octLine = new Kinetic.Line({ points: [octWidth+monthLineXplus, monthLinePosition, octWidth+monthLineXplus, 420], stroke: lineColour, strokeWidth: monthLineThick, lineCap: 'square', lineJoin: 'square' });
+
+		novText = new Kinetic.Text({ x: novWidth, y: monthTextYpos, text: "NOV", fontSize:  monthTextFont, fontFamily: 'Arial', fill: timelineTextColour, draggable: true });
+		novLine = new Kinetic.Line({ points: [novWidth+monthLineXplus, monthLinePosition, novWidth+monthLineXplus, 420], stroke: lineColour, strokeWidth: monthLineThick, lineCap: 'square', lineJoin: 'square' });
+
+		decText = new Kinetic.Text({ x:  decWidth, y: monthTextYpos, text: "DEC", fontSize:  monthTextFont, fontFamily: 'Arial', fill: timelineTextColour, draggable: true });
+		decLine = new Kinetic.Line({ points: [decWidth+monthLineXplus, monthLinePosition, decWidth+monthLineXplus, 420], stroke: lineColour, strokeWidth: monthLineThick, lineCap: 'square', lineJoin: 'square' });
 		
 		// Generate grid lines in the background
 		//		
 		(function generateGraphLines() {
+			// Create arrays
 			graphLineX = [];
 			graphLineY = [];
+			
+			// Set grid position defaults
 			var gridPosY = 0;
 			var gridPosX = 0;
 			for(j = 0; j < canvasWidth; j++){
@@ -618,158 +719,17 @@ jQuery(document).ready(function($){
 				layer.add(graphLineX[j]);
 			}
 		})();//self invoking grid generator
-			
-		var stageWidthHalf = stage.getWidth() / 2;
-		janText = new Kinetic.Text({
-				//x: xPos2, //stage.getWidth() / 5,
-				//x: ((stage.getWidth()/2) - (janText.getWidth()/2)),
-			x: janWidth,
-			y: 50, 
-			text: "JAN",
-			fontSize:  16,
-			fontFamily: 'Arial',
-			fill: timelineTextColour,
-			//width: timelineTextWidth,
-			draggable: true
-		});
-			
-		febText = new Kinetic.Text({
-			x:  febWidth, 
-			y: 50, 
-			text: "FEB",
-			fontSize:  16,
-			fontFamily: 'Arial',
-			fill: timelineTextColour,
-			//width: timelineTextWidth,
-			draggable: true				
-		});
-		
-		marText = new Kinetic.Text({
-			x: marWidth, 
-			y: 50, 
-			text: "MAR",
-			fontSize:  16,
-			fontFamily: 'Arial',
-			fill: timelineTextColour,
-			//width: timelineTextWidth,
-			draggable: true				
-		});
-		
-		aprilText = new Kinetic.Text({
-			x:  aprilWidth, 
-			y: 50, 
-			text: "APRIL",
-			fontSize:  16,
-			fontFamily: 'Arial',
-			fill: timelineTextColour,
-			//width: timelineTextWidth,
-			draggable: true				
-		});
-		
-		mayText = new Kinetic.Text({
-			x:  mayWidth, 
-			y: 50, 
-			text: "MAY",
-			fontSize:  16,
-			fontFamily: 'Arial',
-			fill: timelineTextColour,
-			//width: timelineTextWidth,
-			draggable: true				
-		});
-		
-		juneText = new Kinetic.Text({
-			x:  juneWidth, 
-			y: 50, 
-			text: "JUNE",
-			fontSize:  16,
-			fontFamily: 'Arial',
-			fill: timelineTextColour,
-			//width: timelineTextWidth,
-			draggable: true				
-		});
-		
-		julText = new Kinetic.Text({
-			x:  julWidth, 
-			y: 50, 
-			text: "JUL",
-			fontSize:  16,
-			fontFamily: 'Arial',
-			fill: timelineTextColour,
-			//width: timelineTextWidth,
-			draggable: true				
-		});
-		
-		augText = new Kinetic.Text({
-			x:  augWidth, 
-			y: 50, 
-			text: "AUG",
-			fontSize:  16,
-			fontFamily: 'Arial',
-			fill: timelineTextColour,
-			//width: timelineTextWidth,
-			draggable: true				
-		});
-		
-		septText = new Kinetic.Text({
-			x:  septWidth, 
-			y: 50, 
-			text: "SEPT",
-			fontSize:  16,
-			fontFamily: 'Arial',
-			fill: timelineTextColour,
-			//width: timelineTextWidth,
-			draggable: true				
-		});
-		
-		octText = new Kinetic.Text({
-			x: octWidth, 
-			y: 50, 
-			text: "OCT",
-			fontSize:  16,
-			fontFamily: 'Arial',
-			fill: timelineTextColour,
-			//width: timelineTextWidth,
-			draggable: true				
-		});
-		
-		novText = new Kinetic.Text({
-			x: novWidth, 
-			y: 50, 
-			text: "NOV",
-			fontSize:  16,
-			fontFamily: 'Arial',
-			fill: timelineTextColour,
-			//width: timelineTextWidth,
-			draggable: true				
-		});
-		
-		decText = new Kinetic.Text({
-			x:  decWidth, 
-			y: 50, 
-			text: "DEC",
-			fontSize:  16,
-			fontFamily: 'Arial',
-			fill: timelineTextColour,
-			//width: timelineTextWidth,
-			draggable: true				
-		});
 
-		janGroup.add(janText);
-		febGroup.add(febText);
-		marGroup.add(marText);
-		aprilGroup.add(aprilText);
-		mayGroup.add(mayText);
-		juneGroup.add(juneText);
-		julGroup.add(julText);
-		augGroup.add(augText);
-		septGroup.add(septText);
-		octGroup.add(octText);
-		novGroup.add(novText);
-		decGroup.add(decText);
+		// Set groups, layers and stage
+		//
+		janGroup.add(janText); febGroup.add(febText); marGroup.add(marText); aprilGroup.add(aprilText); mayGroup.add(mayText); juneGroup.add(juneText); julGroup.add(julText); augGroup.add(augText); septGroup.add(septText); octGroup.add(octText); novGroup.add(novText); decGroup.add(decText);
+		janGroup.add(janLine); febGroup.add(febLine); marGroup.add(marLine); aprilGroup.add(aprilLine); mayGroup.add(mayLine); juneGroup.add(juneLine); julGroup.add(julLine); augGroup.add(augLine); septGroup.add(septLine); octGroup.add(octLine); novGroup.add(novLine); decGroup.add(decLine);
 		layer.add(timelineText);
 		stage.add(layer);
 	}
 	
+	// Save image function
+	//
 	function saveImage() {
 		//document.getElementById('save').addEventListener('click', function() {				
 		stage.toDataURL({
