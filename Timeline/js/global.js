@@ -557,8 +557,9 @@ jQuery(document).ready(function($){
 
 		// Generate the top and bottom task, date and lines
 		//
-		function generateLinesPerMonth() {
-			/*monthGroup.on('mouseover', function() { document.body.style.cursor = 'move'; });
+		function generateLinesPerMonth(monthGroup) {
+			/*monthGroup = new Kinetic.Group({ draggable:true });
+			monthGroup.on('mouseover', function() { document.body.style.cursor = 'move'; });
 			monthGroup.on('mouseout', function() { document.body.style.cursor = 'default'; });
 			monthGroup.add(textText);
 			monthGroup.add(dateText);
@@ -589,6 +590,10 @@ jQuery(document).ready(function($){
 			textText.on('mouseout', function() { document.body.style.cursor = 'default'; });
 			dateText.on('mouseover', function() { document.body.style.cursor = 'pointer'; });
 			dateText.on('mouseout', function() { document.body.style.cursor = 'default'; });
+
+			/*monthGroup.add(textText);
+			monthGroup.add(dateText);
+			monthGroup.add(redLine);*/
 		}
 
 		function generateMonthGroup(monthGroup) {
