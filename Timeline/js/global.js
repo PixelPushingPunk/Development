@@ -658,44 +658,45 @@ jQuery(document).ready(function($){
 		
 		var monthTextYpos = 50;
 		var monthLineXplus = 25;
+		var monthLineYpos = canvasHeight - 50;
 		var monthLinePosition = 70;
 		var monthLineThick = 1;
 		var monthTextFont = 16;
 		janText = new Kinetic.Text({ x: janWidth, y: monthTextYpos, text: "JAN", fontSize:  16, fontFamily: 'Arial', fill: timelineTextColour, draggable: true });
-		janLine = new Kinetic.Line({ points: [janWidth+monthLineXplus, monthLinePosition, janWidth+monthLineXplus, 420], stroke: lineColour, strokeWidth: monthLineThick, lineCap: 'square', lineJoin: 'square' });
+		janLine = new Kinetic.Line({ points: [janWidth+monthLineXplus, monthLinePosition, janWidth+monthLineXplus, monthLineYpos], stroke: lineColour, strokeWidth: monthLineThick, lineCap: 'square', lineJoin: 'square' });
 			
 		febText = new Kinetic.Text({ x:  febWidth, y: monthTextYpos, text: "FEB", fontSize:  monthTextFont, fontFamily: 'Arial', fill: timelineTextColour, draggable: true });
-		febLine = new Kinetic.Line({ points: [febWidth+monthLineXplus, monthLinePosition, febWidth+monthLineXplus, 420], stroke: lineColour, strokeWidth: monthLineThick, lineCap: 'square', lineJoin: 'square' });
+		febLine = new Kinetic.Line({ points: [febWidth+monthLineXplus, monthLinePosition, febWidth+monthLineXplus, monthLineYpos], stroke: lineColour, strokeWidth: monthLineThick, lineCap: 'square', lineJoin: 'square' });
 		
 		marText = new Kinetic.Text({ x: marWidth, y: monthTextYpos, text: "MAR", fontSize:  monthTextFont, fontFamily: 'Arial', fill: timelineTextColour, draggable: true });
-		marLine = new Kinetic.Line({ points: [marWidth+monthLineXplus, monthLinePosition, marWidth+monthLineXplus, 420], stroke: lineColour, strokeWidth: monthLineThick, lineCap: 'square', lineJoin: 'square' });
+		marLine = new Kinetic.Line({ points: [marWidth+monthLineXplus, monthLinePosition, marWidth+monthLineXplus, monthLineYpos], stroke: lineColour, strokeWidth: monthLineThick, lineCap: 'square', lineJoin: 'square' });
 
 		aprilText = new Kinetic.Text({ x:  aprilWidth, y: monthTextYpos, text: "APRIL", fontSize:  monthTextFont, fontFamily: 'Arial', fill: timelineTextColour, draggable: true });
-		aprilLine = new Kinetic.Line({ points: [aprilWidth+monthLineXplus, monthLinePosition, aprilWidth+monthLineXplus, 420], stroke: lineColour, strokeWidth: monthLineThick, lineCap: 'square', lineJoin: 'square' });
+		aprilLine = new Kinetic.Line({ points: [aprilWidth+monthLineXplus, monthLinePosition, aprilWidth+monthLineXplus, monthLineYpos], stroke: lineColour, strokeWidth: monthLineThick, lineCap: 'square', lineJoin: 'square' });
 
 		mayText = new Kinetic.Text({ x:  mayWidth, y: monthTextYpos, text: "MAY", fontSize:  monthTextFont, fontFamily: 'Arial', fill: timelineTextColour, draggable: true });
-		mayLine = new Kinetic.Line({ points: [mayWidth+monthLineXplus, monthLinePosition, mayWidth+monthLineXplus, 420], stroke: lineColour, strokeWidth: monthLineThick, lineCap: 'square', lineJoin: 'square' });
+		mayLine = new Kinetic.Line({ points: [mayWidth+monthLineXplus, monthLinePosition, mayWidth+monthLineXplus, monthLineYpos], stroke: lineColour, strokeWidth: monthLineThick, lineCap: 'square', lineJoin: 'square' });
 
 		juneText = new Kinetic.Text({ x:  juneWidth, y: monthTextYpos, text: "JUNE", fontSize:  monthTextFont, fontFamily: 'Arial', fill: timelineTextColour, draggable: true });
-		juneLine = new Kinetic.Line({ points: [juneWidth+monthLineXplus, monthLinePosition, juneWidth+monthLineXplus, 420], stroke: lineColour, strokeWidth: monthLineThick, lineCap: 'square', lineJoin: 'square' });
+		juneLine = new Kinetic.Line({ points: [juneWidth+monthLineXplus, monthLinePosition, juneWidth+monthLineXplus, monthLineYpos], stroke: lineColour, strokeWidth: monthLineThick, lineCap: 'square', lineJoin: 'square' });
 
 		julText = new Kinetic.Text({ x:  julWidth, y: monthTextYpos, text: "JUL", fontSize:  monthTextFont, fontFamily: 'Arial', fill: timelineTextColour, draggable: true	});
-		julLine = new Kinetic.Line({ points: [julWidth+monthLineXplus, monthLinePosition, julWidth+monthLineXplus, 420], stroke: lineColour, strokeWidth: monthLineThick, lineCap: 'square', lineJoin: 'square' });
+		julLine = new Kinetic.Line({ points: [julWidth+monthLineXplus, monthLinePosition, julWidth+monthLineXplus, monthLineYpos], stroke: lineColour, strokeWidth: monthLineThick, lineCap: 'square', lineJoin: 'square' });
 
 		augText = new Kinetic.Text({ x:  augWidth, y: monthTextYpos, text: "AUG", fontSize:  monthTextFont, fontFamily: 'Arial', fill: timelineTextColour, draggable: true	});
-		augLine = new Kinetic.Line({ points: [augWidth+monthLineXplus, monthLinePosition, augWidth+monthLineXplus, 420], stroke: lineColour, strokeWidth: monthLineThick, lineCap: 'square', lineJoin: 'square' });
+		augLine = new Kinetic.Line({ points: [augWidth+monthLineXplus, monthLinePosition, augWidth+monthLineXplus, monthLineYpos], stroke: lineColour, strokeWidth: monthLineThick, lineCap: 'square', lineJoin: 'square' });
 
 		septText = new Kinetic.Text({ x:  septWidth, y: monthTextYpos, text: "SEPT", fontSize:  monthTextFont, fontFamily: 'Arial', fill: timelineTextColour, draggable: true });
-		septLine = new Kinetic.Line({ points: [septWidth+monthLineXplus, monthLinePosition, septWidth+monthLineXplus, 420], stroke: lineColour, strokeWidth: monthLineThick, lineCap: 'square', lineJoin: 'square' });
+		septLine = new Kinetic.Line({ points: [septWidth+monthLineXplus, monthLinePosition, septWidth+monthLineXplus, monthLineYpos], stroke: lineColour, strokeWidth: monthLineThick, lineCap: 'square', lineJoin: 'square' });
 
 		octText = new Kinetic.Text({ x: octWidth, y: monthTextYpos, text: "OCT", fontSize:  monthTextFont, fontFamily: 'Arial', fill: timelineTextColour, draggable: true });
-		octLine = new Kinetic.Line({ points: [octWidth+monthLineXplus, monthLinePosition, octWidth+monthLineXplus, 420], stroke: lineColour, strokeWidth: monthLineThick, lineCap: 'square', lineJoin: 'square' });
+		octLine = new Kinetic.Line({ points: [octWidth+monthLineXplus, monthLinePosition, octWidth+monthLineXplus, monthLineYpos], stroke: lineColour, strokeWidth: monthLineThick, lineCap: 'square', lineJoin: 'square' });
 
 		novText = new Kinetic.Text({ x: novWidth, y: monthTextYpos, text: "NOV", fontSize:  monthTextFont, fontFamily: 'Arial', fill: timelineTextColour, draggable: true });
-		novLine = new Kinetic.Line({ points: [novWidth+monthLineXplus, monthLinePosition, novWidth+monthLineXplus, 420], stroke: lineColour, strokeWidth: monthLineThick, lineCap: 'square', lineJoin: 'square' });
+		novLine = new Kinetic.Line({ points: [novWidth+monthLineXplus, monthLinePosition, novWidth+monthLineXplus, monthLineYpos], stroke: lineColour, strokeWidth: monthLineThick, lineCap: 'square', lineJoin: 'square' });
 
 		decText = new Kinetic.Text({ x:  decWidth, y: monthTextYpos, text: "DEC", fontSize:  monthTextFont, fontFamily: 'Arial', fill: timelineTextColour, draggable: true });
-		decLine = new Kinetic.Line({ points: [decWidth+monthLineXplus, monthLinePosition, decWidth+monthLineXplus, 420], stroke: lineColour, strokeWidth: monthLineThick, lineCap: 'square', lineJoin: 'square' });
+		decLine = new Kinetic.Line({ points: [decWidth+monthLineXplus, monthLinePosition, decWidth+monthLineXplus, monthLineYpos], stroke: lineColour, strokeWidth: monthLineThick, lineCap: 'square', lineJoin: 'square' });
 		
 		// Generate grid lines in the background
 		//		
