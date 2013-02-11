@@ -301,42 +301,61 @@ jQuery(document).ready(function($){
 	// Generate timeline
 	//
 	function generateTimeline2(){
+		// Set defualt variables
+		//
 		var janWidth = 0; var febWidth = 0; var marWidth = 0; var aprilWidth = 0; var mayWidth = 0; var juneWidth = 0; var julWidth = 0; var augWidth = 0; var septWidth = 0; var octWidth = 0; var novWidth = 0; var decWidth = 0;
-		var canvasWidth = (dataLength * 150) + 250;
+		var janGroup; var febGroup; var marGroup; var aprilGroup; var mayGroup; var juneGroup; var julGroup; var augGroup; var septGroup; var octGroup; var novGroup; var decGroup;	
+		var janText; var febText; var marText; var aprilText; var mayText; var juneText; var julText; var augText; var septText; var octText; var novText; var decText;
+		var textText; var dateText; var timelineText; 
+		var canvasWidth = (dataLength * 150) + 250; var xPos = 0;
+
+		// Set canvas width and height
+		//
 		var canvasHeight = 420;
 		var canvasWrapperWidth = canvasWidth + 100;
 		var containerWidth = canvasWidth;
 
-		$('#canvasWrapper').css({'width': canvasWrapperWidth});
-		$('#container').css('width', containerWidth);
+		var setCanvasWidth = $('#canvasWrapper').css({'width': canvasWrapperWidth});
+		var seteContainerWidth = $('#container').css('width', containerWidth);
 
+		// Set timeline title variables
+		//
 		var timelineTitle = $('h1.timelineTitle').text();
 		var containerWidthTrue = $('#container').width();
 		var timelineTextPos = containerWidthTrue / 2;
 		var timelineTextWidth = $('.timelineTitle').width();
 		var timelineTextSize = $('#timelineTitleSize').val();
 		var timelineTextColour = $('#timelineTitleColour').val();
-			
-		var textText; var dateText; var timelineText; 
-		var xPos = 0;		
 		
+		// Set random colours
+		//
 		var colors = ['#ff0000','#00ff00','#0000ff','rgb(50,50,50)','rgb(200,200,200)','purple','orange','black'];
 		var color = colors[Math.floor(Math.random()*colors.length)];
-				
+		
+		// Set text and date colours
+		//		
 		var textColour = $('#titleColour').val(); 
 		var dateColour = $('#dateColour').val();
 		var lineColour = $('#lineColour').val();
 		var lineThick = $('#thick').val();
 		var gridWidth = 1;
-		var gridColour = "#d5d5d5";
-				
+		var gridColour = "#d5d5d5";			
 		var textSize = $('#titleSize').val();
 		var dateSize = $('#dateSize').val();
 		
+		// Create new stage and layer
+		//
 		stage = new Kinetic.Stage({ container: 'container', width: canvasWidth, height: canvasHeight });	
 		layer = new Kinetic.Layer();
-		timelineText = new Kinetic.Text({ x: timelineTextPos, y: 10, text: timelineTitle, fontSize:  timelineTextSize, fontFamily: 'Arial', fill: timelineTextColour, draggable: true });	
-			
+
+		// Create new time line title
+		//
+		timelineText = new Kinetic.Text({ x: timelineTextPos, y: 10, text: timelineTitle, fontSize:  timelineTextSize, fontFamily: 'Arial', fill: timelineTextColour, draggable: true });		
+		timelineText.on('mouseover', function() { document.body.style.cursor = 'pointer'; });
+		timelineText.on('mouseout', function() { document.body.style.cursor = 'default'; });
+
+		// Create new month groups
+		//
 		janGroup = new Kinetic.Group({ draggable:true });
 		febGroup = new Kinetic.Group({ draggable:true });
 		marGroup = new Kinetic.Group({ draggable:true });
@@ -348,45 +367,34 @@ jQuery(document).ready(function($){
 		septGroup = new Kinetic.Group({ draggable:true }); 
 		octGroup = new Kinetic.Group({ draggable:true }); 
 		novGroup = new Kinetic.Group({ draggable:true });	
-		decGroup = new Kinetic.Group({ draggable:true });
-			
-			//var testLength = Math.floor(Math.random()*200) * 5;
-				/*var janNum = $.map(data, function(value, key) { 
-					var dataValues = value.date; 
-					var newDate = new Date(value.date);
-					var newTitle = value.title;
-					var b = newDate.getMonth(); 
-					if (b == 0) { 
-					return newDate; 
-					} else {} ; 
-				});
+		decGroup = new Kinetic.Group({ draggable:true });			
 				
-				var janLength = janNum.length;
-				var febNum = $.map(data, function(value, key) { var dataValues = value.date; var newDate = new Date(value.date);var b = newDate.getMonth(); if (b == 1) { return newDate; } });
-				var febLength = febNum.length;
-				var marNum = $.map(data, function(value, key) { var dataValues = value.date; var newDate = new Date(value.date);var b = newDate.getMonth(); if (b == 2) { return newDate; } });
-				var marLength = marNum.length;
-				var aprilNum = $.map(data, function(value, key) { var dataValues = value.date; var newDate = new Date(value.date);var b = newDate.getMonth(); if (b == 0) { return newDate; } });
-				var aprilLength = aprilNum.length;	*/
-				
-		//loop through values
+		// Loop through all values in array and position top and bottom
+		//
 		var num = 0;			
 		for (i = num; i < data.length; i++) {	
-				xPos += 150;
-				var xPos2 = xPos+150;
-				var xPos3 = xPos2;
-				var xPos4 = xPos3 + 20;
-				var yPos = canvasHeight / 2; 
-				var xPosText = xPos2 + 15;
-				var xPosDate = xPos2;
-				var topTitlePos = yPos - (yPos/3); var bottomTitlePos = yPos + (yPos/3);				
-				var textTitlePosTop = topTitlePos - 30; var textTitlePosBottom = bottomTitlePos + 10;				
-				var dateTitlePosTop = topTitlePos + 75; var dateTitlePosBottom = bottomTitlePos - 90;
-				
-				var dataValues = data[i].date;
-				var newDate = new Date(dataValues);
-				var month = newDate.getMonth();
-				//generateLinesPerMonth();
+			// Set x and y line values
+			//
+			xPos += 150;
+			var xPos2 = xPos+150;
+			var xPos3 = xPos2;
+			var xPos4 = xPos3 + 20;
+			var yPos = canvasHeight / 2; 
+
+			// Set text and date x and y values
+			//
+			var xPosText = xPos2 + 15;
+			var xPosDate = xPos2;
+			var topTitlePos = yPos - (yPos/3); var bottomTitlePos = yPos + (yPos/3);				
+			var textTitlePosTop = topTitlePos - 30; var textTitlePosBottom = bottomTitlePos + 10;				
+			var dateTitlePosTop = topTitlePos + 75; var dateTitlePosBottom = bottomTitlePos - 90;
+			
+			// Order by month
+			//	
+			var dataValues = data[i].date;
+			var newDate = new Date(dataValues);
+			var month = newDate.getMonth();
+
 				if (month == 0) {	 
 					//JAN
 					var monthVal = "Jan";
@@ -401,13 +409,12 @@ jQuery(document).ready(function($){
 					janWidth = janGroup.getWidth();
 					janGroup.move(-30, 0);
 					layer.add(janGroup);
-
 				} else if (month == 1) { 
 					//FEB
 					var monthVal = "Feb";
 					generateLinesPerMonth();
 					febGroup.on('mouseover', function() { document.body.style.cursor = 'pointer'; });
-					febGroup.on('mouseout', function() { document.body.style.cursor = 'default'; });http://www.html5canvastutorials.com/libraries/kinetic-v4.3.0-beta2.js
+					febGroup.on('mouseout', function() { document.body.style.cursor = 'default'; });
 					febGroup.add(textText);
 					febGroup.add(dateText);
 					febGroup.add(redLine);
@@ -559,14 +566,19 @@ jQuery(document).ready(function($){
 				} else { }
 				
 		}//end loop
+
+		// Generate the top and bottom task, date and lines
+		//
 		function generateLinesPerMonth() {
 			if (i % 2) {
+				// if value is odd
 				textText = new Kinetic.Text({ x: xPosText, y: textTitlePosBottom, text: data[i].title, fontSize: textSize, fontFamily: 'Arial', fill: textColour, width: 150, draggable: true });
 				dateText = new Kinetic.Text({ x: xPosDate, y: dateTitlePosBottom, text: data[i].date, fontSize: dateSize, fontFamily: 'Arial', fill: dateColour, draggable: true });				
 				textText.setOffset({ x: textText.getWidth() / 2 });								
 				dateText.setOffset({ x: dateText.getWidth() / 2 });		
 				redLine = new Kinetic.Line({ points: [xPos, yPos, xPos2, yPos, xPos2, bottomTitlePos], stroke: lineColour, strokeWidth: lineThick, lineCap: 'round', lineJoin: 'round' });
 			} else {
+				// if value is even
 				textText = new Kinetic.Text({ x: xPosText, y: textTitlePosTop, text: data[i].title, fontSize: textSize, fontFamily: 'Arial', fill: textColour, width:150, draggable: true });				
 				dateText = new Kinetic.Text({ x: xPosDate, y: dateTitlePosTop, text: data[i].date, fontSize: dateSize, fontFamily: 'Arial', fill: dateColour, draggable: true });								
 				textText.setOffset({ x: textText.getWidth() / 2 });
@@ -582,7 +594,9 @@ jQuery(document).ready(function($){
 			dateText.on('mouseover', function() { document.body.style.cursor = 'pointer'; });
 			dateText.on('mouseout', function() { document.body.style.cursor = 'default'; });
 		}
-				
+		
+		// Generate grid lines in the background
+		//		
 		(function generateGraphLines() {
 			graphLineX = [];
 			graphLineY = [];
@@ -603,7 +617,7 @@ jQuery(document).ready(function($){
 				layer.add(graphLineY[j]);
 				layer.add(graphLineX[j]);
 			}
-		})();//self invoking generate graph
+		})();//self invoking grid generator
 			
 		var stageWidthHalf = stage.getWidth() / 2;
 		janText = new Kinetic.Text({
