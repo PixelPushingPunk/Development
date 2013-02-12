@@ -449,112 +449,113 @@ jQuery(document).ready(function($){
 				generateMonthTextLine(marWidth, marText, marLine);
 			}*/
 			if (presentYear == getYear) {
-				if (month == 0) {	 
-					//JAN
-					generateLinesPerMonth();
-					generateMonthGroup(janGroup);
-					janGroup.setWidth(xPos);
-					janWidth = janGroup.getWidth();
-					janGroup.move(-30, 0);
-					//generateMonthGroup(janGroup, janWidth, -30);
-					layer.add(janGroup);
-				} else if (month == 1) { 
-					//FEB
-					generateLinesPerMonth();
-					generateMonthGroup(febGroup)
-					febGroup.setWidth(xPos);
-					febWidth = febGroup.getWidth();
-					febGroup.move(0, 0);
-					//generateMonthGroup(febGroup, febWidth, 0);
-					layer.add(febGroup);
-				} else if  (month == 2) { 
-					//MAR
-					generateLinesPerMonth();
-					generateMonthGroup(marGroup);
-					marGroup.setWidth(xPos);
-					marWidth = marGroup.getWidth();					
-					marGroup.move(30, 0);
-					layer.add(marGroup);
-				} else if (month == 3) { 
-					//APR
-					generateLinesPerMonth();
-					generateMonthGroup(aprilGroup);
-					aprilGroup.setWidth(xPos);
-					aprilWidth = aprilGroup.getWidth();
-					aprilGroup.move(60, 0);
-					layer.add(aprilGroup);
-				} else if (month == 4) {
-					//MAY
-					generateLinesPerMonth();
-					generateMonthGroup(mayGroup);
-					mayGroup.setWidth(xPos);
-					mayWidth = mayGroup.getWidth();
-					mayGroup.move(90, 0);
-					layer.add(mayGroup);
-				} else if (month == 5) { 
-					//JUNE
-					generateLinesPerMonth();
-					generateMonthGroup(juneGroup);
-					juneGroup.setWidth(xPos);
-					juneWidth = juneGroup.getWidth();
-					juneGroup.move(120, 0);
-					layer.add(juneGroup);
-				} else if (month == 6) { 
-					//JULY
-					generateLinesPerMonth();
-					generateMonthGroup(julGroup);
-					julGroup.setWidth(xPos);
-					julWidth = julGroup.getWidth();
-					julGroup.move(150, 0);
-					layer.add(julGroup);
-				}  else if (month == 7) { 
-					//AUG
-					generateLinesPerMonth();
-					generateMonthGroup(augGroup);
-					augGroup.setWidth(xPos);
-					augWidth = augGroup.getWidth();
-					augGroup.move(180, 0);
-					layer.add(augGroup);
-				} else if (month == 8) { 
-					//SEPT
-					generateLinesPerMonth();
-					generateMonthGroup(septGroup);
-					septGroup.setWidth(xPos);
-					septWidth = septGroup.getWidth();
-					septGroup.move(210, 0);
-					layer.add(septGroup);
-				} else if (month == 9) { 
-					//OCT
-					generateLinesPerMonth();
-					generateMonthGroup(octGroup);
-					octGroup.setWidth(xPos);
-					octWidth = octGroup.getWidth();
-					octGroup.move(240, 0);
-					layer.add(octGroup);
-				} else if (month == 10) { 
-					//NOV
-					generateLinesPerMonth();
-					generateMonthGroup(novGroup);
-					novGroup.setWidth(xPos);
-					novWidth = novGroup.getWidth();
-					novGroup.move(270, 0);
-					layer.add(novGroup);
-				} else if (month == 11) { 
-					//DEC
-					generateLinesPerMonth();
-					generateMonthGroup(decGroup);
-					decGroup.setWidth(xPos);
-					decWidth = decGroup.getWidth();
-					decGroup.move(300, 0);
-					layer.add(decGroup);
-				} else { }
+				monthSeg()
 			} else {}
-
-			
-			
-				
 		}//end loop
 
+		// Segregate by month
+		//
+				function monthSeg(){
+					if (month == 0) {	 
+						//JAN
+						generateLinesPerMonth();
+						generateMonthGroup(janGroup);
+						janGroup.setWidth(xPos);
+						janWidth = janGroup.getWidth();
+						janGroup.move(-30, 0);
+						//generateMonthGroup(janGroup, janWidth, -30);
+						layer.add(janGroup);
+					} else if (month == 1) { 
+						//FEB
+						generateLinesPerMonth();
+						generateMonthGroup(febGroup)
+						febGroup.setWidth(xPos);
+						febWidth = febGroup.getWidth();
+						febGroup.move(0, 0);
+						//generateMonthGroup(febGroup, febWidth, 0);
+						layer.add(febGroup);
+					} else if  (month == 2) { 
+						//MAR
+						generateLinesPerMonth();
+						generateMonthGroup(marGroup);
+						marGroup.setWidth(xPos);
+						marWidth = marGroup.getWidth();					
+						marGroup.move(30, 0);
+						layer.add(marGroup);
+					} else if (month == 3) { 
+						//APR
+						generateLinesPerMonth();
+						generateMonthGroup(aprilGroup);
+						aprilGroup.setWidth(xPos);
+						aprilWidth = aprilGroup.getWidth();
+						aprilGroup.move(60, 0);
+						layer.add(aprilGroup);
+					} else if (month == 4) {
+						//MAY
+						generateLinesPerMonth();
+						generateMonthGroup(mayGroup);
+						mayGroup.setWidth(xPos);
+						mayWidth = mayGroup.getWidth();
+						mayGroup.move(90, 0);
+						layer.add(mayGroup);
+					} else if (month == 5) { 
+						//JUNE
+						generateLinesPerMonth();
+						generateMonthGroup(juneGroup);
+						juneGroup.setWidth(xPos);
+						juneWidth = juneGroup.getWidth();
+						juneGroup.move(120, 0);
+						layer.add(juneGroup);
+					} else if (month == 6) { 
+						//JULY
+						generateLinesPerMonth();
+						generateMonthGroup(julGroup);
+						julGroup.setWidth(xPos);
+						julWidth = julGroup.getWidth();
+						julGroup.move(150, 0);
+						layer.add(julGroup);
+					}  else if (month == 7) { 
+						//AUG
+						generateLinesPerMonth();
+						generateMonthGroup(augGroup);
+						augGroup.setWidth(xPos);
+						augWidth = augGroup.getWidth();
+						augGroup.move(180, 0);
+						layer.add(augGroup);
+					} else if (month == 8) { 
+						//SEPT
+						generateLinesPerMonth();
+						generateMonthGroup(septGroup);
+						septGroup.setWidth(xPos);
+						septWidth = septGroup.getWidth();
+						septGroup.move(210, 0);
+						layer.add(septGroup);
+					} else if (month == 9) { 
+						//OCT
+						generateLinesPerMonth();
+						generateMonthGroup(octGroup);
+						octGroup.setWidth(xPos);
+						octWidth = octGroup.getWidth();
+						octGroup.move(240, 0);
+						layer.add(octGroup);
+					} else if (month == 10) { 
+						//NOV
+						generateLinesPerMonth();
+						generateMonthGroup(novGroup);
+						novGroup.setWidth(xPos);
+						novWidth = novGroup.getWidth();
+						novGroup.move(270, 0);
+						layer.add(novGroup);
+					} else if (month == 11) { 
+						//DEC
+						generateLinesPerMonth();
+						generateMonthGroup(decGroup);
+						decGroup.setWidth(xPos);
+						decWidth = decGroup.getWidth();
+						decGroup.move(300, 0);
+						layer.add(decGroup);
+					} else { }
+				}		
 		// Generate the top and bottom task, date and lines
 		//
 		function generateLinesPerMonth(monthGroup) {
