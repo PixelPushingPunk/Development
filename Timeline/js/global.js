@@ -3,7 +3,7 @@
 		if(typeof(Storage)!=="undefined") { console.log("Yes! localStorage and sessionStorage support!"); } 
 		else { console.log("Sorry! No web storage support.."); } // maybe try dojox.storage or a third-party solution 
 		
-		//Init Knockout
+		// Init Knockout
 		//
 		ko.applyBindings(new TaskListViewModel());
 		
@@ -28,6 +28,32 @@
 		//
 		$('input, textarea').placeholder();
 		
+		// Init thickness slider
+		//
+		//var select = $('#thick');
+		$('#master').slider({
+			value:4,
+			orientation:"horizontal",
+			range:"min",
+			min: 1,
+			max: 7,
+			//value: select[ 0 ].selectedIndex + 1,//4,
+			slide: function( event, ui ) {
+				$('#thick').val( ui.value );
+			},
+			/*slide: function ( event, ui ) {
+				select[ 0 ].selectedIndex = ui.value - 1;
+			},*/
+			animate: true
+		});
+		var slideThick = $('#master').slider( 'value' );
+		$('#thick').val( slideThick );
+		//var slideThick = function() { $('#master').slider( 'value', this.selectedIndex + 1 ) };
+		//$('#thick').change(function () {
+		//	slideThick();
+		//});
+
+
 		// Highlight tasks
 		//
 		$('body, html').on('click', '.numTasksLeft', function(){
@@ -46,22 +72,54 @@
 			}
 		});
 
-		//Submit task btn
+		// Submit task btn
 		//
 		$('.completeTasks').hide();
 		$('#submitTaskBtn').on('click', function(){
 			$('.completeTasks').fadeIn();
 			$('#noData').fadeOut('fast');
 		});
-			
-		//Timeline title colour
+		
+		// Thickness of timeline
+		//
+
+		/*$('#thick').on('onChange', function(e) {
+			thickValidation();
+			e.preventDefault();
+		});*/
+
+		$('.ui-slider-handle').on('mousedown mouseup', function(e) {
+			thickValidation();
+			e.preventDefault();
+		});
+
+		/*$('#thick').each(function() {
+			var elem = $(this);
+
+			// Save current value of element
+		   	elem.data('oldVal', elem.val());
+
+		   	// Look for changes in the value
+			elem.bind("propertychange keyup input paste", function(event){
+		    // If value has changed...
+		    if (elem.data('oldVal') != elem.val()) {
+		    // Updated stored value
+		    elem.data('oldVal', elem.val());
+		       // Do action
+		       thickValidation();
+		     }
+		   });
+		});*/
+
+
+		// Timeline title colour
 		//
 		$('input#timelineTitleColour').change(function(){
 			var timelineTitleColourVal = $('input#timelineTitleColour').val();
 			$('.timelineTitle').css({'color': timelineTitleColourVal});
 		});
 		
-		//Timeline title size
+		// Timeline title size
 		//
 		$('#timelineTitleSize').val(25);
 		$('#timelineTitleSizeBtn').on('click', function(){
@@ -70,14 +128,14 @@
 			return false;
 		});
 		
-		//Title colour picker
+		// Title colour picker
 		//
 		$('input#titleColour').change(function(){
 			var titleColourVal = $('input#titleColour').val();
 			$('.mileStoneTitle').css({'color': titleColourVal});
 		});
 		
-		//Title size
+		// Title size
 		//
 		$('#titleSize').val(16);
 		$('#titleSizeBtn').on('click', function(){
@@ -87,14 +145,14 @@
 			return false;
 		});
 		
-		//Date colour picker
+		// Date colour picker
 		//
 		$('input#dateColour').change(function(){
 			var dateColourVal = $('input#dateColour').val();
 			$('.mileStoneDate').css({'color': dateColourVal});
 		});
 
-		//Datesize
+		// Datesize
 		//
 		$('#dateSize').val(12);
 		$('#dateSizeBtn').on('click', function(){
@@ -104,27 +162,27 @@
 			return false;
 		});	
 		
-		//Line colour picker
+		// Line colour picker
 		//
 		$('input#lineColour').change(function(){	
 			var lineColourVal = $('input#lineColour').val();
 			$('.top, .bottom').css({'border-bottom-color': lineColourVal, 'border-right-color':lineColourVal});
 		});
 		
-		//Background colour picker
+		// Background colour picker
 		//
 		$('input#bgColour').change(function(){
 			var bgColourVal = $('input#bgColour').val();
 			$('.mileTwrapper, .mileDwrapper').css({'background-color': bgColourVal});
 		});
 		
-		//Line thickness remove error
+		// Line thickness remove error
 		//
-		$('input#thick').on('blur', function(){
+		/*$('#thick').on('blur', function(){
 			$('.error').fadeOut('fast');
-		});	
+		});	*/
 		
-		//Character validation
+		// Character validation
 		//
 		$('#task').on({
 			focus: function(){
@@ -137,7 +195,7 @@
 			}
 		});
 		
-		$('#thick').on({
+		/*$('#thick').on({
 			focus: function(){
 				$('.thickError').fadeIn('fast');
 				$(this).addClass('redBorder');
@@ -146,9 +204,9 @@
 				$('.thickError').fadeOut('slow');
 				$(this).removeClass('redBorder');
 			}
-		});
+		});*/
 		
-		//Print
+		// Print
 		//
 		$('#print').on('click', function() {
 			window.print();
@@ -200,7 +258,7 @@
 			e.preventDefault();	
 		});	
 		
-		//Canvas Support
+		// Canvas Support
 		//
 		try {
 			document.createElement("canvas").getContext("2d");
@@ -223,7 +281,7 @@
 			return false;
 		});
 		
-		//Kinetic canvas
+		// Kinetic canvas
 		//	
 		$('#clear').on('click', function() {
 			clearCanvas();
@@ -237,7 +295,7 @@
 			return false;
 		});
 		
-		//Save as JSON and generate timeline - Preview button
+		// Save as JSON and generate timeline - Preview button
 		//
 		$('#saveJSON').on('click', function(){
 			$('#timeline, #customize').css('display','none');
@@ -876,10 +934,10 @@ ko.bindingHandlers.sortable = {
 		//self.trash = ko.observableArray([]);
     	//self.trash.id = "trash";
 
-		var originalLineThickness = $('.top').css({'border-bottom':'5px solid #ccc'});
-		self.addThick = function(){
-			thickValidation();
-		};
+		
+		//self.addThick = function(){
+		//	thickValidation();
+		//};
 
 		self.save = function() {
 			self.lastSavedJson(JSON.stringify(ko.toJS(self.tasks), null, 2));
@@ -905,9 +963,7 @@ ko.bindingHandlers.sortable = {
 		$('.mileTwrapper').css({'right': mTitleRight});
 				
 		//reconfigure line thickness
-		$('input#thick').val(4);
-		var lineThicknessValx = $('input#thick').val();
-		$('.top').css({'border-bottom-width': lineThicknessValx});
+		thickValidation();
 
 		//reconfigure title colour
 		var titleColourValx = $('input#titleColour').val();
@@ -951,18 +1007,24 @@ ko.bindingHandlers.sortable = {
 	// Thick validation
 	//
 	function thickValidation() {
-			var thickRegEx = "^[0-9]+$";
+			/*var thickRegEx = "^[0-9]+$";
 			var thickValidation = $('input#thick').val();
 			
 			//error handling
 			if((thickValidation.match(thickRegEx)) && ((thickValidation <= 7) && (thickValidation > 0)) ){
 				var thickVal = $('input#thick').val() +'px';
-				$('.top').css({'border-bottom-width':thickVal});
+				var slideThick = $('#master').slider( 'value' );
+				$('.top').css({'border-bottom-width':slideThick});
 				$('.thickError').css('display','none');		
 			} else {
 				$('.thickError').fadeIn('fast');
 				return false;
-			}
+			}*/
+			var slideThick = $('#master').slider( 'value' );
+			var originalLineStyle = $('.top').css({'border-bottom-style':'solid'});
+			var originalLineColor = $('.top').css({'border-bottom-color':'rgb(176, 176, 176)'});
+			var lineThicknessValx = $('#thick').val( slideThick );
+			$('.top').css({'border-bottom-width': slideThick});
 	}
 	
 	// Title colour

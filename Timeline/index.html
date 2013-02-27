@@ -111,7 +111,7 @@
 
 						<ul id="editableTasks" data-bind="foreach: tasks, visible: tasks().length > 0, sortable: tasks">
 							<li>
-								<input class="inputStyle mileStoneTitle" data-bind="value: title, disable: isDone"> 
+								<input id="datepickerMileStone" class="inputStyle mileStoneTitle" data-bind="value: title, disable: isDone"> 
 								<input class="inputStyle mileStoneDate" data-bind="value: date, disable: isDone"> 
 								<a title="delete" class="button deleteBtn" href="#" data-bind="click: $parent.removeTask">x</a>
 							</li>
@@ -121,15 +121,32 @@
 
 			    	<div class="slide">
 			      	<!-- Content for slide 3 goes here. -->
+			      		<!-- timeline thickness test -->
+			      		<!--<label for="amount" style="margin:0;">Pixel Thickness:</label>
+			      		<input type="text" id="amount" style="border: 0; color: #f6931f; font-weight: bold;">-->
+			      		
+
 						<!-- Customize timeline style -->
-						<form id="thickForm" data-bind="submit: addThick">
-							<label for="thick">Change line thickness:</label><input style="float:left;" type="text" id="thick" name="thick" class="inputStyle" placeholder="Thickness in pixels"/>
-							<button style="float:left;" type="submit" id="thickBtn">Add</button>
+						<form id="thickForm"> <!--data-bind="submit: addThick"-->
+							<label for="thick">Pixel Thickness:</label>
+							<input style="float:left; border: 0; color: #f6931f; font-weight: bold;" type="text" id="thick" name="thick" class="inputStyle"/>
+							<!--<select name"thick" id="thick">
+								<option>1</option>
+								<option>2</option>
+								<option>3</option>
+								<option>4</option>
+								<option>5</option>
+								<option>6</option>
+								<option>7</option>
+							</select> 
+							<button style="float:left;" type="submit" id="thickBtn">Add</button>-->
+							<div class="clear"></div>
+							<div id="master" style="width: 260px; margin: 15px;"></div>
 							<span class="error thickError">You need an number between 1 and 7 for the thickness value*</span>
 						</form>
 						<div class="clear"></div>
 
-						<form id="colorCusomize">
+						<form id="colorCustomize">
 							<ul>
 								<li><label for="timelineTitleColour">Timeline Title Colour</label> <input id="timelineTitleColour" name="timelineTitleColour" class="inputStyle" value="#000000"/></li>
 								<li><label for="timelineTitleSize">Timeline Title Size</label> <input id="timelineTitleSize" name="timelineTitleSize" class="inputStyle" type="text"/> <button id="timelineTitleSizeBtn">Add</button></li>			
