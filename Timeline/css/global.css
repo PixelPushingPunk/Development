@@ -40,7 +40,7 @@ header #export, header #print {
 }
 
 #customize {
-	width:95%;
+	width:100%;
 	margin:30px auto 0;	
 }
 
@@ -494,11 +494,21 @@ form ul li input.inputStyle {
 	float:left;
 }
 
+#task, #editableTasks li input.mileStoneTitle, #timelineTitle {
+	min-width:300px;
+}
+
 #taskForm, #thickForm, #titleForm {
 	height:70px;
 	position:relative;
 	float:left;
 	overflow:hidden;
+}
+
+.trash {
+    background-color: #000;
+    width:125px;
+    min-height:50px;
 }
 
 .error {
@@ -662,6 +672,53 @@ form ul li input.inputStyle {
 	left:10px;
 	color:red;
 }
+
+/* Slide show */
+
+#slideshow {
+	position:relative;
+}
+
+#slideshow #slidesContainer {
+  margin:0 auto;
+  width:760px;
+  height:563px;
+  overflow:auto; /* allow scrollbar */
+  position:relative;
+}
+
+
+#slideshow #slidesContainer .slide {
+  margin:0 auto;
+  width:740px; /* reduce by 20 pixels to avoid horizontal scroll */
+  height:563px;
+}
+
+/**
+ * Slideshow controls style rules.
+ */
+.control {
+  display:block;
+  width:39px;
+  height:563px;
+  /*text-indent:-10000px;*/
+  position:absolute;
+  cursor: pointer;
+}
+#leftControl {
+  top:0;
+  left:0;
+  background:transparent url(img/control_left.jpg) no-repeat 0 0;
+}
+#rightControl {
+  top:0;
+  right:0;
+  background:transparent url(img/control_right.jpg) no-repeat 0 0;
+}
+
+
+
+
 
 @meda only print {
 	header {

@@ -1,22 +1,19 @@
 (function($){
 	$(document).ready(function(){
-		if (Modernizr.localstorage) { console.log("window.localStorage is available!"); } 
-		else { console.log("no native support for HTML5 storage :("); } // maybe try dojox.storage or a third-party solution 
-
 		if(typeof(Storage)!=="undefined") { console.log("Yes! localStorage and sessionStorage support!"); } 
-		else { console.log("Sorry! No web storage support.."); }
+		else { console.log("Sorry! No web storage support.."); } // maybe try dojox.storage or a third-party solution 
 		
-		//init Knockout
+		//Init Knockout
 		//
 		ko.applyBindings(new TaskListViewModel());
 		
-		//init Simple Colour
+		// Init Simple Colour
 		//
 		$('#titleColour, #dateColour, #lineColour, #bgColour, #timelineTitleColour').simpleColor();
 		
-		//init Datepicker
+		// Init Datepicker
 		//
-		$('#datepicker').datepicker({
+		$('#datepicker, #datepickerMileStone').datepicker({
 			dateFormat: "yy-mm-dd",
 			beforeShow: function (input, inst) {
 				var offset = $(input).offset();
@@ -27,17 +24,28 @@
 			}
 		});
 
-		//Init Placeholder
+		// Init Placeholder
 		//
 		$('input, textarea').placeholder();
 		
-		//Highlight tasks
+		// Highlight tasks
 		//
 		$('body, html').on('click', '.numTasksLeft', function(){
 			$('span.completeTasks strong').addClass('highlight');
 			setTimeout(removeHighlight, 500);
 		});
-			
+		
+		// Cursor move on editable tasks
+		//
+		$('.editableTasks li').on({
+			mouseenter: function() {
+				$(this).css('cursor', 'move');
+			},
+			mouseleave: function() {
+				$(this).css('cursor', 'default');
+			}
+		});
+
 		//Submit task btn
 		//
 		$('.completeTasks').hide();
@@ -148,7 +156,7 @@
 		});
 		
 	/*----------------------------------------------------------------------*/
-	/* Scroller                                  						*/
+	/* Scroller                                  						    */
 	/*----------------------------------------------------------------------*/
 
 		$('a.gorightpeople').click(function(e) {	  
@@ -239,6 +247,7 @@
 			//DATA
 			var jsonVal = $('#jsonVal').val();
 			data = JSON.parse(jsonVal);
+
 			//data = $.makeArray(dataF);		
 			for (i = 0; i < data.length; i++) {
 				data.sort(function(a,b){
@@ -863,7 +872,10 @@ ko.bindingHandlers.sortable = {
 		self.removeTitle = function(tfTitle) {
 			self.titleTimeline.remove(tfTitle);
 		};
-		
+
+		//self.trash = ko.observableArray([]);
+    	//self.trash.id = "trash";
+
 		var originalLineThickness = $('.top').css({'border-bottom':'5px solid #ccc'});
 		self.addThick = function(){
 			thickValidation();
@@ -875,6 +887,7 @@ ko.bindingHandlers.sortable = {
 		};
 
 		self.lastSavedJson = ko.observable("");	
+
 		
 	}
 	
