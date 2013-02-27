@@ -1,269 +1,271 @@
-jQuery(document).ready(function($){
-	if (Modernizr.localstorage) { console.log("window.localStorage is available!"); } 
-	else { console.log("no native support for HTML5 storage :("); } // maybe try dojox.storage or a third-party solution 
+(function($){
+	$(document).ready(function(){
+		if (Modernizr.localstorage) { console.log("window.localStorage is available!"); } 
+		else { console.log("no native support for HTML5 storage :("); } // maybe try dojox.storage or a third-party solution 
 
-	if(typeof(Storage)!=="undefined") { console.log("Yes! localStorage and sessionStorage support!"); } 
-	else { console.log("Sorry! No web storage support.."); }
-	
-	//init Knockout
-	//
-	ko.applyBindings(new TaskListViewModel());
-	
-	//init Simple Colour
-	//
-	$('#titleColour, #dateColour, #lineColour, #bgColour, #timelineTitleColour').simpleColor();
-	
-	//init Datepicker
-	//
-	$('#datepicker').datepicker({
-		dateFormat: "yy-mm-dd",
-		beforeShow: function (input, inst) {
-			var offset = $(input).offset();
-			var height = $(input).height();
-			window.setTimeout(function () {
-				inst.dpDiv.css({ top: (offset.top + height + 25) + 'px', left: offset.left + 'px' })
-			}, 1);
-		}
-	});
-
-	//Init Placeholder
-	//
-	$('input, textarea').placeholder();
-	
-	//Highlight tasks
-	//
-	$('body, html').on('click', '.numTasksLeft', function(){
-		$('span.completeTasks strong').addClass('highlight');
-		setTimeout(removeHighlight, 500);
-	});
+		if(typeof(Storage)!=="undefined") { console.log("Yes! localStorage and sessionStorage support!"); } 
+		else { console.log("Sorry! No web storage support.."); }
 		
-	//Submit task btn
-	//
-	$('.completeTasks').hide();
-	$('#submitTaskBtn').on('click', function(){
-		$('.completeTasks').fadeIn();
-		$('#noData').fadeOut('fast');
-	});
+		//init Knockout
+		//
+		ko.applyBindings(new TaskListViewModel());
 		
-	//Timeline title colour
-	//
-	$('input#timelineTitleColour').change(function(){
-		var timelineTitleColourVal = $('input#timelineTitleColour').val();
-		$('.timelineTitle').css({'color': timelineTitleColourVal});
-	});
-	
-	//Timeline title size
-	//
-	$('#timelineTitleSize').val(25);
-	$('#timelineTitleSizeBtn').on('click', function(){
-		var timelineTitleSizeVal = ($('#timelineTitleSize').val()) + 'px';
-		$('.timelineTitle').css({'font-size': timelineTitleSizeVal});
-		return false;
-	});
-	
-	//Title colour picker
-	//
-	$('input#titleColour').change(function(){
-		var titleColourVal = $('input#titleColour').val();
-		$('.mileStoneTitle').css({'color': titleColourVal});
-	});
-	
-	//Title size
-	//
-	$('#titleSize').val(16);
-	$('#titleSizeBtn').on('click', function(){
-		var titleSizeVal = ($('#titleSize').val()) + 'px';
-		console.log(titleSizeVal);
-		$('.mileStoneTitle').css({'font-size': titleSizeVal});
-		return false;
-	});
-	
-	//Date colour picker
-	//
-	$('input#dateColour').change(function(){
-		var dateColourVal = $('input#dateColour').val();
-		$('.mileStoneDate').css({'color': dateColourVal});
-	});
-
-	//Datesize
-	//
-	$('#dateSize').val(12);
-	$('#dateSizeBtn').on('click', function(){
-		var dateSizeVal = ($('#dateSize').val()) + 'px';
-		console.log(dateSizeVal);
-		$('.mileStoneDate').css({'font-size': dateSizeVal});
-		return false;
-	});	
-	
-	//Line colour picker
-	//
-	$('input#lineColour').change(function(){	
-		var lineColourVal = $('input#lineColour').val();
-		$('.top, .bottom').css({'border-bottom-color': lineColourVal, 'border-right-color':lineColourVal});
-	});
-	
-	//Background colour picker
-	//
-	$('input#bgColour').change(function(){
-		var bgColourVal = $('input#bgColour').val();
-		$('.mileTwrapper, .mileDwrapper').css({'background-color': bgColourVal});
-	});
-	
-	//Line thickness remove error
-	//
-	$('input#thick').on('blur', function(){
-		$('.error').fadeOut('fast');
-	});	
-	
-	//Character validation
-	//
-	$('#task').on({
-		focus: function(){
-			$('.characterError').fadeIn('fast');
-			$(this).addClass('redBorder');
-		}, 
-		blur: function () {
-			$('.characterError').fadeOut('slow');
-			$(this).removeClass('redBorder');
-		}
-	});
-	
-	$('#thick').on({
-		focus: function(){
-			$('.thickError').fadeIn('fast');
-			$(this).addClass('redBorder');
-		}, 
-		blur: function () {
-			$('.thickError').fadeOut('slow');
-			$(this).removeClass('redBorder');
-		}
-	});
-	
-	//Print
-	//
-	$('#print').on('click', function() {
-		window.print();
-		return false;
-	});
-	
-/*----------------------------------------------------------------------*/
-/* Scroller                                  						*/
-/*----------------------------------------------------------------------*/
-
-	$('a.gorightpeople').click(function(e) {	  
-		var currentLeft = $('#timeWrapper').css('left');
-		var currentWidth = $('.timeBlocks').width();
-		var totalCount = $('.timeBlocks').length;
-				
-		var totalWidth = currentWidth * totalCount;
-		var screenWidth = $('#timeCenter').width();
+		//init Simple Colour
+		//
+		$('#titleColour, #dateColour, #lineColour, #bgColour, #timelineTitleColour').simpleColor();
 		
-		if (totalWidth < screenWidth) {
+		//init Datepicker
+		//
+		$('#datepicker').datepicker({
+			dateFormat: "yy-mm-dd",
+			beforeShow: function (input, inst) {
+				var offset = $(input).offset();
+				var height = $(input).height();
+				window.setTimeout(function () {
+					inst.dpDiv.css({ top: (offset.top + height + 25) + 'px', left: offset.left + 'px' })
+				}, 1);
+			}
+		});
+
+		//Init Placeholder
+		//
+		$('input, textarea').placeholder();
+		
+		//Highlight tasks
+		//
+		$('body, html').on('click', '.numTasksLeft', function(){
+			$('span.completeTasks strong').addClass('highlight');
+			setTimeout(removeHighlight, 500);
+		});
+			
+		//Submit task btn
+		//
+		$('.completeTasks').hide();
+		$('#submitTaskBtn').on('click', function(){
+			$('.completeTasks').fadeIn();
+			$('#noData').fadeOut('fast');
+		});
+			
+		//Timeline title colour
+		//
+		$('input#timelineTitleColour').change(function(){
+			var timelineTitleColourVal = $('input#timelineTitleColour').val();
+			$('.timelineTitle').css({'color': timelineTitleColourVal});
+		});
+		
+		//Timeline title size
+		//
+		$('#timelineTitleSize').val(25);
+		$('#timelineTitleSizeBtn').on('click', function(){
+			var timelineTitleSizeVal = ($('#timelineTitleSize').val()) + 'px';
+			$('.timelineTitle').css({'font-size': timelineTitleSizeVal});
 			return false;
-		} else {
-			// below variable is NB if tiles up are reduced in responsive design!!
-			var numTiles = 4;		 
-			var totalLeft  = -(currentWidth * totalCount/*-numTiles*/);
-			//console.log(currentLeft + ' - ' + totalLeft);		
-			var newLeft = (parseInt(currentLeft) - currentWidth);
-			//console.log(currentLeft + ' - ' + newLeft);	
-			var newLeft =  (newLeft<totalLeft) ? totalLeft+'px':newLeft+'px';			
-			//console.log(newLeft);
-	
+		});
+		
+		//Title colour picker
+		//
+		$('input#titleColour').change(function(){
+			var titleColourVal = $('input#titleColour').val();
+			$('.mileStoneTitle').css({'color': titleColourVal});
+		});
+		
+		//Title size
+		//
+		$('#titleSize').val(16);
+		$('#titleSizeBtn').on('click', function(){
+			var titleSizeVal = ($('#titleSize').val()) + 'px';
+			console.log(titleSizeVal);
+			$('.mileStoneTitle').css({'font-size': titleSizeVal});
+			return false;
+		});
+		
+		//Date colour picker
+		//
+		$('input#dateColour').change(function(){
+			var dateColourVal = $('input#dateColour').val();
+			$('.mileStoneDate').css({'color': dateColourVal});
+		});
+
+		//Datesize
+		//
+		$('#dateSize').val(12);
+		$('#dateSizeBtn').on('click', function(){
+			var dateSizeVal = ($('#dateSize').val()) + 'px';
+			console.log(dateSizeVal);
+			$('.mileStoneDate').css({'font-size': dateSizeVal});
+			return false;
+		});	
+		
+		//Line colour picker
+		//
+		$('input#lineColour').change(function(){	
+			var lineColourVal = $('input#lineColour').val();
+			$('.top, .bottom').css({'border-bottom-color': lineColourVal, 'border-right-color':lineColourVal});
+		});
+		
+		//Background colour picker
+		//
+		$('input#bgColour').change(function(){
+			var bgColourVal = $('input#bgColour').val();
+			$('.mileTwrapper, .mileDwrapper').css({'background-color': bgColourVal});
+		});
+		
+		//Line thickness remove error
+		//
+		$('input#thick').on('blur', function(){
+			$('.error').fadeOut('fast');
+		});	
+		
+		//Character validation
+		//
+		$('#task').on({
+			focus: function(){
+				$('.characterError').fadeIn('fast');
+				$(this).addClass('redBorder');
+			}, 
+			blur: function () {
+				$('.characterError').fadeOut('slow');
+				$(this).removeClass('redBorder');
+			}
+		});
+		
+		$('#thick').on({
+			focus: function(){
+				$('.thickError').fadeIn('fast');
+				$(this).addClass('redBorder');
+			}, 
+			blur: function () {
+				$('.thickError').fadeOut('slow');
+				$(this).removeClass('redBorder');
+			}
+		});
+		
+		//Print
+		//
+		$('#print').on('click', function() {
+			window.print();
+			return false;
+		});
+		
+	/*----------------------------------------------------------------------*/
+	/* Scroller                                  						*/
+	/*----------------------------------------------------------------------*/
+
+		$('a.gorightpeople').click(function(e) {	  
+			var currentLeft = $('#timeWrapper').css('left');
+			var currentWidth = $('.timeBlocks').width();
+			var totalCount = $('.timeBlocks').length;
+					
+			var totalWidth = currentWidth * totalCount;
+			var screenWidth = $('#timeCenter').width();
+			
+			if (totalWidth < screenWidth) {
+				return false;
+			} else {
+				// below variable is NB if tiles up are reduced in responsive design!!
+				var numTiles = 4;		 
+				var totalLeft  = -(currentWidth * totalCount/*-numTiles*/);
+				//console.log(currentLeft + ' - ' + totalLeft);		
+				var newLeft = (parseInt(currentLeft) - currentWidth);
+				//console.log(currentLeft + ' - ' + newLeft);	
+				var newLeft =  (newLeft<totalLeft) ? totalLeft+'px':newLeft+'px';			
+				//console.log(newLeft);
+		
+				$('#timeWrapper').stop().animate({
+					left: newLeft
+				}, 200);
+						
+				e.preventDefault();
+			}
+		});
+
+		$('a.goleftpeople').click(function(e) {  
+			var currentLeft = $('#timeWrapper').css('left');
+			var currentWidth = $('.timeBlocks').width();
+			var newLeft = (parseInt(currentLeft) + currentWidth);
+			var newLeft =  (newLeft>0) ? '0px':newLeft+'px';
+
 			$('#timeWrapper').stop().animate({
 				left: newLeft
 			}, 200);
-					
-			e.preventDefault();
+				
+			e.preventDefault();	
+		});	
+		
+		//Canvas Support
+		//
+		try {
+			document.createElement("canvas").getContext("2d");
+			//HTML5 Canvas is supported in your browser
+			$('.cSupport').show();
+			$('.cNotSupport').hide();
+		} catch (e) {
+			//HTML5 Canvas is not supported in your browser
+			$('.cSupport').hide();
+			$('.cNotSupport').show();
 		}
-	});
-
-	$('a.goleftpeople').click(function(e) {  
-		var currentLeft = $('#timeWrapper').css('left');
-		var currentWidth = $('.timeBlocks').width();
-		var newLeft = (parseInt(currentLeft) + currentWidth);
-		var newLeft =  (newLeft>0) ? '0px':newLeft+'px';
-
-		$('#timeWrapper').stop().animate({
-			left: newLeft
-		}, 200);
+		
+		$('#back').on('click', function(){
+			$('#timeline, #customize').css('display','block');
+			$('#export').css('display','block');
+			$('#back, #print, #canvasPlay, #clear, #save').css('display','none'); //#clone
+			$('#canvasImg').attr('src',' ');
+			$('#imgWrapper').css('display','none');
+			//$('#clone #timeWrapper').remove();
+			return false;
+		});
+		
+		//Kinetic canvas
+		//	
+		$('#clear').on('click', function() {
+			clearCanvas();
+			return false;
+		});
+		
+		//Save as image
+		//
+		$('#save').on('click', function() {
+			saveImage();
+			return false;
+		});
+		
+		//Save as JSON and generate timeline - Preview button
+		//
+		$('#saveJSON').on('click', function(){
+			$('#timeline, #customize').css('display','none');
+			$('#export').css('display','none');
+			$('#back, #print, #canvasPlay, #clear, #save').css('display','block');
 			
-		e.preventDefault();	
-	});	
-	
-	//Canvas Support
-	//
-	try {
-		document.createElement("canvas").getContext("2d");
-		//HTML5 Canvas is supported in your browser
-		$('.cSupport').show();
-		$('.cNotSupport').hide();
-	} catch (e) {
-		//HTML5 Canvas is not supported in your browser
-		$('.cSupport').hide();
-		$('.cNotSupport').show();
-	}
-	
-	$('#back').on('click', function(){
-		$('#timeline, #customize').css('display','block');
-		$('#export').css('display','block');
-		$('#back, #print, #canvasPlay, #clear, #save').css('display','none'); //#clone
-		$('#canvasImg').attr('src',' ');
-		$('#imgWrapper').css('display','none');
-		//$('#clone #timeWrapper').remove();
-		return false;
-	});
-	
-	//Kinetic canvas
-	//	
-	$('#clear').on('click', function() {
-		clearCanvas();
-		return false;
-	});
-	
-	//Save as image
-	//
-	$('#save').on('click', function() {
-		saveImage();
-		return false;
-	});
-	
-	//Save as JSON and generate timeline - Preview button
-	//
-	$('#saveJSON').on('click', function(){
-		$('#timeline, #customize').css('display','none');
-		$('#export').css('display','none');
-		$('#back, #print, #canvasPlay, #clear, #save').css('display','block');
-		
-		//DATA
-		var jsonVal = $('#jsonVal').val();
-		data = JSON.parse(jsonVal);
-		//data = $.makeArray(dataF);		
-		for (i = 0; i < data.length; i++) {
-			data.sort(function(a,b){
-				var getDateA = new Date(a.date);
-				var getDateB = new Date(b.date);
-				a = getDateA.getFullYear() + '-' + getDateA.getMonth() + '-' + getDateA.getDate();
-				b = getDateB.getFullYear() + '-' + getDateB.getMonth() + '-' + getDateB.getDate();
-				//a = new Date(a.date);
-				//b = new Date(b.date);
-				return a<b?-1:a>b?1:0;
-			});	
-		}
-		
-		//GENERATE
-		dataLength = data.length;
-			if ($('#container canvas').is(':visible')) {
-				clearCanvas();
-				$('#container div').remove();
-				generateTimeline2();
-			} else {
-				generateTimeline2();
+			//DATA
+			var jsonVal = $('#jsonVal').val();
+			data = JSON.parse(jsonVal);
+			//data = $.makeArray(dataF);		
+			for (i = 0; i < data.length; i++) {
+				data.sort(function(a,b){
+					var getDateA = new Date(a.date);
+					var getDateB = new Date(b.date);
+					a = getDateA.getFullYear() + '-' + getDateA.getMonth() + '-' + getDateA.getDate();
+					b = getDateB.getFullYear() + '-' + getDateB.getMonth() + '-' + getDateB.getDate();
+					//a = new Date(a.date);
+					//b = new Date(b.date);
+					return a<b?-1:a>b?1:0;
+				});	
 			}
-		hideCanvasSupport()	
-	});
-		
-});//END document.ready
+			
+			//GENERATE
+			dataLength = data.length;
+				if ($('#container canvas').is(':visible')) {
+					clearCanvas();
+					$('#container div').remove();
+					generateTimeline2();
+				} else {
+					generateTimeline2();
+				}
+			hideCanvasSupport()	
+		});
+			
+	});//END document.ready
+})(jQuery);
 
 /*----------------------------------------------------------------------*/
 /* Canvas Functions                                           			*/
