@@ -88,7 +88,7 @@
 			e.preventDefault();
 		});*/
 
-		$('.ui-slider-handle').on('mousedown mouseup', function(e) {
+		$('.ui-slider-handle').on('mousedown mouseup mouseenter mouseleave', function(e) {
 			thickValidation();
 			e.preventDefault();
 		});
@@ -110,7 +110,54 @@
 		     }
 		   });
 		});*/
+		
+		// Customize timeline object function
+		//
+		var CustomizeColor = {
+			// timeline title size
+			timelineTitleSizefunc: function () {
+				var timelineTitleSizeVal = ($('#timelineTitleSize').val()) + 'px';
+				$('.timelineTitle').css({'font-size': timelineTitleSizeVal});
+			},
 
+			// timeline title colour
+			timelineTitleColourfunc: function () {
+				var timelineTitleColourVal = $('input#timelineTitleColour').val();
+				$('.timelineTitle').css({'color': timelineTitleColourVal});
+			}, 
+
+			// title size
+			timlineTitleSizefunc: function () {
+				var titleSizeVal = ($('#titleSize').val()) + 'px';
+				console.log(titleSizeVal);
+				$('.mileStoneTitle').css({'font-size': titleSizeVal});
+			},
+
+			// title colour
+			titleColourValfunc: function () {
+				var titleColourVal = $('input#titleColour').val();
+				$('.mileStoneTitle').css({'color': titleColourVal});
+			},
+
+			// data size
+			dataSizefunc: function () {
+				var dateSizeVal = ($('#dateSize').val()) + 'px';
+				console.log(dateSizeVal);
+				$('.mileStoneDate').css({'font-size': dateSizeVal});
+			},
+
+			// data colour
+			dataColourfunc: function () {
+				var dateColourVal = $('input#dateColour').val();
+				$('.mileStoneDate').css({'color': dateColourVal});
+			},
+
+			// line colour
+			lineColourfunc: function () {
+				var lineColourVal = $('input#lineColour').val();
+				$('.top, .bottom').css({'border-bottom-color': lineColourVal, 'border-right-color':lineColourVal});
+			}
+		};
 
 		// Timeline title colour
 		//
@@ -134,7 +181,7 @@
 			var titleColourVal = $('input#titleColour').val();
 			$('.mileStoneTitle').css({'color': titleColourVal});
 		});
-		
+
 		// Title size
 		//
 		$('#titleSize').val(16);

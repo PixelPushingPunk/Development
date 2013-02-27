@@ -27,15 +27,17 @@
 	
 </head>
 <body>
-	<div id="wrapper">
-		
 		<header>
-			<h1>Interactive TimeLine <span class="completeTasks">- You have <strong data-bind="text: incompleteTasks().length">&nbsp;</strong> incomplete task(s)<span data-bind="visible: incompleteTasks().length == 0"> - it's beer time!</span></span></h1> 
+
+		</header>	
+	<div id="wrapper">
+		<div id="header">
+			<h1>Interactive TimeLine <!--<span class="completeTasks">- You have <strong data-bind="text: incompleteTasks().length">&nbsp;</strong> incomplete task(s)<span data-bind="visible: incompleteTasks().length == 0"> - it's beer time!</span></span>--></h1> 
 			<a class="button" href="#" id="back" name="back">Back</a> 
 			<a class="button" href="#" id="print" name="print">Print</a> 
 			<a class="button" href="#" id="clear">Clear Canvas</a> 
 			<a class="button" href="#" id="save">Save as image</a> 
-		</header>
+		</div>
 		
 		<section id="timeline">
 			<div class="timelineTitleWrapper" data-bind="foreach: titleTimeline, visible: titleTimeline().length > 0, sortable: tasks">

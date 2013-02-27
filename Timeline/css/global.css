@@ -2,6 +2,7 @@ body {
 	font-family:'arial', georgia, sans-serif;
 	font-size:14px;
 	line-height:21px;
+	background:#444;
 }
 
 h1 {
@@ -10,17 +11,25 @@ h1 {
 }
 
 header {
+	background-color:#9ab5a9;
+	height:120px;
+	width:100%;
+	border-bottom:1px solid #ccc;
+}
+
+#header {
 	padding:25px;
 	overflow:hidden;
 }
 
-header h1 { 
+#header h1 { 
 	float:left; 
 	margin:10px 0 0; 
 	font-size:40px; 
+	color:#fff;
 }
 
-header #export, header #print { 
+#header #export, #header #print { 
 	float:right; 
 }
 
@@ -300,7 +309,7 @@ a.goleftpeople {
 	opacity: 0.80;
 	filter: alpha(opacity=80);
 	background: #f4f4f4;	
-	color:#8080ff;
+	color:#9ab5a9;
 }
 		
 a.gorightpeople {
@@ -315,7 +324,7 @@ a.gorightpeople {
 	opacity: 0.80;
 	filter: alpha(opacity=80);
 	background: #f4f4f4;	
-	color:#8080ff;
+	color:#9ab5a9;
 }
 
 a.goleftpeople:hover, a.gorightpeople:hover {
