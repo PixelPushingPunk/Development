@@ -629,6 +629,8 @@ form ul li input.inputStyle {
 	/*width:300%;
 	overflow:scroll;*/
 	position:relative;
+	background-color:#fff;
+	min-width:100%;
 }
 
 .canvasClass {
@@ -699,8 +701,9 @@ form ul li input.inputStyle {
 
 #slideshow #slidesContainer .slide {
   	margin:0 auto;
-  	width:700px; /* reduce by 20 pixels to avoid horizontal scroll */
-  	height:563px;
+  	width:700px; /* reduce by 20 pixels to avoid horizontal scroll 
+  	height:563px;*/
+  	height:auto;
 }
 
 /**

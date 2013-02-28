@@ -58,7 +58,7 @@
 		//
 		$('body, html').on('click', '.numTasksLeft', function(){
 			$('span.completeTasks strong').addClass('highlight');
-			setTimeout(removeHighlight, 500);
+			setTimeout( function() { removeHighlight }, 500);
 		});
 		
 		// Cursor move on editable tasks
@@ -82,153 +82,65 @@
 		
 		// Thickness of timeline
 		//
-
-		/*$('#thick').on('onChange', function(e) {
-			thickValidation();
-			e.preventDefault();
-		});*/
-
 		$('.ui-slider-handle').on('mousedown mouseup mouseenter mouseleave', function(e) {
-			thickValidation();
+			CustomizeColor.lineThickfunc();
 			e.preventDefault();
 		});
-
-		/*$('#thick').each(function() {
-			var elem = $(this);
-
-			// Save current value of element
-		   	elem.data('oldVal', elem.val());
-
-		   	// Look for changes in the value
-			elem.bind("propertychange keyup input paste", function(event){
-		    // If value has changed...
-		    if (elem.data('oldVal') != elem.val()) {
-		    // Updated stored value
-		    elem.data('oldVal', elem.val());
-		       // Do action
-		       thickValidation();
-		     }
-		   });
-		});*/
-		
-		// Customize timeline object function
-		//
-		var CustomizeColor = {
-			// timeline title size
-			timelineTitleSizefunc: function () {
-				var timelineTitleSizeVal = ($('#timelineTitleSize').val()) + 'px';
-				$('.timelineTitle').css({'font-size': timelineTitleSizeVal});
-			},
-
-			// timeline title colour
-			timelineTitleColourfunc: function () {
-				var timelineTitleColourVal = $('input#timelineTitleColour').val();
-				$('.timelineTitle').css({'color': timelineTitleColourVal});
-			}, 
-
-			// title size
-			timlineTitleSizefunc: function () {
-				var titleSizeVal = ($('#titleSize').val()) + 'px';
-				console.log(titleSizeVal);
-				$('.mileStoneTitle').css({'font-size': titleSizeVal});
-			},
-
-			// title colour
-			titleColourValfunc: function () {
-				var titleColourVal = $('input#titleColour').val();
-				$('.mileStoneTitle').css({'color': titleColourVal});
-			},
-
-			// data size
-			dataSizefunc: function () {
-				var dateSizeVal = ($('#dateSize').val()) + 'px';
-				console.log(dateSizeVal);
-				$('.mileStoneDate').css({'font-size': dateSizeVal});
-			},
-
-			// data colour
-			dataColourfunc: function () {
-				var dateColourVal = $('input#dateColour').val();
-				$('.mileStoneDate').css({'color': dateColourVal});
-			},
-
-			// line colour
-			lineColourfunc: function () {
-				var lineColourVal = $('input#lineColour').val();
-				$('.top, .bottom').css({'border-bottom-color': lineColourVal, 'border-right-color':lineColourVal});
-			}
-		};
 
 		// Timeline title colour
 		//
 		$('input#timelineTitleColour').change(function(){
-			var timelineTitleColourVal = $('input#timelineTitleColour').val();
-			$('.timelineTitle').css({'color': timelineTitleColourVal});
+			CustomizeColor.timelineTitleColourfunc();
 		});
 		
 		// Timeline title size
 		//
 		$('#timelineTitleSize').val(25);
-		$('#timelineTitleSizeBtn').on('click', function(){
-			var timelineTitleSizeVal = ($('#timelineTitleSize').val()) + 'px';
-			$('.timelineTitle').css({'font-size': timelineTitleSizeVal});
-			return false;
+		$('#timelineTitleSizeBtn').on('click', function(e){
+			CustomizeColor.timelineTitleSizefunc();
+			e.preventDefault();
 		});
 		
 		// Title colour picker
 		//
 		$('input#titleColour').change(function(){
-			var titleColourVal = $('input#titleColour').val();
-			$('.mileStoneTitle').css({'color': titleColourVal});
+			CustomizeColor.titleColourValfunc();
 		});
 
 		// Title size
 		//
 		$('#titleSize').val(16);
-		$('#titleSizeBtn').on('click', function(){
-			var titleSizeVal = ($('#titleSize').val()) + 'px';
-			console.log(titleSizeVal);
-			$('.mileStoneTitle').css({'font-size': titleSizeVal});
-			return false;
+		$('#titleSizeBtn').on('click', function(e){
+			CustomizeColor.titleSizefunc();
+			e.preventDefault();
 		});
 		
 		// Date colour picker
 		//
 		$('input#dateColour').change(function(){
-			var dateColourVal = $('input#dateColour').val();
-			$('.mileStoneDate').css({'color': dateColourVal});
+			CustomizeColor.dateColourfunc();
 		});
 
 		// Datesize
 		//
 		$('#dateSize').val(12);
-		$('#dateSizeBtn').on('click', function(){
-			var dateSizeVal = ($('#dateSize').val()) + 'px';
-			console.log(dateSizeVal);
-			$('.mileStoneDate').css({'font-size': dateSizeVal});
-			return false;
+		$('#dateSizeBtn').on('click', function(e){
+			CustomizeColor.dateSizefunc();
+			e.preventDefault();
 		});	
 		
 		// Line colour picker
 		//
 		$('input#lineColour').change(function(){	
-			var lineColourVal = $('input#lineColour').val();
-			$('.top, .bottom').css({'border-bottom-color': lineColourVal, 'border-right-color':lineColourVal});
+			CustomizeColor.lineColourfunc();
 		});
 		
 		// Background colour picker
 		//
 		$('input#bgColour').change(function(){
-			var bgColourVal = $('input#bgColour').val();
-			$('.mileTwrapper, .mileDwrapper').css({'background-color': bgColourVal});
+			CustomizeColor.backgroundColourfunc();
 		});
-		
-		// Line thickness remove error
-		//
-		/*$('#thick').on('blur', function(){
-			$('.error').fadeOut('fast');
-		});	*/
-		
+				
 		// Character validation
 		//
 		$('#task').on({
@@ -241,18 +153,7 @@
 				$(this).removeClass('redBorder');
 			}
 		});
-		
-		/*$('#thick').on({
-			focus: function(){
-				$('.thickError').fadeIn('fast');
-				$(this).addClass('redBorder');
-			}, 
-			blur: function () {
-				$('.thickError').fadeOut('slow');
-				$(this).removeClass('redBorder');
-			}
-		});*/
-		
+			
 		// Print
 		//
 		$('#print').on('click', function() {
@@ -375,401 +276,247 @@
 				} else {
 					generateTimeline2();
 				}
-			hideCanvasSupport()	
+			hideCanvasSupport();	
 		});
 			
 	});//END document.ready
 })(jQuery);
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// variables, function expresions and function declarations
+var stage, layer;
+
+// Customize timeline colour object
+var CustomizeColor = {
+	// timeline title size
+	timelineTitleSizefunc: function () {
+		var timelineTitleSizeVal = ($('#timelineTitleSize').val()) + 'px';
+		$('.timelineTitle').css({'font-size': timelineTitleSizeVal});
+	},
+
+	// timeline title colour
+	timelineTitleColourfunc: function () {
+		var timelineTitleColourVal = $('input#timelineTitleColour').val();
+		$('.timelineTitle').css({'color': timelineTitleColourVal});
+	}, 
+
+	// title size
+	titleSizefunc: function () {
+		var titleSizeVal = ($('#titleSize').val()) + 'px';
+		$('.mileStoneTitle').css({'font-size': titleSizeVal});
+	},
+
+	// title colour
+	titleColourValfunc: function () {
+		var titleColourVal = $('input#titleColour').val();
+		$('.mileStoneTitle').css({'color': titleColourVal});
+	},
+
+	// data size
+	dateSizefunc: function () {
+		var dateSizeVal = ($('#dateSize').val()) + 'px';
+		$('.mileStoneDate').css({'font-size': dateSizeVal});
+	},
+
+	// data colour
+	dateColourfunc: function () {
+		var dateColourVal = $('input#dateColour').val();
+		$('.mileStoneDate').css({'color': dateColourVal});
+	},
+
+	// line colour
+	lineColourfunc: function () {
+		var lineColourVal = $('input#lineColour').val();
+		$('.top, .bottom').css({'border-bottom-color': lineColourVal, 'border-right-color':lineColourVal});
+	},
+
+	// background colour
+	backgroundColourfunc: function () {
+		var bgColourVal = $('input#bgColour').val();
+		$('.mileTwrapper, .mileDwrapper').css({'background-color': bgColourVal});
+	}, 
+
+	// line thickness
+	lineThickfunc: function () {
+		var lineColour = $('#lineColour').val();
+		var slideThick = $('#master').slider( 'value' );
+		var originalLineStyle = $('.top').css({'border-bottom-style':'solid'});
+		var originalLineColor = $('.top').css({'border-bottom-color': lineColour});
+		var lineThicknessValx = $('#thick').val( slideThick );
+		$('.top').css({'border-bottom-width': slideThick});		
+	}
+};
+
+
 /*----------------------------------------------------------------------*/
 /* Canvas Functions                                           			*/
 /*----------------------------------------------------------------------*/
 
-	// Remove highlight from task check box
-	//
-	function removeHighlight(){
-		$('span.completeTasks strong').removeClass('highlight');
-	}
+// Remove highlight from task check box
+//
+var removeHighlight = function (){
+	$('span.completeTasks strong').removeClass('highlight');
+};
 
-	// Hide canvas support text
-	//
-	function hideCanvasSupport() {
-		$('.cSupport, .cNotSupport').hide();
-	}
+// Hide canvas support text
+//
+var hideCanvasSupport = function () {
+	$('.cSupport, .cNotSupport').hide();
+};
 	
-	// Clear canvas
-	//
-   	function clearCanvas() {
-        stage.clear();
-		$('#imgWrapper').hide();
-	}
+// Clear canvas
+//
+var clearCanvas = function () {
+    stage.clear();
+	$('#imgWrapper').hide();
+};
 	
-	// Count obj function
-	//
-	function countProperties(obj) {
-		var prop;
-		var propCount = 0;
+// Count obj function
+//
+var countProperties = function (obj) {
+	var prop;
+	var propCount = 0;
 
-		for (prop in obj) {
-			propCount++;
-		}
-		return propCount;
-		alert(propCount);
+	for (prop in obj) {
+		propCount++;
 	}
+	return propCount;
+	alert(propCount);
+};
 	
-	// Generate timeline
+// Generate timeline
+//
+var generateTimeline2 = function (){
+	// Set defualt variables
 	//
-	function generateTimeline2(){
-		// Set defualt variables
-		//
-		var janWidth = 0; var febWidth = 0; var marWidth = 0; var aprilWidth = 0; var mayWidth = 0; var juneWidth = 0; var julWidth = 0; var augWidth = 0; var septWidth = 0; var octWidth = 0; var novWidth = 0; var decWidth = 0;
-		//var janWidth; var febWidth; var marWidth; var aprilWidth; var mayWidth; var juneWidth; var julWidth; var augWidth; var septWidth; var octWidth; var novWidth; var decWidth;
-		var janGroup; var febGroup; var marGroup; var aprilGroup; var mayGroup; var juneGroup; var julGroup; var augGroup; var septGroup; var octGroup; var novGroup; var decGroup;	
-		var janText; var febText; var marText; var aprilText; var mayText; var juneText; var julText; var augText; var septText; var octText; var novText; var decText;
-		var textText; var dateText; var timelineText; 
-		var canvasWidth = (dataLength * 150) + 250; var xPos = 0;
+	var janWidth = 0; var febWidth = 0; var marWidth = 0; var aprilWidth = 0; var mayWidth = 0; var juneWidth = 0; var julWidth = 0; var augWidth = 0; var septWidth = 0; var octWidth = 0; var novWidth = 0; var decWidth = 0;
+	//var janWidth; var febWidth; var marWidth; var aprilWidth; var mayWidth; var juneWidth; var julWidth; var augWidth; var septWidth; var octWidth; var novWidth; var decWidth;
+	var janGroup, febGroup, marGroup, aprilGroup, mayGroup, juneGroup, julGroup, augGroup, septGroup, octGroup, novGroup, decGroup;	
+	var janText, febText, marText, aprilText, mayText, juneText, julText, augText, septText, octText, novText, decText;
+	var textText, dateText, timelineText; 
+	var canvasWidth = (dataLength * 150) + 250; var xPos = 0;
 
-		// Set canvas width and height
-		//
-		var canvasHeight = 420;
-		var canvasWrapperWidth = canvasWidth + 100;
-		var containerWidth = canvasWidth;
-		var setCanvasWidth = $('#canvasWrapper').css({'width': canvasWrapperWidth});
-		var seteContainerWidth = $('#container').css('width', containerWidth);
+	// Graph stuff
+	var graphLineX, graphLineY;
+	var month;
 
-		// Set timeline title variables
-		//
-		var timelineTitle = $('h1.timelineTitle').text();
-		var containerWidthTrue = $('#container').width();
-		var timelineTextPos = containerWidthTrue / 2;
-		var timelineTextWidth = $('.timelineTitle').width();
-		var timelineTextSize = $('#timelineTitleSize').val();
-		var timelineTextColour = $('#timelineTitleColour').val();
-		
-		// Set random colours
-		//
-		var colors = ['#ff0000','#00ff00','#0000ff','rgb(50,50,50)','rgb(200,200,200)','purple','orange','black'];
-		var color = colors[Math.floor(Math.random()*colors.length)];
-		
-		// Set text and date colours
-		//		
-		var textColour = $('#titleColour').val(); 
-		var dateColour = $('#dateColour').val();
-		var lineColour = $('#lineColour').val();
-		var lineThick = $('#thick').val();
-		var gridWidth = 1;
-		var gridColour = "#d5d5d5";			
-		var textSize = $('#titleSize').val();
-		var dateSize = $('#dateSize').val();
-		
-		// Create new stage and layer
-		//
-		stage = new Kinetic.Stage({ container: 'container', width: canvasWidth, height: canvasHeight });	
-		layer = new Kinetic.Layer();
+	// Set canvas width and height
+	//
+	var canvasHeight = 420;
+	var canvasWrapperWidth = canvasWidth + 100;
+	var containerWidth = canvasWidth;
+	var setCanvasWidth = $('#canvasWrapper').css({'width': canvasWrapperWidth});
+	var seteContainerWidth = $('#container').css('width', containerWidth);
 
-		// Create new time line title
-		//
-		timelineText = new Kinetic.Text({ x: timelineTextPos, y: 10, text: timelineTitle, fontSize:  timelineTextSize, fontFamily: 'Arial', fill: timelineTextColour, draggable: true });		
-		timelineText.on('mouseover', function() { document.body.style.cursor = 'pointer'; });
-		timelineText.on('mouseout', function() { document.body.style.cursor = 'default'; });
+	// Set timeline title variables
+	//
+	var timelineTitle = $('h1.timelineTitle').text();
+	var containerWidthTrue = $('#container').width();
+	var timelineTextPos = containerWidthTrue / 2;
+	var timelineTextWidth = $('.timelineTitle').width();
+	var timelineTextSize = $('#timelineTitleSize').val();
+	var timelineTextColour = $('#timelineTitleColour').val();
+	
+	// Set random colours
+	//
+	var colors = ['#ff0000','#00ff00','#0000ff','rgb(50,50,50)','rgb(200,200,200)','purple','orange','black'];
+	var color = colors[Math.floor(Math.random()*colors.length)];
+	
+	// Set text and date colours
+	//		
+	var textColour = $('#titleColour').val(); 
+	var dateColour = $('#dateColour').val();
+	var lineColour = $('#lineColour').val();
+	var lineThick = $('#thick').val();
+	var gridWidth = 1;
+	var gridColour = "#d5d5d5";			
+	var textSize = $('#titleSize').val();
+	var dateSize = $('#dateSize').val();
+	
+	// Create new stage and layer
+	//
+	stage = new Kinetic.Stage({ container: 'container', width: canvasWidth, height: canvasHeight });	
+	layer = new Kinetic.Layer();
 
-		// Create month group text width array
-		//
-		var monthValueArr = [
-			{ group:"janGroup", month:"JAN", text:"janText", width:"janWidth", line:"janLine" }, 
-			{ group:"febGroup", month:"FEB", text:"febText", width:"febWidth", line:"febLine" }, 
-			{ group:"marGroup", month:"MAR", text:"marText", width:"marWidth", line:"marLine" }, 
-			{ group:"aprilGroup", month:"APRIL", text:"aprilText", width:"aprilWidth", line:"aprilLine" }, 
-			{ group:"mayGroup", month:"MAY", text:"mayText", width:"mayWidth", line:"mayLine" }, 
-			{ group:"juneGroup", month:"JUNE", text:"juneText", width:"juneWidth", line:"juneLine" }, 
-			{ group:"julGroup", month:"JUL", text:"julText", width:"julWidth", line:"julyLine" }, 
-			{ group:"augGroup", month:"AUG", text:"augText", width:"augWidth", line:"augLine" }, 
-			{ group:"septGroup", month:"SEPT", text:"septText", width:"septWidth", line:"septLine"}, 
-			{ group:"octGroup", month:"OCT", text:"octText", width:"octWidth", line:"octLine" }, 
-			{ group:"novGroup", month:"NOV", text:"novText", width:"novWidth", line:"novLine" }, 
-			{ group:"decGroup", month:"DEC", text:"decText", width:"decWidth", line:"decLine" }
-		];
+	// Create new time line title
+	//
+	timelineText = new Kinetic.Text({ x: timelineTextPos, y: 10, text: timelineTitle, fontSize:  timelineTextSize, fontFamily: 'Arial', fill: timelineTextColour, draggable: true });		
+	timelineText.on('mouseover', function() { document.body.style.cursor = 'pointer'; });
+	timelineText.on('mouseout', function() { document.body.style.cursor = 'default'; });
 
-		/*
-		for(k=0; k<monthValueArr.length; k++) {
-			var monthGroup = monthValueArr[k].group;
-			monthGroup = new Kinetic.Group({ draggable:true });
-			console.log(monthGroup);
+	// Create new month groups
+	//
+	monthGroup = new Kinetic.Group({ draggable:true });
+	janGroup = new Kinetic.Group({ draggable:true });
+	febGroup = new Kinetic.Group({ draggable:true });
+	marGroup = new Kinetic.Group({ draggable:true });
+	aprilGroup = new Kinetic.Group({ draggable:true });	
+	mayGroup = new Kinetic.Group({ draggable:true });	
+	juneGroup = new Kinetic.Group({ draggable:true });
+	julGroup = new Kinetic.Group({ draggable:true });
+	augGroup = new Kinetic.Group({ draggable:true });
+	septGroup = new Kinetic.Group({ draggable:true }); 
+	octGroup = new Kinetic.Group({ draggable:true }); 
+	novGroup = new Kinetic.Group({ draggable:true });	
+	decGroup = new Kinetic.Group({ draggable:true });		
+	
+	// Generate the top and bottom task, date and lines
+	//
+	var generateLinesPerMonth = function (monthGroup) {
+		if (i % 2) {
+			// if value is odd
+			textText = new Kinetic.Text({ x: xPosText, y: textTitlePosBottom, text: data[i].title, fontSize: textSize, fontFamily: 'Arial', fill: textColour, width: 150, draggable: true });
+			dateText = new Kinetic.Text({ x: xPosDate, y: dateTitlePosBottom, text: newDate, fontSize: dateSize, fontFamily: 'Arial', fill: dateColour, draggable: true });				
+			textText.setOffset({ x: textText.getWidth() / 2 });								
+			dateText.setOffset({ x: dateText.getWidth() / 2 });		
+			redLine = new Kinetic.Line({ points: [xPos, yPos, xPos2, yPos, xPos2, bottomTitlePos], stroke: lineColour, strokeWidth: lineThick, lineCap: 'round', lineJoin: 'round' });
+		} else {
+			// if value is even
+			textText = new Kinetic.Text({ x: xPosText, y: textTitlePosTop, text: data[i].title, fontSize: textSize, fontFamily: 'Arial', fill: textColour, width:150, draggable: true });				
+			dateText = new Kinetic.Text({ x: xPosDate, y: dateTitlePosTop, text: newDate, fontSize: dateSize, fontFamily: 'Arial', fill: dateColour, draggable: true });								
+			textText.setOffset({ x: textText.getWidth() / 2 });
+			textText.setOffset({ y: textText.getHeight() / 2 });				
+			dateText.setOffset({ x: dateText.getWidth() / 2 });							
+			redLine = new Kinetic.Line({ points: [xPos, yPos, xPos2, yPos, xPos2, topTitlePos], stroke: lineColour, strokeWidth: lineThick, lineCap: 'round', lineJoin: 'round' });					
 		}
-		*/
+		// reposition line, date and task text
+		redLine.move(-130, 0);
+		dateText.move(-130,0);
+		textText.move(-130, 0);
 
-		// Create new month groups
-		//
-		monthGroup = new Kinetic.Group({ draggable:true });
-		janGroup = new Kinetic.Group({ draggable:true });
-		febGroup = new Kinetic.Group({ draggable:true });
-		marGroup = new Kinetic.Group({ draggable:true });
-		aprilGroup = new Kinetic.Group({ draggable:true });	
-		mayGroup = new Kinetic.Group({ draggable:true });	
-		juneGroup = new Kinetic.Group({ draggable:true });
-		julGroup = new Kinetic.Group({ draggable:true });
-		augGroup = new Kinetic.Group({ draggable:true });
-		septGroup = new Kinetic.Group({ draggable:true }); 
-		octGroup = new Kinetic.Group({ draggable:true }); 
-		novGroup = new Kinetic.Group({ draggable:true });	
-		decGroup = new Kinetic.Group({ draggable:true });		
-		
-		//monthText = new Kinetic.Text({});
-		//monthLine = new Kinetic.Line({});
+		// Mouse over and out states
+		textText.on('mouseover', function() { document.body.style.cursor = 'pointer'; });
+		textText.on('mouseout', function() { document.body.style.cursor = 'default'; });
+		dateText.on('mouseover', function() { document.body.style.cursor = 'pointer'; });
+		dateText.on('mouseout', function() { document.body.style.cursor = 'default'; });
 
+		/*monthGroup.add(textText);
+		monthGroup.add(dateText);
+		monthGroup.add(redLine);*/
+	};
 
-		// Loop through all values in array and position top and bottom
-		//
-		var num = 0;			
-		for (i = num; i < data.length; i++) {	
-			// Set x and y line values
-			//
-			xPos += 150;
-			var xPos2 = xPos+150;
-			var xPos3 = xPos2;
-			var xPos4 = xPos3 + 20;
-			var yPos = canvasHeight / 2; 
+	var generateMonthGroup = function (monthGroup) {
+		monthGroup.on('mouseover', function() { document.body.style.cursor = 'move'; });
+		monthGroup.on('mouseout', function() { document.body.style.cursor = 'default'; });
+		monthGroup.add(textText);
+		monthGroup.add(dateText);
+		monthGroup.add(redLine);
+	};	
 
-			// Set text and date x and y values
-			//
-			var xPosText = xPos2 + 15;
-			var xPosDate = xPos2;
-			var topTitlePos = yPos - (yPos/3); var bottomTitlePos = yPos + (yPos/3);				
-			var textTitlePosTop = topTitlePos - 30; var textTitlePosBottom = bottomTitlePos + 10;				
-			var dateTitlePosTop = topTitlePos + 75; var dateTitlePosBottom = bottomTitlePos - 90;
-			
-			// Order by month
-			//	
-			var dataValues = data[i].date;
-			var presentDate = new Date();
-			var presentYear = presentDate.getFullYear();
-			var getDate = new Date(dataValues);
-			var month = getDate.getMonth();
-			var getYear = getDate.getFullYear();
-
-			var newDate = getDate.getDate() + '-' + ((getDate.getMonth())+(1)) + '-' + getDate.getFullYear();
-			
-			//var yearFull = getDate.getFullYear();
-			//var year = getDate.getYear();
-			/*if (month == 0) {
-				generateLinesPerMonth();
-				generateMonthGroup(janGroup, -30);
-				generateMonthTextLine(janWidth, janText, janLine);
-			} else if (month == 1) {
-				generateLinesPerMonth();
-				generateMonthGroup(febGroup, 0);
-				generateMonthTextLine(febWidth, febText, febLine);	
-			} else if (month == 2) {
-				generateLinesPerMonth();
-				generateMonthGroup(marGroup, 30);
-				generateMonthTextLine(marWidth, marText, marLine);
-			}*/
-			if (presentYear == getYear) {
-				monthSeg()
-			} else {}
-		}//end loop
-
-		// Segregate by month
-		//
-				function monthSeg(){
-					if (month == 0) {	 
-						//JAN
-						generateLinesPerMonth();
-						generateMonthGroup(janGroup);
-						janGroup.setWidth(xPos);
-						janWidth = janGroup.getWidth();
-						janGroup.move(-30, 0);
-						//generateMonthGroup(janGroup, janWidth, -30);
-						layer.add(janGroup);
-					} else if (month == 1) { 
-						//FEB
-						generateLinesPerMonth();
-						generateMonthGroup(febGroup)
-						febGroup.setWidth(xPos);
-						febWidth = febGroup.getWidth();
-						febGroup.move(0, 0);
-						//generateMonthGroup(febGroup, febWidth, 0);
-						layer.add(febGroup);
-					} else if  (month == 2) { 
-						//MAR
-						generateLinesPerMonth();
-						generateMonthGroup(marGroup);
-						marGroup.setWidth(xPos);
-						marWidth = marGroup.getWidth();					
-						marGroup.move(30, 0);
-						layer.add(marGroup);
-					} else if (month == 3) { 
-						//APR
-						generateLinesPerMonth();
-						generateMonthGroup(aprilGroup);
-						aprilGroup.setWidth(xPos);
-						aprilWidth = aprilGroup.getWidth();
-						aprilGroup.move(60, 0);
-						layer.add(aprilGroup);
-					} else if (month == 4) {
-						//MAY
-						generateLinesPerMonth();
-						generateMonthGroup(mayGroup);
-						mayGroup.setWidth(xPos);
-						mayWidth = mayGroup.getWidth();
-						mayGroup.move(90, 0);
-						layer.add(mayGroup);
-					} else if (month == 5) { 
-						//JUNE
-						generateLinesPerMonth();
-						generateMonthGroup(juneGroup);
-						juneGroup.setWidth(xPos);
-						juneWidth = juneGroup.getWidth();
-						juneGroup.move(120, 0);
-						layer.add(juneGroup);
-					} else if (month == 6) { 
-						//JULY
-						generateLinesPerMonth();
-						generateMonthGroup(julGroup);
-						julGroup.setWidth(xPos);
-						julWidth = julGroup.getWidth();
-						julGroup.move(150, 0);
-						layer.add(julGroup);
-					}  else if (month == 7) { 
-						//AUG
-						generateLinesPerMonth();
-						generateMonthGroup(augGroup);
-						augGroup.setWidth(xPos);
-						augWidth = augGroup.getWidth();
-						augGroup.move(180, 0);
-						layer.add(augGroup);
-					} else if (month == 8) { 
-						//SEPT
-						generateLinesPerMonth();
-						generateMonthGroup(septGroup);
-						septGroup.setWidth(xPos);
-						septWidth = septGroup.getWidth();
-						septGroup.move(210, 0);
-						layer.add(septGroup);
-					} else if (month == 9) { 
-						//OCT
-						generateLinesPerMonth();
-						generateMonthGroup(octGroup);
-						octGroup.setWidth(xPos);
-						octWidth = octGroup.getWidth();
-						octGroup.move(240, 0);
-						layer.add(octGroup);
-					} else if (month == 10) { 
-						//NOV
-						generateLinesPerMonth();
-						generateMonthGroup(novGroup);
-						novGroup.setWidth(xPos);
-						novWidth = novGroup.getWidth();
-						novGroup.move(270, 0);
-						layer.add(novGroup);
-					} else if (month == 11) { 
-						//DEC
-						generateLinesPerMonth();
-						generateMonthGroup(decGroup);
-						decGroup.setWidth(xPos);
-						decWidth = decGroup.getWidth();
-						decGroup.move(300, 0);
-						layer.add(decGroup);
-					} else { }
-				}		
-		// Generate the top and bottom task, date and lines
-		//
-		function generateLinesPerMonth(monthGroup) {
-			/*monthGroup = new Kinetic.Group({ draggable:true });
-			monthGroup.on('mouseover', function() { document.body.style.cursor = 'move'; });
-			monthGroup.on('mouseout', function() { document.body.style.cursor = 'default'; });
-			monthGroup.add(textText);
-			monthGroup.add(dateText);
-			monthGroup.add(redLine);*/
-			if (i % 2) {
-				// if value is odd
-				textText = new Kinetic.Text({ x: xPosText, y: textTitlePosBottom, text: data[i].title, fontSize: textSize, fontFamily: 'Arial', fill: textColour, width: 150, draggable: true });
-				dateText = new Kinetic.Text({ x: xPosDate, y: dateTitlePosBottom, text: newDate, fontSize: dateSize, fontFamily: 'Arial', fill: dateColour, draggable: true });				
-				textText.setOffset({ x: textText.getWidth() / 2 });								
-				dateText.setOffset({ x: dateText.getWidth() / 2 });		
-				redLine = new Kinetic.Line({ points: [xPos, yPos, xPos2, yPos, xPos2, bottomTitlePos], stroke: lineColour, strokeWidth: lineThick, lineCap: 'round', lineJoin: 'round' });
-			} else {
-				// if value is even
-				textText = new Kinetic.Text({ x: xPosText, y: textTitlePosTop, text: data[i].title, fontSize: textSize, fontFamily: 'Arial', fill: textColour, width:150, draggable: true });				
-				dateText = new Kinetic.Text({ x: xPosDate, y: dateTitlePosTop, text: newDate, fontSize: dateSize, fontFamily: 'Arial', fill: dateColour, draggable: true });								
-				textText.setOffset({ x: textText.getWidth() / 2 });
-				textText.setOffset({ y: textText.getHeight() / 2 });				
-				dateText.setOffset({ x: dateText.getWidth() / 2 });							
-				redLine = new Kinetic.Line({ points: [xPos, yPos, xPos2, yPos, xPos2, topTitlePos], stroke: lineColour, strokeWidth: lineThick, lineCap: 'round', lineJoin: 'round' });					
-			}
-			// reposition line, date and task text
-			redLine.move(-130, 0);
-			dateText.move(-130,0);
-			textText.move(-130, 0);
-
-			// Mouse over and out states
-			textText.on('mouseover', function() { document.body.style.cursor = 'pointer'; });
-			textText.on('mouseout', function() { document.body.style.cursor = 'default'; });
-			dateText.on('mouseover', function() { document.body.style.cursor = 'pointer'; });
-			dateText.on('mouseout', function() { document.body.style.cursor = 'default'; });
-
-			/*monthGroup.add(textText);
-			monthGroup.add(dateText);
-			monthGroup.add(redLine);*/
-		}
-
-		function generateMonthGroup(monthGroup) {
-			monthGroup.on('mouseover', function() { document.body.style.cursor = 'move'; });
-			monthGroup.on('mouseout', function() { document.body.style.cursor = 'default'; });
-			monthGroup.add(textText);
-			monthGroup.add(dateText);
-			monthGroup.add(redLine);
-			//monthGroup.add(timelineText);
-			//monthGroup.setWidth(xPos);
-			//monthWidth = monthGroup.getWidth();
-			//monthGroup.move(groupPos, 0);
-		}
-
-		function generateMonthTextLine(monthWidth, monthText, monthLine) {
-			var monthTextYpos = 50;
-			var monthLineXplus = 25;
-			var monthLineYpos = canvasHeight - 50;
-			var monthLinePosition = 70;
-			var monthLineThick = 1;
-			var monthTextFont = 16;
-			var monthLineColor = "#000000";
-			monthText = Kinetic.Text({ x: monthWidth, y: monthTextYpos, text: "JAN", fontSize:  16, fontFamily: 'Arial', fill: timelineTextColour, draggable: true });
-			monthLine = Kinetic.Line({ points: [monthWidth+monthLineXplus, monthLinePosition, monthWidth+monthLineXplus, monthLineYpos], stroke: monthLineColor, strokeWidth: monthLineThick, lineCap: 'square', lineJoin: 'square' });	
-								
-			monthGroup.add(monthText);
-			monthGroup.add(monthLine);
-		}
-			
-		var stageWidthHalf = stage.getWidth() / 2;
-
-		/*
-		for (m = 0; m < monthValueArr.length; m++){
-			var monthText = monthValueArr[m].text;
-			monthText = new Kinetic.Text({ 
-				x: monthValueArr[m].width, 
-				y: 50, 
-				text: monthValueArr[m].month, 
-				fontSize:  16, 
-				fontFamily: 'Arial', 
-				fill: timelineTextColour, 
-				draggable: true 
-			});
-
-			var monthLine = monthValueArr[m].line;
-			var monthLineWidth = (monthValueArr[m].month) + 25;
-			monthLine = new Kinetic.Line({ 
-				points: [monthLineWidth, 0, monthLineWidth, 420], 
-				stroke: lineColour, 
-				strokeWidth: lineThick, 
-				lineCap: 'square', 
-				lineJoin: 'square' 
-			});
-
-			//var monthGroup = monthValueArr[m].group;
-			//monthGroup.add(monthValueArr[m].text);
-		}
-		*/
-		
+	var generateMonthTextLine = function (monthWidth, monthText, monthLine) {
 		var monthTextYpos = 50;
 		var monthLineXplus = 25;
 		var monthLineYpos = canvasHeight - 50;
@@ -777,93 +524,300 @@
 		var monthLineThick = 1;
 		var monthTextFont = 16;
 		var monthLineColor = "#000000";
-		janText = new Kinetic.Text({ x: janWidth, y: monthTextYpos, text: "JAN", fontSize:  16, fontFamily: 'Arial', fill: timelineTextColour, draggable: true });
-		janLine = new Kinetic.Line({ points: [janWidth+monthLineXplus, monthLinePosition, janWidth+monthLineXplus, monthLineYpos], stroke: monthLineColor, strokeWidth: monthLineThick, lineCap: 'square', lineJoin: 'square' });
-			
-		febText = new Kinetic.Text({ x:  febWidth, y: monthTextYpos, text: "FEB", fontSize:  monthTextFont, fontFamily: 'Arial', fill: timelineTextColour, draggable: true });
-		febLine = new Kinetic.Line({ points: [febWidth+monthLineXplus, monthLinePosition, febWidth+monthLineXplus, monthLineYpos], stroke: monthLineColor, strokeWidth: monthLineThick, lineCap: 'square', lineJoin: 'square' });
+		monthText = Kinetic.Text({ x: monthWidth, y: monthTextYpos, text: "JAN", fontSize:  16, fontFamily: 'Arial', fill: timelineTextColour, draggable: true });
+		monthLine = Kinetic.Line({ points: [monthWidth+monthLineXplus, monthLinePosition, monthWidth+monthLineXplus, monthLineYpos], stroke: monthLineColor, strokeWidth: monthLineThick, lineCap: 'square', lineJoin: 'square' });	
+							
+		monthGroup.add(monthText);
+		monthGroup.add(monthLine);
+	};
+
+	// Segregate by month
+	//
+	var monthSeg = function () {
+		if (month == 0) {	 
+			//JAN
+			generateLinesPerMonth();
+			generateMonthGroup(janGroup);
+			janGroup.setWidth(xPos);
+			janWidth = janGroup.getWidth();
+			janGroup.move(-30, 0);
+			//generateMonthGroup(janGroup, janWidth, -30);
+			layer.add(janGroup);
+		} else if (month == 1) { 
+			//FEB
+			generateLinesPerMonth();
+			generateMonthGroup(febGroup)
+			febGroup.setWidth(xPos);
+			febWidth = febGroup.getWidth();
+			febGroup.move(0, 0);
+			//generateMonthGroup(febGroup, febWidth, 0);
+			layer.add(febGroup);
+		} else if  (month == 2) { 
+			//MAR
+			generateLinesPerMonth();
+			generateMonthGroup(marGroup);
+			marGroup.setWidth(xPos);
+			marWidth = marGroup.getWidth();					
+			marGroup.move(30, 0);
+			layer.add(marGroup);
+		} else if (month == 3) { 
+			//APR
+			generateLinesPerMonth();
+			generateMonthGroup(aprilGroup);
+			aprilGroup.setWidth(xPos);
+			aprilWidth = aprilGroup.getWidth();
+			aprilGroup.move(60, 0);
+			layer.add(aprilGroup);
+		} else if (month == 4) {
+			//MAY
+			generateLinesPerMonth();
+			generateMonthGroup(mayGroup);
+			mayGroup.setWidth(xPos);
+			mayWidth = mayGroup.getWidth();
+			mayGroup.move(90, 0);
+			layer.add(mayGroup);
+		} else if (month == 5) { 
+			//JUNE
+			generateLinesPerMonth();
+			generateMonthGroup(juneGroup);
+			juneGroup.setWidth(xPos);
+			juneWidth = juneGroup.getWidth();
+			juneGroup.move(120, 0);
+			layer.add(juneGroup);
+		} else if (month == 6) { 
+			//JULY
+			generateLinesPerMonth();
+			generateMonthGroup(julGroup);
+			julGroup.setWidth(xPos);
+			julWidth = julGroup.getWidth();
+			julGroup.move(150, 0);
+			layer.add(julGroup);
+		}  else if (month == 7) { 
+			//AUG
+			generateLinesPerMonth();
+			generateMonthGroup(augGroup);
+			augGroup.setWidth(xPos);
+			augWidth = augGroup.getWidth();
+			augGroup.move(180, 0);
+			layer.add(augGroup);
+		} else if (month == 8) { 
+			//SEPT
+			generateLinesPerMonth();
+			generateMonthGroup(septGroup);
+			septGroup.setWidth(xPos);
+			septWidth = septGroup.getWidth();
+			septGroup.move(210, 0);
+			layer.add(septGroup);
+		} else if (month == 9) { 
+			//OCT
+			generateLinesPerMonth();
+			generateMonthGroup(octGroup);
+			octGroup.setWidth(xPos);
+			octWidth = octGroup.getWidth();
+			octGroup.move(240, 0);
+			layer.add(octGroup);
+		} else if (month == 10) { 
+			//NOV
+			generateLinesPerMonth();
+			generateMonthGroup(novGroup);
+			novGroup.setWidth(xPos);
+			novWidth = novGroup.getWidth();
+			novGroup.move(270, 0);
+			layer.add(novGroup);
+		} else if (month == 11) { 
+			//DEC
+			generateLinesPerMonth();
+			generateMonthGroup(decGroup);
+			decGroup.setWidth(xPos);
+			decWidth = decGroup.getWidth();
+			decGroup.move(300, 0);
+			layer.add(decGroup);
+		} else { }
+	};	
+
+	// Generate grid lines in the background
+	//		
+	// Create arrays
+	graphLineX = [];
+	graphLineY = [];
+	
+	// Set grid position defaults
+	var gridPosY = 0;
+	var gridPosX = 0;
+	for(j = 0; j < canvasWidth; j++){
+		gridPosY += 20;
+		gridPosX +=20;
 		
-		marText = new Kinetic.Text({ x: marWidth, y: monthTextYpos, text: "MAR", fontSize:  monthTextFont, fontFamily: 'Arial', fill: timelineTextColour, draggable: true });
-		marLine = new Kinetic.Line({ points: [marWidth+monthLineXplus, monthLinePosition, marWidth+monthLineXplus, monthLineYpos], stroke: monthLineColor, strokeWidth: monthLineThick, lineCap: 'square', lineJoin: 'square' });
-
-		aprilText = new Kinetic.Text({ x:  aprilWidth, y: monthTextYpos, text: "APRIL", fontSize:  monthTextFont, fontFamily: 'Arial', fill: timelineTextColour, draggable: true });
-		aprilLine = new Kinetic.Line({ points: [aprilWidth+monthLineXplus, monthLinePosition, aprilWidth+monthLineXplus, monthLineYpos], stroke: monthLineColor, strokeWidth: monthLineThick, lineCap: 'square', lineJoin: 'square' });
-
-		mayText = new Kinetic.Text({ x:  mayWidth, y: monthTextYpos, text: "MAY", fontSize:  monthTextFont, fontFamily: 'Arial', fill: timelineTextColour, draggable: true });
-		mayLine = new Kinetic.Line({ points: [mayWidth+monthLineXplus, monthLinePosition, mayWidth+monthLineXplus, monthLineYpos], stroke: monthLineColor, strokeWidth: monthLineThick, lineCap: 'square', lineJoin: 'square' });
-
-		juneText = new Kinetic.Text({ x:  juneWidth, y: monthTextYpos, text: "JUNE", fontSize:  monthTextFont, fontFamily: 'Arial', fill: timelineTextColour, draggable: true });
-		juneLine = new Kinetic.Line({ points: [juneWidth+monthLineXplus, monthLinePosition, juneWidth+monthLineXplus, monthLineYpos], stroke: monthLineColor, strokeWidth: monthLineThick, lineCap: 'square', lineJoin: 'square' });
-
-		julText = new Kinetic.Text({ x:  julWidth, y: monthTextYpos, text: "JUL", fontSize:  monthTextFont, fontFamily: 'Arial', fill: timelineTextColour, draggable: true	});
-		julLine = new Kinetic.Line({ points: [julWidth+monthLineXplus, monthLinePosition, julWidth+monthLineXplus, monthLineYpos], stroke: monthLineColor, strokeWidth: monthLineThick, lineCap: 'square', lineJoin: 'square' });
-
-		augText = new Kinetic.Text({ x:  augWidth, y: monthTextYpos, text: "AUG", fontSize:  monthTextFont, fontFamily: 'Arial', fill: timelineTextColour, draggable: true	});
-		augLine = new Kinetic.Line({ points: [augWidth+monthLineXplus, monthLinePosition, augWidth+monthLineXplus, monthLineYpos], stroke: monthLineColor, strokeWidth: monthLineThick, lineCap: 'square', lineJoin: 'square' });
-
-		septText = new Kinetic.Text({ x:  septWidth, y: monthTextYpos, text: "SEPT", fontSize:  monthTextFont, fontFamily: 'Arial', fill: timelineTextColour, draggable: true });
-		septLine = new Kinetic.Line({ points: [septWidth+monthLineXplus, monthLinePosition, septWidth+monthLineXplus, monthLineYpos], stroke: monthLineColor, strokeWidth: monthLineThick, lineCap: 'square', lineJoin: 'square' });
-
-		octText = new Kinetic.Text({ x: octWidth, y: monthTextYpos, text: "OCT", fontSize:  monthTextFont, fontFamily: 'Arial', fill: timelineTextColour, draggable: true });
-		octLine = new Kinetic.Line({ points: [octWidth+monthLineXplus, monthLinePosition, octWidth+monthLineXplus, monthLineYpos], stroke: monthLineColor, strokeWidth: monthLineThick, lineCap: 'square', lineJoin: 'square' });
-
-		novText = new Kinetic.Text({ x: novWidth, y: monthTextYpos, text: "NOV", fontSize:  monthTextFont, fontFamily: 'Arial', fill: timelineTextColour, draggable: true });
-		novLine = new Kinetic.Line({ points: [novWidth+monthLineXplus, monthLinePosition, novWidth+monthLineXplus, monthLineYpos], stroke: monthLineColor, strokeWidth: monthLineThick, lineCap: 'square', lineJoin: 'square' });
-
-		decText = new Kinetic.Text({ x:  decWidth, y: monthTextYpos, text: "DEC", fontSize:  monthTextFont, fontFamily: 'Arial', fill: timelineTextColour, draggable: true });
-		decLine = new Kinetic.Line({ points: [decWidth+monthLineXplus, monthLinePosition, decWidth+monthLineXplus, monthLineYpos], stroke: monthLineColor, strokeWidth: monthLineThick, lineCap: 'square', lineJoin: 'square' });
+		graphLineX.push(j);
+		graphLineX[j] = new Kinetic.Line({ points: [0, gridPosY, canvasWidth, gridPosY], stroke: gridColour, strokeWidth: gridWidth, lineCap: 'square', lineJoin: 'square' });
 		
-
-		// Generate grid lines in the background
-		//		
-		(function generateGraphLines() {
-			// Create arrays
-			graphLineX = [];
-			graphLineY = [];
-			
-			// Set grid position defaults
-			var gridPosY = 0;
-			var gridPosX = 0;
-			for(j = 0; j < canvasWidth; j++){
-				gridPosY += 20;
-				gridPosX +=20;
-				
-				graphLineX.push(j);
-				graphLineX[j] = new Kinetic.Line({ points: [0, gridPosY, canvasWidth, gridPosY], stroke: gridColour, strokeWidth: gridWidth, lineCap: 'square', lineJoin: 'square' });
-				
-				graphLineY.push(j);
-				graphLineY[j] = new Kinetic.Line({ points: [gridPosX, 0, gridPosX, canvasHeight], stroke: gridColour, strokeWidth: gridWidth, lineCap: 'square', lineJoin: 'square' });
-				
-				graphLineY[j].moveToBottom();
-				graphLineX[j].moveToBottom();
-				layer.add(graphLineY[j]);
-				layer.add(graphLineX[j]);
-			}
-		})();//self invoking grid generator
-
-		// Set groups, layers and stage
-		//
-		janGroup.add(janText); febGroup.add(febText); marGroup.add(marText); aprilGroup.add(aprilText); mayGroup.add(mayText); juneGroup.add(juneText); julGroup.add(julText); augGroup.add(augText); septGroup.add(septText); octGroup.add(octText); novGroup.add(novText); decGroup.add(decText);
-		janGroup.add(janLine); febGroup.add(febLine); marGroup.add(marLine); aprilGroup.add(aprilLine); mayGroup.add(mayLine); juneGroup.add(juneLine); julGroup.add(julLine); augGroup.add(augLine); septGroup.add(septLine); octGroup.add(octLine); novGroup.add(novLine); decGroup.add(decLine);
+		graphLineY.push(j);
+		graphLineY[j] = new Kinetic.Line({ points: [gridPosX, 0, gridPosX, canvasHeight], stroke: gridColour, strokeWidth: gridWidth, lineCap: 'square', lineJoin: 'square' });
 		
-		layer.add(timelineText);
-		stage.add(layer);
+		graphLineY[j].moveToBottom();
+		graphLineX[j].moveToBottom();
+		layer.add(graphLineY[j]);
+		layer.add(graphLineX[j]);
 	}
 	
-	// Save image function
+	// Loop through all values in array and position top and bottom
 	//
-	function saveImage() {
-		//document.getElementById('save').addEventListener('click', function() {				
-		stage.toDataURL({
-			callback: function(dataURL){
-				//window.open(dataURL);
-				document.getElementById('canvasImg').src = dataURL;
-				$('#imgWrapper').css('display','block');
-				$('#canvasImg').css('display','block');
-			}
-		});
-		//}, false);
+	var num = 0;			
+	for (i = num; i < data.length; i++) {	
+		// Set x and y line values
+		//
+		xPos += 150;
+		var xPos2 = xPos+150;
+		var xPos3 = xPos2;
+		var xPos4 = xPos3 + 20;
+		var yPos = canvasHeight / 2; 
+
+		// Set text and date x and y values
+		//
+		var xPosText = xPos2 + 15;
+		var xPosDate = xPos2;
+		var topTitlePos = yPos - (yPos/3); var bottomTitlePos = yPos + (yPos/3);				
+		var textTitlePosTop = topTitlePos - 30; var textTitlePosBottom = bottomTitlePos + 10;				
+		var dateTitlePosTop = topTitlePos + 75; var dateTitlePosBottom = bottomTitlePos - 90;
+		
+		// Order by month
+		//	
+		var dataValues = data[i].date;
+		var presentDate = new Date();
+		var presentYear = presentDate.getFullYear();
+		var getDate = new Date(dataValues);
+		var month = getDate.getMonth();
+		var getYear = getDate.getFullYear();
+
+		var newDate = getDate.getDate() + '-' + ((getDate.getMonth())+(1)) + '-' + getDate.getFullYear();
+		
+		if (presentYear == getYear) {
+			monthSeg();
+		} else {}
+	}//end loop
+
+	var stageWidthHalf = stage.getWidth() / 2;
+	var monthTextYpos = 50;
+	var monthLineXplus = 25;
+	var monthLineYpos = canvasHeight - 50;
+	var monthLinePosition = 70;
+	var monthLineThick = 1;
+	var monthTextFont = 16;
+	var monthLineColor = "#000000";
+	janText = new Kinetic.Text({ x: janWidth, y: monthTextYpos, text: "JAN", fontSize:  16, fontFamily: 'Arial', fill: timelineTextColour, draggable: true });
+	janLine = new Kinetic.Line({ points: [janWidth+monthLineXplus, monthLinePosition, janWidth+monthLineXplus, monthLineYpos], stroke: monthLineColor, strokeWidth: monthLineThick, lineCap: 'square', lineJoin: 'square' });
+		
+	febText = new Kinetic.Text({ x:  febWidth, y: monthTextYpos, text: "FEB", fontSize:  monthTextFont, fontFamily: 'Arial', fill: timelineTextColour, draggable: true });
+	febLine = new Kinetic.Line({ points: [febWidth+monthLineXplus, monthLinePosition, febWidth+monthLineXplus, monthLineYpos], stroke: monthLineColor, strokeWidth: monthLineThick, lineCap: 'square', lineJoin: 'square' });
+	
+	marText = new Kinetic.Text({ x: marWidth, y: monthTextYpos, text: "MAR", fontSize:  monthTextFont, fontFamily: 'Arial', fill: timelineTextColour, draggable: true });
+	marLine = new Kinetic.Line({ points: [marWidth+monthLineXplus, monthLinePosition, marWidth+monthLineXplus, monthLineYpos], stroke: monthLineColor, strokeWidth: monthLineThick, lineCap: 'square', lineJoin: 'square' });
+
+	aprilText = new Kinetic.Text({ x:  aprilWidth, y: monthTextYpos, text: "APRIL", fontSize:  monthTextFont, fontFamily: 'Arial', fill: timelineTextColour, draggable: true });
+	aprilLine = new Kinetic.Line({ points: [aprilWidth+monthLineXplus, monthLinePosition, aprilWidth+monthLineXplus, monthLineYpos], stroke: monthLineColor, strokeWidth: monthLineThick, lineCap: 'square', lineJoin: 'square' });
+
+	mayText = new Kinetic.Text({ x:  mayWidth, y: monthTextYpos, text: "MAY", fontSize:  monthTextFont, fontFamily: 'Arial', fill: timelineTextColour, draggable: true });
+	mayLine = new Kinetic.Line({ points: [mayWidth+monthLineXplus, monthLinePosition, mayWidth+monthLineXplus, monthLineYpos], stroke: monthLineColor, strokeWidth: monthLineThick, lineCap: 'square', lineJoin: 'square' });
+
+	juneText = new Kinetic.Text({ x:  juneWidth, y: monthTextYpos, text: "JUNE", fontSize:  monthTextFont, fontFamily: 'Arial', fill: timelineTextColour, draggable: true });
+	juneLine = new Kinetic.Line({ points: [juneWidth+monthLineXplus, monthLinePosition, juneWidth+monthLineXplus, monthLineYpos], stroke: monthLineColor, strokeWidth: monthLineThick, lineCap: 'square', lineJoin: 'square' });
+
+	julText = new Kinetic.Text({ x:  julWidth, y: monthTextYpos, text: "JUL", fontSize:  monthTextFont, fontFamily: 'Arial', fill: timelineTextColour, draggable: true	});
+	julLine = new Kinetic.Line({ points: [julWidth+monthLineXplus, monthLinePosition, julWidth+monthLineXplus, monthLineYpos], stroke: monthLineColor, strokeWidth: monthLineThick, lineCap: 'square', lineJoin: 'square' });
+
+	augText = new Kinetic.Text({ x:  augWidth, y: monthTextYpos, text: "AUG", fontSize:  monthTextFont, fontFamily: 'Arial', fill: timelineTextColour, draggable: true	});
+	augLine = new Kinetic.Line({ points: [augWidth+monthLineXplus, monthLinePosition, augWidth+monthLineXplus, monthLineYpos], stroke: monthLineColor, strokeWidth: monthLineThick, lineCap: 'square', lineJoin: 'square' });
+
+	septText = new Kinetic.Text({ x:  septWidth, y: monthTextYpos, text: "SEPT", fontSize:  monthTextFont, fontFamily: 'Arial', fill: timelineTextColour, draggable: true });
+	septLine = new Kinetic.Line({ points: [septWidth+monthLineXplus, monthLinePosition, septWidth+monthLineXplus, monthLineYpos], stroke: monthLineColor, strokeWidth: monthLineThick, lineCap: 'square', lineJoin: 'square' });
+
+	octText = new Kinetic.Text({ x: octWidth, y: monthTextYpos, text: "OCT", fontSize:  monthTextFont, fontFamily: 'Arial', fill: timelineTextColour, draggable: true });
+	octLine = new Kinetic.Line({ points: [octWidth+monthLineXplus, monthLinePosition, octWidth+monthLineXplus, monthLineYpos], stroke: monthLineColor, strokeWidth: monthLineThick, lineCap: 'square', lineJoin: 'square' });
+
+	novText = new Kinetic.Text({ x: novWidth, y: monthTextYpos, text: "NOV", fontSize:  monthTextFont, fontFamily: 'Arial', fill: timelineTextColour, draggable: true });
+	novLine = new Kinetic.Line({ points: [novWidth+monthLineXplus, monthLinePosition, novWidth+monthLineXplus, monthLineYpos], stroke: monthLineColor, strokeWidth: monthLineThick, lineCap: 'square', lineJoin: 'square' });
+
+	decText = new Kinetic.Text({ x:  decWidth, y: monthTextYpos, text: "DEC", fontSize:  monthTextFont, fontFamily: 'Arial', fill: timelineTextColour, draggable: true });
+	decLine = new Kinetic.Line({ points: [decWidth+monthLineXplus, monthLinePosition, decWidth+monthLineXplus, monthLineYpos], stroke: monthLineColor, strokeWidth: monthLineThick, lineCap: 'square', lineJoin: 'square' });
+	
+	// Set groups, layers and stage
+	//
+	janGroup.add(janText); febGroup.add(febText); marGroup.add(marText); aprilGroup.add(aprilText); mayGroup.add(mayText); juneGroup.add(juneText); julGroup.add(julText); augGroup.add(augText); septGroup.add(septText); octGroup.add(octText); novGroup.add(novText); decGroup.add(decText);
+	janGroup.add(janLine); febGroup.add(febLine); marGroup.add(marLine); aprilGroup.add(aprilLine); mayGroup.add(mayLine); juneGroup.add(juneLine); julGroup.add(julLine); augGroup.add(augLine); septGroup.add(septLine); octGroup.add(octLine); novGroup.add(novLine); decGroup.add(decLine);
+	
+	layer.add(timelineText);
+	stage.add(layer);
+};
+	
+// Save image function
+//
+var saveImage = function () {
+	//document.getElementById('save').addEventListener('click', function() {				
+	stage.toDataURL({
+		callback: function(dataURL){
+			//window.open(dataURL);
+			document.getElementById('canvasImg').src = dataURL;
+			$('#imgWrapper').css('display','block');
+			$('#canvasImg').css('display','block');
+		}
+	});
+	//}, false);
+};
+
+
+// Timeblock style creation
+//
+var timeBlocksAddTaskStyle = function () {
+	$('.timeBlocks').removeClass('timeBlockBottom').removeClass('timeBlockTop');
+	//add classes
+	$('.timeBlocks:odd').addClass('timeBlockBottom');
+	$('.timeBlocks:even').addClass('timeBlockTop');
+				
+	//calculuate title horizontal position
+	var mTitleWidth = $('.mileTwrapper').width();
+	var mTitleRight = -(mTitleWidth / 3.598599604963728)+'%'; //4.75
+	$('.mileTwrapper').css({'right': mTitleRight});
+			
+	//reconfigure line thickness
+	CustomizeColor.lineThickfunc();
+
+	//reconfigure title colour
+	CustomizeColor.titleColourValfunc();
+	
+	//reconfigure title size
+	CustomizeColor.titleSizefunc();
+
+	//reconfigure date colour
+	CustomizeColor.dateColourfunc();
+			
+	//reconfigure line colour
+	CustomizeColor.lineColourfunc();
+			
+	//reconfigure bg colour
+	CustomizeColor.backgroundColourfunc();
+			
+	//update time inner width
+	var articleWidth = $('.timeBlocks').width();
+	var timeInnerWidth = $('#timeInner').width();
+	var totalTimeWidth = timeInnerWidth + articleWidth + 200;
+	$('#timeInner, #timeWrapper').css({'width': totalTimeWidth});
+};
+	
+// Timeblock remove style
+//
+var timeBlocksRemoveTaskStyle = function () {
+	//add classes
+	$('.timeBlocks').removeClass('timeBlockBottom').removeClass('timeBlockTop');
+	$('.timeBlocks:odd').addClass('timeBlockBottom');
+	$('.timeBlocks:even').addClass('timeBlockTop');
+		
+	//check tasks
+	if($('.timeBlocks').is(':visible')){
+		$('#noData').fadeOut('fast');
+	} else {
+		$('#noData').fadeIn('fast');
 	}
+};
 
 /*----------------------------------------------------------------------*/
 /* Extended KO Bindings                                    */
@@ -916,170 +870,75 @@ ko.bindingHandlers.sortable = {
 };
 
 
-	// Knockout Functions
-	// Task object
-	//
-	function Task(data) {
-		this.title = ko.observable(data.title).extend({ required: "Please enter a task name" });
-		this.date = ko.observable(data.date);
-		this.isDone = ko.observable(data.isDone);	
-	}
+// Knockout Functions
+// Task object
+//
+var Task = function (data) {
+	this.title = ko.observable(data.title).extend({ required: "Please enter a task name" });
+	this.date = ko.observable(data.date);
+	this.isDone = ko.observable(data.isDone);	
+};
 
-	// Timeline title object
-	//
-	function tfTitle(data) {
-		this.timelineTitle = ko.observable(data.timelineTitle);
-	}
+// Timeline title object
+//
+var tfTitle = function (data) {
+	this.timelineTitle = ko.observable(data.timelineTitle);
+};
 
-	// View model
-	//
-	function TaskListViewModel() {
-		// Data
-		var self = this;
-		
-		self.tasks = ko.observableArray([]);
-		self.titleTimeline = ko.observableArray([]);
-		
-		self.newTaskText = ko.observable();
-		self.newDateText = ko.observable();
-		self.incompleteTasks = ko.computed(function() {
-			return ko.utils.arrayFilter(self.tasks(), function(task) { return !task.isDone() });
-		});
-		
-		self.newTimelineTitle = ko.observable();
-		
-		self.sortItems = function() {
-			self.tasks.sort();
-		};
-		
-		// Operations
-		self.addTitle = function() {
-			self.titleTimeline.remove(tfTitle);
-			//self.titleTimeline.sort();
-			self.titleTimeline.push(new tfTitle({ timelineTitle: this.newTimelineTitle()}));
-			self.newTimelineTitle("");
-			titleColour();
-		}
-		
-		self.addTask = function() {
-			//self.tasks.sort();
-			self.tasks.push(new Task({ title: this.newTaskText(), date: this.newDateText()}));
-			var x = self.newTaskText("");
-			var y = self.newDateText("");
-			timeBlocksAddTaskStyle();			
-		};
-		
-		self.removeTask = function(task) { 
-			self.tasks.remove(task);
-			timeBlocksRemoveTaskStyle(); 			
-		};
-		
-		self.removeTitle = function(tfTitle) {
-			self.titleTimeline.remove(tfTitle);
-		};
-
-		//self.trash = ko.observableArray([]);
-    	//self.trash.id = "trash";
-
-		
-		//self.addThick = function(){
-		//	thickValidation();
-		//};
-
-		self.save = function() {
-			self.lastSavedJson(JSON.stringify(ko.toJS(self.tasks), null, 2));
-			//self.tasks.sort();
-		};
-
-		self.lastSavedJson = ko.observable("");	
-
-		
+// View model
+//
+var TaskListViewModel = function () {
+	// Data
+	var self = this;
+	
+	self.tasks = ko.observableArray([]);
+	self.titleTimeline = ko.observableArray([]);
+	
+	self.newTaskText = ko.observable();
+	self.newDateText = ko.observable();
+	self.incompleteTasks = ko.computed(function() {
+		return ko.utils.arrayFilter(self.tasks(), function(task) { return !task.isDone() });
+	});
+	
+	self.newTimelineTitle = ko.observable();
+	
+	self.sortItems = function() {
+		self.tasks.sort();
+	};
+	
+	// Operations
+	self.addTitle = function() {
+		self.titleTimeline.remove(tfTitle);
+		//self.titleTimeline.sort();
+		self.titleTimeline.push(new tfTitle({ timelineTitle: this.newTimelineTitle()}));
+		self.newTimelineTitle("");
+		CustomizeColor.timelineTitleColourfunc();
+		CustomizeColor.timelineTitleSizefunc();
 	}
 	
-	// Timeblock style creation
-	//
-	function timeBlocksAddTaskStyle() {
-		$('.timeBlocks').removeClass('timeBlockBottom').removeClass('timeBlockTop');
-		//add classes
-		$('.timeBlocks:odd').addClass('timeBlockBottom');
-		$('.timeBlocks:even').addClass('timeBlockTop');
-					
-		//calculuate title horizontal position
-		var mTitleWidth = $('.mileTwrapper').width();
-		var mTitleRight = -(mTitleWidth / 3.598599604963728)+'%'; //4.75
-		$('.mileTwrapper').css({'right': mTitleRight});
-				
-		//reconfigure line thickness
-		thickValidation();
+	self.addTask = function() {
+		//self.tasks.sort();
+		self.tasks.push(new Task({ title: this.newTaskText(), date: this.newDateText()}));
+		var x = self.newTaskText("");
+		var y = self.newDateText("");
+		timeBlocksAddTaskStyle();			
+	};
+	
+	self.removeTask = function(task) { 
+		self.tasks.remove(task);
+		timeBlocksRemoveTaskStyle(); 			
+	};
+	
+	self.removeTitle = function(tfTitle) {
+		self.titleTimeline.remove(tfTitle);
+	};
 
-		//reconfigure title colour
-		var titleColourValx = $('input#titleColour').val();
-		$('.mileStoneTitle').css({'color': titleColourValx});
-				
-		//reconfigure date colour
-		var dateColourValx = $('input#dateColour').val();
-		$('.mileStoneDate').css({'color': dateColourValx});
-				
-		//reconfigure line colour
-		var lineColourValx = $('input#lineColour').val();
-		$('.top, .bottom').css({'border-bottom-color':lineColourValx, 'border-right-color':lineColourValx});
-				
-		//reconfigure bg colour
-		var bgColourValx = $('input#bgColour').val();
-		$('.mileTwrapper, .mileDwrapper').css({'background-color': bgColourValx});
-				
-		//update time inner width
-		var articleWidth = $('.timeBlocks').width();
-		var timeInnerWidth = $('#timeInner').width();
-		var totalTimeWidth = timeInnerWidth + articleWidth + 200;
-		$('#timeInner, #timeWrapper').css({'width': totalTimeWidth});
-	}
-	
-	// Timeblock remove style
-	//
-	function timeBlocksRemoveTaskStyle() {
-		//add classes
-		$('.timeBlocks').removeClass('timeBlockBottom').removeClass('timeBlockTop');
-		$('.timeBlocks:odd').addClass('timeBlockBottom');
-		$('.timeBlocks:even').addClass('timeBlockTop');
-			
-		//check tasks
-		if($('.timeBlocks').is(':visible')){
-			$('#noData').fadeOut('fast');
-		} else {
-			$('#noData').fadeIn('fast');
-		}
-	}
-	
-	// Thick validation
-	//
-	function thickValidation() {
-			/*var thickRegEx = "^[0-9]+$";
-			var thickValidation = $('input#thick').val();
-			
-			//error handling
-			if((thickValidation.match(thickRegEx)) && ((thickValidation <= 7) && (thickValidation > 0)) ){
-				var thickVal = $('input#thick').val() +'px';
-				var slideThick = $('#master').slider( 'value' );
-				$('.top').css({'border-bottom-width':slideThick});
-				$('.thickError').css('display','none');		
-			} else {
-				$('.thickError').fadeIn('fast');
-				return false;
-			}*/
-			var slideThick = $('#master').slider( 'value' );
-			var originalLineStyle = $('.top').css({'border-bottom-style':'solid'});
-			var originalLineColor = $('.top').css({'border-bottom-color':'rgb(176, 176, 176)'});
-			var lineThicknessValx = $('#thick').val( slideThick );
-			$('.top').css({'border-bottom-width': slideThick});
-	}
-	
-	// Title colour
-	//
-	function titleColour(){
-		//reconfigure title colour
-		var timelineTitleColourValx = $('input#timelineTitleColour').val();
-		$('.timelineTitle').css({'color':  timelineTitleColourValx});
-	}
+	self.save = function() {
+		self.lastSavedJson(JSON.stringify(ko.toJS(self.tasks), null, 2));
+		//self.tasks.sort();
+	};
+
+	self.lastSavedJson = ko.observable("");	
+};	
 
 	
