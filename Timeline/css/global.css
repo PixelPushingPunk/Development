@@ -359,8 +359,8 @@ a#print {
 }
 
 .textareaDiv, #jsonVal {
-	visibility:hidden;
-	width:0;
+	visibility:visible;
+	width:700px;
 }
 
 #cloneWrapper {
