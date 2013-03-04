@@ -75,7 +75,7 @@
 		// Submit task btn
 		//
 		$('.completeTasks').hide();
-		$('#submitTaskBtn').on('click', function(){
+		$('#submitTaskBtn, #submitList').on('click', function(){
 			$('.completeTasks').fadeIn();
 			$('#noData').fadeOut('fast');
 		});
@@ -281,8 +281,27 @@
 			hideCanvasSupport();	
 		});
 
-		$('#submitList').on('click', function() {
-			/*
+		/*$('#submitList').on('click', function() {
+            
+            var textarea = $('textarea').val();
+            //console.log(textarea);
+            
+            var textArr = [];
+            textArr = textarea.split(/\n/);
+            var data = [];
+            
+            for(var i = 0; i < textArr.length; i += 1 ) {
+                var query = textArr[i].split(' ');
+                data.push({
+                    title: query[0],
+                    date: query[1]
+                });
+            }
+            
+            console.debug(data);			
+
+
+	
 				var query = window.location.search.substring(1);
 				    var vars = query.split('&');
 				    var newArray = [];
@@ -292,82 +311,20 @@
 				    }
 
 				    //console.debug(newArray);
-				    var fnamePL = newArray[0];
-				    var lnamePL = newArray[1];
-				    var emailPL = newArray[2];
-
-				    $('#fName-pl').val(fnamePL);
-				    $('#lName-pl').val(lnamePL);
-				    $('#email-pl').val(emailPL);
-				    //console.log(fnamePL + ' ' + lnamePL + ' ' +emailPL);
-			*/
-
-			var a = ['title', 'date'];
-			var x = [];
-			var obj = {};
-			var d = ["titleArr1 DateArr1", "TitleArr2 DateArr2"];
-			//var e = d.split('');
-			//console.debug(e);
-			console.debug(d);
-			var y = [];
-			for (var i = 0; i<d.length; i+=1){
-				query = d[i].split(' ');
-				y.push(query[1]);
-
-			}
-			console.log(typeof y);
-			console.log(y[0]);
-			
-
-			/*
-			for (var i = 0; i<a.length; i+=1) {
-				obj[a[0]] = d[0];
-				obj[a[1]] = d[1];
-				x.push(obj);
-			}
-
-			for (var i = 0; i<x.length; i+=1){
-				console.log(x[i].title + ' ' + x[i].date);
-			}
-
-			console.debug(x);
-			*/
-
-			/*
-			var contacts = [];
-			var addTask = function (title, date) {
-				contacts.push({
-					title: title,
-					date: date
-				});;
-
-			};
-
-			console.debug(contacts);
-			addContact("sdfsdf", "sdfsdf");
-			console.debug(contacts);
-
-			*/
-
-
-			/*var value = $('#listConv').val();
-			console.log("type of :" + typeof value);
-			console.log("value of value: " + value);
-
-			//var query = value.split(" ");
-			var query = value.split(/\n/);
-			console.log("type of query: " + typeof query);
-			console.log("value of query: " + query);
-			console.debug(query);*/
 
 
 
-			//var splitAgain = [{"title:value", "date:value"}];
+	
+				var contacts = [];
+				var addTask = function (title, date) {
+					contacts.push({
+						title: title,
+						date: date
+					});;
 
-			//var splitAgain = query.split('');
-			//console.log("type of split: " + typeof splitAgain);
-			//console.log("value of splitAgain: " + splitAgain);
-		});
+				};
+
+		});*/
 			
 	});//END document.ready
 })(jQuery);
@@ -963,7 +920,7 @@ ko.bindingHandlers.sortable = {
 // Task object
 //
 var Task = function (data) {
-	this.title = ko.observable(data.title).extend({ required: "Please enter a task name" });
+	this.title = ko.observable(data.title);//.extend({ required: "Please enter a task name" });
 	this.date = ko.observable(data.date);
 	this.isDone = ko.observable(data.isDone);	
 };
@@ -985,6 +942,7 @@ var TaskListViewModel = function () {
 	
 	self.newTaskText = ko.observable();
 	self.newDateText = ko.observable();
+	self.newTaskDateText = ko.observable();
 	self.incompleteTasks = ko.computed(function() {
 		return ko.utils.arrayFilter(self.tasks(), function(task) { return !task.isDone() });
 	});
@@ -1011,6 +969,30 @@ var TaskListViewModel = function () {
 		var x = self.newTaskText("");
 		var y = self.newDateText("");
 		timeBlocksAddTaskStyle();			
+	};
+
+	self.addTaskList = function () {
+
+        //var textarea = $('textarea').val();
+        //console.log(textarea);            
+        var textArr = [];
+        //textArr = textarea.split(/\n/);
+        textArr = this.newTaskDateText().split(/\n/);
+        //var data = []; 
+            for(var i = 0; i < textArr.length; i += 1 ) {
+                var query = textArr[i].split(' ');
+                //data.push({
+                //    title: query[0],
+                //    date: query[1]
+                //});
+            	self.tasks.push(new Task({ title: query[0], date: query[1]}));
+            }
+            
+        //console.debug(data);	
+
+     	//self.tasks.push(new Taskdata);       
+		var z = self.newTaskDateText("");
+		timeBlocksAddTaskStyle();	
 	};
 	
 	self.removeTask = function(task) { 

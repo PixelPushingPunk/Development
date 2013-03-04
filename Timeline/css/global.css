@@ -508,7 +508,7 @@ form ul li input.inputStyle {
 }
 
 #taskForm, #thickForm, #titleForm {
-	height:138px;
+	height:55px;
 	position:relative;
 	float:left;
 	overflow:hidden;
