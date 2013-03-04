@@ -557,8 +557,8 @@ form ul li input.inputStyle {
 
 .characterError {
 	position:absolute;
-	top:40px;
-	left:128px;
+	top:55px;
+	left:20px;
 	display:none;
 }
 
