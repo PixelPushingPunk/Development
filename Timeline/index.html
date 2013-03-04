@@ -94,41 +94,46 @@
 				<div id="slidesContainer" class="form">
 			    	<div class="slide">
 			      	<!-- Content for slide 1 goes here -->
-						<!-- Add timeline title -->				
-						<form id="titleForm" data-bind="submit: addTitle">
-							<input id="timelineTitle" type="text" name="timelineTitle" class="inputStyle" data-bind="value: newTimelineTitle" placeholder="Enter your timeline title here"/> 
-							<button id="submitTitleBtn" type="submit">+</button>
-						</form>
+						<!-- Add timeline title -->
+						<div class="centerSlide">				
+							<form id="titleForm" data-bind="submit: addTitle">
+								<input id="timelineTitle" type="text" name="timelineTitle" class="inputStyle" data-bind="value: newTimelineTitle" placeholder="Enter your timeline title here"/> 
+								<button id="submitTitleBtn" type="submit">+</button>
+							</form>
+						</div>
 						<div class="clear"></div>      
 			    	</div>
 
 			    	<div class="slide">
 			      	<!-- Content for slide 2 goes here. -->
 						<!-- Add task and date -->
-						<form id="taskForm" data-bind="submit: addTask">
-							<input id="task" type="text" name="task" class="inputStyle" data-bind="value: newTaskText" placeholder="Enter task or milestone here" maxlength="50"/>
-							<input id="datepicker" name="date" class="inputStyle" data-bind="value: newDateText" placeholder="Date dd/mm/yy" />
-							<button id="submitTaskBtn" type="submit">+</button>
-							<span class="error characterError">No more thatn 50 characters*</span>
-						</form>
-						<div class="clear"></div>
-
-						<ul id="editableTasks" data-bind="foreach: tasks, visible: tasks().length > 0, sortable: tasks">
-							<li>
-								<input id="datepickerMileStone" class="inputStyle mileStoneTitleInput" data-bind="value: title, disable: isDone"> 
-								<input class="inputStyle mileStoneDateInput" data-bind="value: date, disable: isDone"> 
-								<a title="delete" class="button deleteBtn" href="#" data-bind="click: $parent.removeTask">x</a>
-							</li>
-						</ul>
-						<div class="clear"></div>
-						<div class="textareaDiv">
-							<textarea id="jsonVal" data-bind='value: lastSavedJson' rows='25' cols='30'> </textarea>	
-						</div>
-						<div class="left textareaDiv">
-							<form id="taskList" data-bind="submit: addTaskList">
-								<textarea id="listConv" rows="25" cols="30" data-bind="value: newTaskDateText"></textarea>
-								<button id="submitList">Add to list</button>
+						<div class="centerSlide">
+							<form id="taskForm" data-bind="submit: addTask">
+								<input id="task" type="text" name="task" class="inputStyle" data-bind="value: newTaskText" placeholder="Enter task or milestone here" maxlength="50"/>
+								<input id="datepicker" name="date" class="inputStyle" data-bind="value: newDateText" placeholder="Date dd/mm/yy" />
+								<button id="submitTaskBtn" type="submit">+</button>
+								<span class="error characterError">No more thatn 50 characters*</span>
 							</form>
+							<div class="clear"></div>
+
+							<ul id="editableTasks" data-bind="foreach: tasks, visible: tasks().length > 0, sortable: tasks">
+								<li>
+									<input id="datepickerMileStone" class="inputStyle mileStoneTitleInput" data-bind="value: title, disable: isDone"> 
+									<input class="inputStyle mileStoneDateInput" data-bind="value: date, disable: isDone"> 
+									<a title="delete" class="button deleteBtn" href="#" data-bind="click: $parent.removeTask">x</a>
+								</li>
+							</ul>
+						
+							<div class="clear"></div>
+							<div class="textareaDiv">
+								<textarea id="jsonVal" data-bind='value: lastSavedJson' rows='25' cols='30'> </textarea>	
+							</div>
+							<div class="left textareaDiv">
+								<form id="taskList" data-bind="submit: addTaskList">
+									<textarea id="listConv" rows="25" cols="68" data-bind="value: newTaskDateText"></textarea>
+									<button id="submitList">Add to list</button>
+								</form>
+							</div>
 						</div>
 			    	</div>
 
@@ -140,27 +145,29 @@
 			      		
 
 						<!-- Customize timeline style -->
-						<form id="thickForm"> <!--data-bind="submit: addThick"-->
-							<label for="thick">Pixel Thickness:</label>
-							<input style="float:left; border: 0; color: #f6931f; font-weight: bold;" type="text" id="thick" name="thick" class="inputStyle"/>
+						<div class="centerSlide">
+							<form id="thickForm"> <!--data-bind="submit: addThick"-->
+								<label for="thick">Pixel Thickness:</label>
+								<input style="float:left; border: 0; color: #f6931f; font-weight: bold;" type="text" id="thick" name="thick" class="inputStyle"/>
+								<div class="clear"></div>
+								<div id="master" style="width: 260px; margin: 15px;"></div>
+								<span class="error thickError">You need an number between 1 and 7 for the thickness value*</span>
+							</form>
 							<div class="clear"></div>
-							<div id="master" style="width: 260px; margin: 15px;"></div>
-							<span class="error thickError">You need an number between 1 and 7 for the thickness value*</span>
-						</form>
-						<div class="clear"></div>
 
-						<form id="colorCustomize">
-							<ul>
-								<li><label for="timelineTitleColour">Timeline Title Colour</label> <input id="timelineTitleColour" name="timelineTitleColour" class="inputStyle" value="#000000"/></li>
-								<li><label for="timelineTitleSize">Timeline Title Size</label> <input id="timelineTitleSize" name="timelineTitleSize" class="inputStyle" type="text"/> <button id="timelineTitleSizeBtn">Add</button></li>			
-								<li><label for="titleColour">Milestone Text Colour: &nbsp;</label> <input id="titleColour" name="titleColour" class="inputStyle" value="#8080ff"/></li>
-								<li><label for="titleSize">Milestone Title Size</label> <input id="titleSize" name="titleSize" class="inputStyle" type="text"/> <button id="titleSizeBtn">Add</button></li>	
-								<li><label for="dateColour">Date Colour:</label> <input id="dateColour" name="dateColour" class="inputStyle" value="#8080ff"/></li>
-								<li><label for="dateSize">Date Size</label> <input id="dateSize" name="dateSize" class="inputStyle" type="text"/> <button id="dateSizeBtn">Add</button></li>	
-								<li><label for="lineColour">Line Colour: &nbsp;</label> <input id="lineColour" name="lineColour" class="inputStyle" value="#b0b0b0"/></li>
-								<li><label for="bgColour">BG Colour: </label> <input id="bgColour" name="bgColour" class="inputStyle" value="#f2f2f2"/></li>
-							</ul>
-						</form>
+							<form id="colorCustomize">
+								<ul>
+									<li><label for="timelineTitleColour">Timeline Title Colour</label> <input id="timelineTitleColour" name="timelineTitleColour" class="inputStyle" value="#000000"/></li>
+									<li><label for="timelineTitleSize">Timeline Title Size</label> <input id="timelineTitleSize" name="timelineTitleSize" class="inputStyle" type="text"/> <button id="timelineTitleSizeBtn">Add</button></li>			
+									<li><label for="titleColour">Milestone Text Colour: &nbsp;</label> <input id="titleColour" name="titleColour" class="inputStyle" value="#8080ff"/></li>
+									<li><label for="titleSize">Milestone Title Size</label> <input id="titleSize" name="titleSize" class="inputStyle" type="text"/> <button id="titleSizeBtn">Add</button></li>	
+									<li><label for="dateColour">Date Colour:</label> <input id="dateColour" name="dateColour" class="inputStyle" value="#8080ff"/></li>
+									<li><label for="dateSize">Date Size</label> <input id="dateSize" name="dateSize" class="inputStyle" type="text"/> <button id="dateSizeBtn">Add</button></li>	
+									<li><label for="lineColour">Line Colour: &nbsp;</label> <input id="lineColour" name="lineColour" class="inputStyle" value="#b0b0b0"/></li>
+									<li><label for="bgColour">BG Colour: </label> <input id="bgColour" name="bgColour" class="inputStyle" value="#f2f2f2"/></li>
+								</ul>
+							</form>
+						</div>
 			    	</div>
 
 			    	<div class="slide">

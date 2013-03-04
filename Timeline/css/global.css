@@ -453,7 +453,7 @@ button, a.button {
 }
 
 input.inputStyle, textarea {
-	border:1px solid #ccc;
+	border:1px solid #999;
 	padding:15px 20px;
 	-moz-border-radius:3px;
 	-wekit-border-radius:3px;
@@ -571,6 +571,19 @@ form ul li input.inputStyle {
 
 .redBorder {
 	border:1px solid red !important;
+}
+
+#editableTasks {
+	margin:0;
+}
+
+.centerSlide {
+	width:86%;
+	margin:0 auto;
+}
+
+#editableTasks ul li:hover, #editableTasks ul li a:hover {
+	cursor:move;
 }
 
 /*Color Picker*/
