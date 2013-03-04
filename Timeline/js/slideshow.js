@@ -22,8 +22,8 @@
 
     // Insert left and right arrow controls in the DOM
     $('#slideshow')
-      .prepend('<span class="control" id="leftControl">BACK</span>')
-      .append('<span class="control" id="rightControl">NEXT</span>');
+      .prepend('<span class="control" id="leftControl">Back</span>')
+      .append('<span class="control" id="rightControl">Next</span>');
 
     // Hide left arrow control on first load
     manageControls(currentPosition);

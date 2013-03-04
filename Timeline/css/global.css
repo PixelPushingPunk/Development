@@ -1,5 +1,5 @@
 body {
-	font-family:'arial', georgia, sans-serif;
+	font-family:'Sanchez', arial, georgia, sans-serif;
 	font-size:14px;
 	line-height:21px;
 	background:#444;
@@ -12,9 +12,31 @@ h1 {
 
 header {
 	background-color:#9ab5a9;
-	height:120px;
-	width:100%;
+	height:80px;
+	width:80%;
 	border-bottom:1px solid #ccc;
+	overflow:hidden;
+	padding:40px 10% 0;
+}
+
+.kro {
+	float:left;
+	width:218px;
+	height:45px;
+	display:block;
+	background: url('../img/kronoline.png') no-repeat scroll 0 0 transparent;
+	text-decoration:none;
+	text-indent:-9999px;
+}
+
+.bg-top-logo {
+	float:right;
+	width:44px;
+	height:60px;
+	display:block;
+	background: url('../img/bg-both-logo.png') no-repeat scroll 0 0;
+	text-decoration:none;
+	text-indent:-9999px;
 }
 
 #header {
@@ -57,8 +79,9 @@ header {
 	overflow:hidden;
 	position:relative;
 	width:100%;	
+	max-width:990px;
 	height:420px;
-	background:url('../img/coin-grid.png') repeat scroll 0 0;	
+	background:url('../img/kron-grid.png') repeat scroll 0 0;	
 }	
 
 #timeCenter {
@@ -358,9 +381,10 @@ a#print {
 	margin-right:10px;
 }
 
-.textareaDiv, #jsonVal {
-	visibility:visible;
-	width:700px;
+#jsonVal {
+	visibility:hidden;
+	width:0;
+	height:0;
 }
 
 #cloneWrapper {
@@ -402,10 +426,10 @@ a#print {
 
 button, a.button {
 	text-decoration:none;
-	color:#565656;
+	color:#fff;
 	border:none;
 	background-color:#ccc;
-	padding:10px 20px;
+	padding:15px 25px;
 	font-family:'arial', georgia, sans-serif;
 	font-size:14px;
 	font-weight:bold;
@@ -413,14 +437,15 @@ button, a.button {
 	-webkit-border-radius:3px;
 	border-radius:3px;
 	
-	background: #f4f4f4; /* Old browsers */
-	background: -moz-linear-gradient(top, #f4f4f4 0%, #ededed 33%, #dddddd 75%, #cccccc 100%); /* FF3.6+ */
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#f4f4f4), color-stop(33%,#ededed), color-stop(75%,#dddddd), color-stop(100%,#cccccc)); /* Chrome,Safari4+ */
-	background: -webkit-linear-gradient(top, #f4f4f4 0%,#ededed 33%,#dddddd 75%,#cccccc 100%); /* Chrome10+,Safari5.1+ */
-	background: -o-linear-gradient(top, #f4f4f4 0%,#ededed 33%,#dddddd 75%,#cccccc 100%); /* Opera 11.10+ */
-	background: -ms-linear-gradient(top, #f4f4f4 0%,#ededed 33%,#dddddd 75%,#cccccc 100%); /* IE10+ */
-	background: linear-gradient(to bottom, #f4f4f4 0%,#ededed 33%,#dddddd 75%,#cccccc 100%); /* W3C */
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f4f4f4', endColorstr='#cccccc',GradientType=0 ); /* IE6-9 */
+	/*background: #9ab5a9;  Old browsers */
+	background: #adc9be; /* Old browsers */
+	background: -moz-linear-gradient(top, #adc9be 0%, #a8c4b9 50%, #a8c4b7 51%, #9ab5a9 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#adc9be), color-stop(50%,#a8c4b9), color-stop(51%,#a8c4b7), color-stop(100%,#9ab5a9)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top, #adc9be 0%,#a8c4b9 50%,#a8c4b7 51%,#9ab5a9 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top, #adc9be 0%,#a8c4b9 50%,#a8c4b7 51%,#9ab5a9 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top, #adc9be 0%,#a8c4b9 50%,#a8c4b7 51%,#9ab5a9 100%); /* IE10+ */
+	background: linear-gradient(to bottom, #adc9be 0%,#a8c4b9 50%,#a8c4b7 51%,#9ab5a9 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#adc9be', endColorstr='#9ab5a9',GradientType=0 ); /* IE6-9 */
 	
 	-moz-text-shadow:1px 1px 0px rgba(0, 0, 0, 0.1);
 	-webkit-text-shadow:1px 1px 0px rgba(0, 0, 0, 0.1);
@@ -429,10 +454,14 @@ button, a.button {
 
 input.inputStyle, textarea {
 	border:1px solid #ccc;
-	padding:10px 20px;
+	padding:15px 20px;
 	-moz-border-radius:3px;
 	-wekit-border-radius:3px;
 	border-radius:3px;
+
+	-webkit-box-shadow:0 0 7px 0 rgba(0, 0, 0, 0.3) inset;
+	-moz-box-shadow:0 0 7px 0 rgba(0, 0, 0, 0.3) inset;
+	box-shadow:0 0 7px 0 rgba(0, 0, 0, 0.3) inset;
 }
 
 button:hover {
@@ -503,12 +532,12 @@ form ul li input.inputStyle {
 	float:left;
 }
 
-#task, #editableTasks li input.mileStoneTitle, #timelineTitle {
+#task, .mileStoneTitleInput, #timelineTitle {
 	min-width:300px;
 }
 
 #taskForm, #thickForm, #titleForm {
-	height:55px;
+	height:100px;
 	position:relative;
 	float:left;
 	overflow:hidden;
@@ -617,8 +646,6 @@ form ul li input.inputStyle {
 
 #container canvas {
 	float:left !important;
-	border-right:3px solid #CCC !important;
-	border-left:3px solid #CCC !important;
 }	
 
 .bottomBtnWrapper {
@@ -631,6 +658,7 @@ form ul li input.inputStyle {
 	position:relative;
 	background-color:#fff;
 	min-width:100%;
+	height:420px;
 }
 
 .canvasClass {
@@ -672,8 +700,8 @@ form ul li input.inputStyle {
 
 #canvasImg {
 	position:absolute;
-	top:36px;
-	left:3px;
+	top:20px;
+	left:0;
 	display:none;
 }
 
@@ -693,7 +721,8 @@ form ul li input.inputStyle {
 #slideshow #slidesContainer {
   	margin:0 auto;
   	width:720px;
-  	height:563px;
+  	/*height:563px;*/
+  	height:auto;
   	overflow:auto; /* allow scrollbar */
   	position:relative;
 }
@@ -704,6 +733,7 @@ form ul li input.inputStyle {
   	width:700px; /* reduce by 20 pixels to avoid horizontal scroll 
   	height:563px;*/
   	height:auto;
+  	background-color:#fff;
 }
 
 /**
@@ -718,7 +748,7 @@ form ul li input.inputStyle {
   	cursor: pointer;
   	height:auto;
   	width:auto;
-  	font-family:'Arial', Helvetica, Sans-serif;
+  	font-family:'Sanchez', Arial, Helvetica, Sans-serif;
   	font-size:2em;
   	color:#fff;
   	padding:10px 15px;
@@ -727,6 +757,15 @@ form ul li input.inputStyle {
   	-webkit-border-radius:3px;
   	border-radius:4px;
   	text-transform:capitalize;
+
+  	-webkit-box-shadow:0 0 3px rgba(255, 255, 255, 0.8);
+  	-moz-box-shadow:0 0 3px rgba(255, 255, 255, 0.8);
+  	box-shadow:0 0 3px rgba(255, 255, 255, 0.8);
+
+}
+
+.control:hover {
+	border:1px solid #fff;
 }
 
 #leftControl {
@@ -744,7 +783,49 @@ form ul li input.inputStyle {
 }
 
 
+footer {
+	width:100%;
+	background:#212121;
+	overflow:hidden;
+	font-family:'Sanchez', Arial, Helvetica, sans-serif;
+	padding:30px 0;
+}
 
+.foot-wrap {
+	padding:5px 10%;
+}
+
+footer ul {
+	margin:0;
+	padding:0;
+}
+
+footer ul li {
+	list-style-type:none;
+	display:inline-block;
+	float:left;
+	margin: 0 55px 0 0;
+	padding:0;
+}
+
+footer ul li a {
+	font-family:inherit;
+	font-size:18px;
+	line-height:24px;
+	text-transform:capitalize;
+	text-decoration:none;
+	color:#fff;
+	display:block;
+}
+
+.bg-foot-logo {
+	float:right;
+	display:block;
+	text-indent:-9999px;
+	width:44px;
+	height:60px;
+	background:url('../img/bg-both-logo.png') no-repeat scroll 0 -60px;
+}
 
 
 @meda only print {

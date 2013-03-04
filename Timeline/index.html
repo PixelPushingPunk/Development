@@ -5,6 +5,7 @@
 	
 	<!--css-->
 	<link rel="stylesheet" type="text/css" href="css/reset.css">
+	<link href='http://fonts.googleapis.com/css?family=Sanchez' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" type="text/css" href="css/global.css">
 	<link rel="stylesheet" type="text/css" href="http://code.jquery.com/ui/1.9.2/themes/base/jquery-ui.css">
 	<!-- <link rel="stylesheet" type="text/css" href="css/jquery-ui.css"> -->
@@ -28,7 +29,8 @@
 </head>
 <body>
 		<header>
-
+			<a class="kro" href="#">Kronoline</a>
+			<a class="bg-top-logo" href="#">Big Group</a>
 		</header>	
 	<div id="wrapper">
 		<div id="header">
@@ -113,15 +115,15 @@
 
 						<ul id="editableTasks" data-bind="foreach: tasks, visible: tasks().length > 0, sortable: tasks">
 							<li>
-								<input id="datepickerMileStone" class="inputStyle mileStoneTitle" data-bind="value: title, disable: isDone"> 
-								<input class="inputStyle mileStoneDate" data-bind="value: date, disable: isDone"> 
+								<input id="datepickerMileStone" class="inputStyle mileStoneTitleInput" data-bind="value: title, disable: isDone"> 
+								<input class="inputStyle mileStoneDateInput" data-bind="value: date, disable: isDone"> 
 								<a title="delete" class="button deleteBtn" href="#" data-bind="click: $parent.removeTask">x</a>
 							</li>
 						</ul>
 						<div class="clear"></div>
-						<!--<div class="left textareaDiv">
+						<div class="textareaDiv">
 							<textarea id="jsonVal" data-bind='value: lastSavedJson' rows='25' cols='30'> </textarea>	
-						</div>-->
+						</div>
 						<div class="left textareaDiv">
 							<form id="taskList" data-bind="submit: addTaskList">
 								<textarea id="listConv" rows="25" cols="30" data-bind="value: newTaskDateText"></textarea>
@@ -197,5 +199,18 @@
 				<h1 class="rightClick">Right click to save me!</h1>
 			</div>
 	</div>
+
+	<footer>
+		<div class="foot-wrap">
+			<ul>
+				<li><a href="#">About</a></li>
+				<li><a href="#">Contact</a></li>
+				<li><a href="#">Help</a></li>
+				<li><a href="#">Legals</a></li>
+				<li><a href="#">Terms</a></li>
+			</ul>
+			<a class="bg-foot-logo" href="#">Big Group</a>
+		</div>
+	</footer>
 </body>
 </html>

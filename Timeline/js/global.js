@@ -255,6 +255,7 @@
 			data = JSON.parse(jsonVal);
 
 			console.log(typeof jsonVal);
+			console.debug(jsonVal);
 			
 			//data = $.makeArray(dataF);		
 			for (i = 0; i < data.length; i++) {
@@ -280,51 +281,6 @@
 				}
 			hideCanvasSupport();	
 		});
-
-		/*$('#submitList').on('click', function() {
-            
-            var textarea = $('textarea').val();
-            //console.log(textarea);
-            
-            var textArr = [];
-            textArr = textarea.split(/\n/);
-            var data = [];
-            
-            for(var i = 0; i < textArr.length; i += 1 ) {
-                var query = textArr[i].split(' ');
-                data.push({
-                    title: query[0],
-                    date: query[1]
-                });
-            }
-            
-            console.debug(data);			
-
-
-	
-				var query = window.location.search.substring(1);
-				    var vars = query.split('&');
-				    var newArray = [];
-				    for(var i = 0; i< vars.length; i++) {
-				    	varSplitArray = vars[i].split('='); 
-				    	newArray.push(varSplitArray[1]);
-				    }
-
-				    //console.debug(newArray);
-
-
-
-	
-				var contacts = [];
-				var addTask = function (title, date) {
-					contacts.push({
-						title: title,
-						date: date
-					});;
-
-				};
-
-		});*/
 			
 	});//END document.ready
 })(jQuery);
@@ -344,7 +300,7 @@
 
 
 // variables, function expresions and function declarations
-var stage, layer;
+var stage, layer, data;
 
 // Customize timeline colour object
 var CustomizeColor = {
@@ -453,8 +409,11 @@ var generateTimeline2 = function (){
 	//var janWidth; var febWidth; var marWidth; var aprilWidth; var mayWidth; var juneWidth; var julWidth; var augWidth; var septWidth; var octWidth; var novWidth; var decWidth;
 	var janGroup, febGroup, marGroup, aprilGroup, mayGroup, juneGroup, julGroup, augGroup, septGroup, octGroup, novGroup, decGroup;	
 	var janText, febText, marText, aprilText, mayText, juneText, julText, augText, septText, octText, novText, decText;
-	var textText, dateText, timelineText; 
-	var canvasWidth = (dataLength * 150) + 250; var xPos = 0;
+	var textText, dateText, timelineText;
+	var lineAmountWidth = (dataLength * 150); 
+	var canvasWidth = (lineAmountWidth < 990)? 990: lineAmountWidth;//(dataLength * 150) + 250;
+	var wholeWidth = (lineAmountWidth < 990)? 990: lineAmountWidth;
+	var xPos = 0;
 
 	// Graph stuff
 	var graphLineX, graphLineY;
@@ -466,7 +425,7 @@ var generateTimeline2 = function (){
 	var canvasWrapperWidth = canvasWidth + 100;
 	var containerWidth = canvasWidth;
 	var setCanvasWidth = $('#canvasWrapper').css({'width': canvasWrapperWidth});
-	var seteContainerWidth = $('#container').css('width', containerWidth);
+	var setContainerWidth = $('#container').css('width', containerWidth);
 
 	// Set timeline title variables
 	//
@@ -489,7 +448,7 @@ var generateTimeline2 = function (){
 	var lineColour = $('#lineColour').val();
 	var lineThick = $('#thick').val();
 	var gridWidth = 1;
-	var gridColour = "#d5d5d5";			
+	var gridColour = "#d6dfee";			
 	var textSize = $('#titleSize').val();
 	var dateSize = $('#dateSize').val();
 	
@@ -691,12 +650,12 @@ var generateTimeline2 = function (){
 	// Set grid position defaults
 	var gridPosY = 0;
 	var gridPosX = 0;
-	for(j = 0; j < canvasWidth; j++){
-		gridPosY += 20;
-		gridPosX +=20;
+	for(j = 0; j < wholeWidth; j++){
+		gridPosY += 10;
+		gridPosX +=10;
 		
 		graphLineX.push(j);
-		graphLineX[j] = new Kinetic.Line({ points: [0, gridPosY, canvasWidth, gridPosY], stroke: gridColour, strokeWidth: gridWidth, lineCap: 'square', lineJoin: 'square' });
+		graphLineX[j] = new Kinetic.Line({ points: [0, gridPosY, wholeWidth, gridPosY], stroke: gridColour, strokeWidth: gridWidth, lineCap: 'square', lineJoin: 'square' });
 		
 		graphLineY.push(j);
 		graphLineY[j] = new Kinetic.Line({ points: [gridPosX, 0, gridPosX, canvasHeight], stroke: gridColour, strokeWidth: gridWidth, lineCap: 'square', lineJoin: 'square' });
