@@ -58,7 +58,7 @@ header {
 #wrapper {
 	width:75%;
 	position:relative;
-	padding:0 0 0;
+	padding:0 0 40px;
 	margin:0 auto;
 }
 
@@ -73,12 +73,14 @@ header {
 #customize {
 	width:100%;
 	margin:30px auto 0;	
+	max-width:990px;
 }
 
 #timeline {
 	overflow:hidden;
 	position:relative;
 	width:100%;	
+	min-width:990px;
 	max-width:990px;
 	height:420px;
 	background:url('../img/kron-grid.png') repeat scroll 0 0;	
@@ -114,7 +116,7 @@ header {
 	height:100%;	
 }
 
-.simpleColorSelectButton:hover, button:hover {
+.simpleColorSelectButton:hover {
 	-webkit-opacity:0.6;
 	-moz-opacity:0.6;
 	filter: alpha(opacity=60);
@@ -131,11 +133,15 @@ h1.mileStoneTitle {
 	white-space:pre-wrap;
 	width:175px;
 	text-align:center;
+
+	padding:15px 20px;
 }
 
  h1.mileStoneDate {
 	font-size:12px;
 	font-weight:bold;
+
+	padding:10px 15px;
  }
 
 .hTime {
@@ -275,6 +281,7 @@ a.delete:hover, #removeTitleBtn:hover {
 	font-weight:bold;
 	text-transform:capitalize;
 	color:#ff0000;
+	padding:10px 15px;
 }
 
 .timeBlockTop a.delete {
@@ -355,10 +362,13 @@ a.goleftpeople:hover, a.gorightpeople:hover {
 }
 		
 a.goleftpeople p, a.gorightpeople p  {
-	font-size: 2.5em;
+	font-size: 1.5em;
 	font-weight: bold;
 	position: absolute;
 	top: 43%;
+
+	letter-spacing: -1px;
+	font-family: 'Sanchez', Arial, Helvetica, sans-serif;
 }
 
 a.goleftpeople p { left: 18%; }
@@ -464,6 +474,60 @@ input.inputStyle, textarea {
 	box-shadow:0 0 7px 0 rgba(0, 0, 0, 0.3) inset;
 }
 
+.CustomInputStyle {
+	border:none;
+	-webkit-box-shadow:none;
+	-moz-box-shadow:none;
+	box-shadow:none;
+	text-decoration:underline;
+	padding:10px 15px;
+	float:left;
+	width:25px;
+
+	font-family:'Sanchez', Arial, Helvetica, sans-serif;
+	font-size:18px;
+	line-height:24px;
+	color:#333;	
+}
+
+#colorCustomize button {
+	float:left;
+}
+
+#thick {
+	float:left;
+	border:0;
+	color:#f6931f;
+	font-weight:bold;
+	width:10px;
+	-moz-border-radius:40px;
+	-webkit-border-radius:40px;
+	border-radius:40px;
+	padding:10px;
+	margin:0;
+}
+
+/*widget slider styling*/
+
+#master .ui-widget-header {
+	background:#333;
+}
+
+#master {
+	float:left;
+}
+
+.tUnit {
+	float:left;
+	font-family:'Sanchez', Arial, Helvetica, sans-serif;
+	font-size:18px;
+	line-height:24px;
+	color:#333;
+
+	padding:11px 0 0;
+	margin:0 20px;
+}
+
 button:hover {
 	cursor:pointer;
 }
@@ -487,6 +551,10 @@ span.completeTasks {
 label {
 	float:left;
 	margin:12px 3px 12px 0;
+
+	font-family:'Sanchez', Arial, Helvetica, sans-serif;
+	font-size:18px;
+	line-height:24px;
 }
 
 .left {
@@ -498,16 +566,35 @@ label {
 }
 
 .previewWrapper {
-	display:block;
-	position:relative;
-}
-
-.previewWrapper #export, .previewWrapper #saveJSON{
-	font-size:35px;
 	position:absolute;
 	top:0;
 	right:0;
-	padding:20px 30px;
+}
+
+
+.previewWrapper #export, .previewWrapper #saveJSON{
+	display:none;
+	position:relative;
+	top:0;
+	right:0;
+
+	font-family: 'Sanchez', Arial, Helvetica, Sans-serif;
+	font-size: 2em;
+	color: #fff;
+	padding: 10px 15px;
+	text-transform:capitalize;
+
+	 -moz-border-radius:3px;
+  	-webkit-border-radius:3px;
+  	border-radius:4px;
+
+  	-webkit-box-shadow:0 0 3px rgba(255, 255, 255, 0.8);
+  	-moz-box-shadow:0 0 3px rgba(255, 255, 255, 0.8);
+  	box-shadow:0 0 3px rgba(255, 255, 255, 0.8);
+}
+
+#saveJSON:hover {
+	border:1px solid #fff;
 }
 
 .form {
@@ -517,7 +604,7 @@ label {
 form ul {
 	margin:0;
 	padding:0;
-	width:406px;
+	width:100%;
 }
 
 form ul li {
@@ -537,10 +624,12 @@ form ul li input.inputStyle {
 }
 
 #taskForm, #thickForm, #titleForm {
-	height:100px;
+	height:auto;
 	position:relative;
 	float:left;
 	overflow:hidden;
+	width:100%;
+	padding-bottom:25px;
 }
 
 .trash {
@@ -553,6 +642,50 @@ form ul li input.inputStyle {
 	font-size:10px;
 	color:red;
 	font-family:arial;
+}
+
+#step {
+	overflow:hidden;
+	width:55%;
+	margin:0 auto;
+}
+
+#step ul {
+	margin:0;
+	padding:0;
+}
+
+#step ul li {
+	list-style-type:none;
+	display:inline-block;
+	float:left;
+	margin:0 20px 20px 0;
+}
+
+#step ul li a {
+	font-family:'Sanchez', Arial, Helvetica, sans-serif;
+	font-size:14px;
+	color:#fff;
+	text-transform:capitalize;
+	display:block;
+	text-decoration:none;
+}
+
+#step ul li a.arrow {
+	display:block;
+	width:6px;
+	height:12px;
+	background:url('../img/right-arrow.png') no-repeat scroll 0 0;
+	margin:5px 0 0 0;
+}
+
+#listConv {
+	float:left;
+}
+
+.bold {
+	font-weight:bold !important;
+	font-size:16px !important;
 }
 
 .characterError {
@@ -578,29 +711,58 @@ form ul li input.inputStyle {
 }
 
 .centerSlide {
-	width:86%;
+	width:95%;
 	margin:0 auto;
+	position:relative;
 }
 
 #editableTasks ul li:hover, #editableTasks ul li a:hover {
 	cursor:move;
 }
 
+#colorCustomize ul li {
+	width:100%;
+	overflow:hidden;
+}
+
+#colorCustomize ul li div {
+	width:33%;
+	float:left;
+}
+
+.sizeWrap {
+
+}
+
+.colourWrap {
+
+
+}
+
+.bgWrap {
+
+}
+
 /*Color Picker*/
 .simpleColorContainer {
-	float:right; 
-	width:215px;
+	float:left; 
+	width:auto;
 	margin:0;
 }
 
 .simpleColorDisplay {
-	margin-right:2px;
-	height:38px !important;
+	height:40px !important;
 	-moz-border-radius:3px !important;
 	-webkit-border-radius:3px !Important;
 	border-radius:3px !important;
 	border:1px solid #ccc !important;
-	width:99px !important;
+	width:60px !important;
+	margin:0;
+	padding:0;
+
+	-webkit-box-shadow:0 0 5px 0 rgba(0, 0, 0, 0.6) inset;
+	-moz-box-shadow:0 0 5px 0 rgba(0, 0, 0, 0.6) inset;
+	box-shadow:0 0 5px 0 rgba(0, 0, 0, 0.6) inset;
 }
 
 .simpleColorDisplay, .simpleColorSelectButton, .simpleColorCancelButton {
@@ -639,7 +801,7 @@ form ul li input.inputStyle {
 /*Canvas*/
 #canvasPlay {
 	margin:0 auto;
-	width:75%;
+	width:100%;
 	position:relative;
 	max-height:560px;
 	overflow-x:scroll;
@@ -729,11 +891,12 @@ form ul li input.inputStyle {
 
 #slideshow {
 	position:relative;
+	padding-top:70px;
 }
 
 #slideshow #slidesContainer {
   	margin:0 auto;
-  	width:720px;
+  	width:990px;
   	/*height:563px;*/
   	height:auto;
   	overflow:auto; /* allow scrollbar */
@@ -743,10 +906,15 @@ form ul li input.inputStyle {
 
 #slideshow #slidesContainer .slide {
   	margin:0 auto;
-  	width:700px; /* reduce by 20 pixels to avoid horizontal scroll 
+  	width:970px; /* reduce by 20 pixels to avoid horizontal scroll 
   	height:563px;*/
   	height:auto;
   	background-color:#fff;
+
+  	padding:40px 0;
+  	-webkit-border-radius:4px;
+  	-moz-border-radius:4px;
+  	border-radius:4px;
 }
 
 /**
@@ -781,20 +949,51 @@ form ul li input.inputStyle {
 	border:1px solid #fff;
 }
 
-#leftControl {
+#leftControl, #rightControl {
 	top:0;
+}
+
+#leftControl {
 	left:0;
 	background-color:#333333;
 	/*background:transparent url(img/control_left.jpg) no-repeat 0 0;*/
 }
 
 #rightControl {
-	top:0;
 	right:0;
 	background-color:#9ab5a9;
 	/*background:transparent url(img/control_right.jpg) no-repeat 0 0;*/
 }
 
+#multipleTimelines{
+	display:none;
+}
+
+#individualTimelines {
+	display:block;
+}
+
+.stepTitle {
+	font-family:'Sanchez', Arial, Helvetica, Sans-serif;
+	font-size:23px;
+	line-height:25px;
+	color:#333333;
+	margin:0 0 30px 0;
+}
+
+#step1Title .multiple {
+	background-color:none;
+	position:relative;
+	border:none;
+	background:none;
+	font-size:23px;
+	line-height:25px;
+	color:#333333;
+	margin:0;
+	padding:0;
+	display:inline-block;
+	text-decoration:underline;
+}
 
 footer {
 	width:100%;
@@ -840,6 +1039,55 @@ footer ul li a {
 	background:url('../img/bg-both-logo.png') no-repeat scroll 0 -60px;
 }
 
+.intro {
+	float:left;
+	max-width:307px;
+	margin:0 45px 0 0;
+}
+
+.egTimeline {
+	float:left;
+}
+
+.egTimeline img {
+	width:100%;
+	display:block;
+}
+
+.intro p {
+	font-family:'Sanchez', Arial, Helvetica, sans-serif;
+	font-size:18px;
+	line-height:24px;
+	color:#fff;
+	margin:0 0 30px 0;
+}
+
+.introWrap {
+	padding:45px 0;
+}
+
+.startBtn {
+	background-color:#eb5358;
+	color:#fff;
+	font-family:'Sanchez', Arial, Helvetica, sans-serif;
+	font-size:26px;
+	line-height:24px;
+	display:block;
+	text-align:center;
+	padding:15px 25px;
+	text-decoration:none;
+	-moz-border-radius:3px;
+	-webkit-border-radius:3px;
+	border-radius:3px;
+
+	-webkit-box-shadow:0 0 3px rgba(255, 255, 255, 0.8);
+	-moz-box-shadow:0 0 3px rgba(255, 255, 255, 0.8);
+	box-shadow:0 0 3px rgba(255, 255, 255, 0.8);
+}
+
+.startBtn:hover {
+ border:1px solid #fff;
+}
 
 @meda only print {
 	header {

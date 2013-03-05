@@ -28,185 +28,27 @@
 	
 </head>
 <body>
-		<header>
-			<a class="kro" href="#">Kronoline</a>
-			<a class="bg-top-logo" href="#">Big Group</a>
-		</header>	
+	<header>
+		<a class="kro" href="#">Kronoline</a>
+		<a class="bg-top-logo" href="#">Big Group</a>
+	</header>	
+
 	<div id="wrapper">
-		<div id="header">
-			<h1>Interactive TimeLine <!--<span class="completeTasks">- You have <strong data-bind="text: incompleteTasks().length">&nbsp;</strong> incomplete task(s)<span data-bind="visible: incompleteTasks().length == 0"> - it's beer time!</span></span>--></h1> 
-			<a class="button" href="#" id="back" name="back">Back</a> 
-			<a class="button" href="#" id="print" name="print">Print</a> 
-			<a class="button" href="#" id="clear">Clear Canvas</a> 
-			<a class="button" href="#" id="save">Save as image</a> 
+		<div class="introWrap">
+			<div class="intro">
+				<p>Kronoline is a simple tool to make quick smart looking timelines you can embed in websites or download and use in documents.</p>
+				<p>It's all free. Why not have a play?</p>
+
+				<a href="create.html" class="startBtn">Get started now</a>
+			</div>
+			
+			<div class="egTimeline">
+				<img src="img/egTimeline.jpg" alt="example timeline"/>
+			</div>
+			<div class="clear"></div>
 		</div>
-		
-		<section id="timeline">
-			<div class="timelineTitleWrapper" data-bind="foreach: titleTimeline, visible: titleTimeline().length > 0, sortable: tasks">
-				<ul>
-					<li class="first"><h1 class="timelineTitle" data-bind="text: timelineTitle"></h1></li>
-					<li><a id="removeTitleBtn" title="delete" data-bind="click: $parent.removeTitle">x</a></li>
-				</ul>
-			</div>
-			
-			<a title="scroll left" href="#" class="goleftpeople"><p>«</p></a>
-				<div id="timeCenter">
-					<div id="noData"><h1>No Tasks Added</h1></div>
-						<div id="timeWrapper">
-							<div id="timeInner" data-bind="foreach: tasks, visible: tasks().length > 0">
-									<article class="timeBlocks">
-											<div class="hTime">
-												<div class="top">
-													<div class="mileTwrapper">
-														<ul>
-															<li>
-																<input class="numTasksLeft" type="checkbox" data-bind="checked: isDone" />
-															</li>
-															<!--<li class="delWrapper"><a class="delete" href="#" data-bind="click: $parent.removeTask">x</a></li>-->												
-															<li>
-																<h1 class="mileStoneTitle" data-bind="text: title, disable: isDone"></h1>
-																<!--<input class="mileStoneTitle" data-bind="value: title, disable: isDone">-->
-															</li>
-													</div>
-												</div>
-												<div class="bottom">
-													<div class="mileDwrapper">
-														<h1 class="mileStoneDate" data-bind="text: date, disable: isDone"></h1>
-														<!--<input class="mileStoneDate" data-bind="value: date, disable: isDone">-->
-													</div>
-												</div>
-											</div>
-										<a title="delete" class="delete" href="#" data-bind="click: $parent.removeTask">x</a>			
-									</article>
-							</div>
-						</div>
-				</div>
-			<a title="scroll right" href="#" class="gorightpeople"><p>»</p></a>
-			
-			<div class="clear"></div>
-			<br/><br/><br/>
-		</section>
-
-		<section id="customize">
-			
-			<!-- Slideshow HTML -->
-			<div id="slideshow">
-				<div id="slidesContainer" class="form">
-			    	<div class="slide">
-			      	<!-- Content for slide 1 goes here -->
-						<!-- Add timeline title -->
-						<div class="centerSlide">				
-							<form id="titleForm" data-bind="submit: addTitle">
-								<input id="timelineTitle" type="text" name="timelineTitle" class="inputStyle" data-bind="value: newTimelineTitle" placeholder="Enter your timeline title here"/> 
-								<button id="submitTitleBtn" type="submit">+</button>
-							</form>
-						</div>
-						<div class="clear"></div>      
-			    	</div>
-
-			    	<div class="slide">
-			      	<!-- Content for slide 2 goes here. -->
-						<!-- Add task and date -->
-						<div class="centerSlide">
-							<form id="taskForm" data-bind="submit: addTask">
-								<input id="task" type="text" name="task" class="inputStyle" data-bind="value: newTaskText" placeholder="Enter task or milestone here" maxlength="50"/>
-								<input id="datepicker" name="date" class="inputStyle" data-bind="value: newDateText" placeholder="Date dd/mm/yy" />
-								<button id="submitTaskBtn" type="submit">+</button>
-								<span class="error characterError">No more thatn 50 characters*</span>
-							</form>
-							<div class="clear"></div>
-
-							<ul id="editableTasks" data-bind="foreach: tasks, visible: tasks().length > 0, sortable: tasks">
-								<li>
-									<input id="datepickerMileStone" class="inputStyle mileStoneTitleInput" data-bind="value: title, disable: isDone"> 
-									<input class="inputStyle mileStoneDateInput" data-bind="value: date, disable: isDone"> 
-									<a title="delete" class="button deleteBtn" href="#" data-bind="click: $parent.removeTask">x</a>
-								</li>
-							</ul>
-						
-							<div class="clear"></div>
-							<div class="textareaDiv">
-								<textarea id="jsonVal" data-bind='value: lastSavedJson' rows='25' cols='30'> </textarea>	
-							</div>
-							<div class="left textareaDiv">
-								<form id="taskList" data-bind="submit: addTaskList">
-									<textarea id="listConv" rows="25" cols="68" data-bind="value: newTaskDateText"></textarea>
-									<button id="submitList">Add to list</button>
-								</form>
-							</div>
-						</div>
-			    	</div>
-
-			    	<div class="slide">
-			      	<!-- Content for slide 3 goes here. -->
-			      		<!-- timeline thickness test -->
-			      		<!--<label for="amount" style="margin:0;">Pixel Thickness:</label>
-			      		<input type="text" id="amount" style="border: 0; color: #f6931f; font-weight: bold;">-->
-			      		
-
-						<!-- Customize timeline style -->
-						<div class="centerSlide">
-							<form id="thickForm"> <!--data-bind="submit: addThick"-->
-								<label for="thick">Pixel Thickness:</label>
-								<input style="float:left; border: 0; color: #f6931f; font-weight: bold;" type="text" id="thick" name="thick" class="inputStyle"/>
-								<div class="clear"></div>
-								<div id="master" style="width: 260px; margin: 15px;"></div>
-								<span class="error thickError">You need an number between 1 and 7 for the thickness value*</span>
-							</form>
-							<div class="clear"></div>
-
-							<form id="colorCustomize">
-								<ul>
-									<li><label for="timelineTitleColour">Timeline Title Colour</label> <input id="timelineTitleColour" name="timelineTitleColour" class="inputStyle" value="#000000"/></li>
-									<li><label for="timelineTitleSize">Timeline Title Size</label> <input id="timelineTitleSize" name="timelineTitleSize" class="inputStyle" type="text"/> <button id="timelineTitleSizeBtn">Add</button></li>			
-									<li><label for="titleColour">Milestone Text Colour: &nbsp;</label> <input id="titleColour" name="titleColour" class="inputStyle" value="#8080ff"/></li>
-									<li><label for="titleSize">Milestone Title Size</label> <input id="titleSize" name="titleSize" class="inputStyle" type="text"/> <button id="titleSizeBtn">Add</button></li>	
-									<li><label for="dateColour">Date Colour:</label> <input id="dateColour" name="dateColour" class="inputStyle" value="#8080ff"/></li>
-									<li><label for="dateSize">Date Size</label> <input id="dateSize" name="dateSize" class="inputStyle" type="text"/> <button id="dateSizeBtn">Add</button></li>	
-									<li><label for="lineColour">Line Colour: &nbsp;</label> <input id="lineColour" name="lineColour" class="inputStyle" value="#b0b0b0"/></li>
-									<li><label for="bgColour">BG Colour: </label> <input id="bgColour" name="bgColour" class="inputStyle" value="#f2f2f2"/></li>
-								</ul>
-							</form>
-						</div>
-			    	</div>
-
-			    	<div class="slide">
-			      	<!-- Content for slide 4 goes here. -->
-			      		<div class="right previewWrapper">
-							<button data-bind='click: save, enable: tasks().length > 0' id="saveJSON">PREVIEW</button>
-						</div>
-			    	</div>
-			  </div>
-			</div>
-			<!-- Slideshow HTML -->
-
-		</section>
-		<div class="clear"></div>	
 	</div>
 	
-	<div id="cloneWrapper">
-		<section id="clone"></section>
-		<div class="clear"></div>
-	</div>
-	
-	<div id="canvasPlay">
-			<div class="bottomBtnWrapper"></div>
-			<div class="clear"></div>
-
-			<div class="cNotSupport canvasClass"><h1>Canvas is not supported in your browser</h1></div>
-			<div class="cSupport canvasClass"><h1>Canvas is supported in your browser </h1></div>
-			<div id="canvasWrapper">
-				<section id="playCanvas" class="left">
-					<div id="container"></div>
-				</section>
-				<canvas id="myCanvas" width="578" height="200"></canvas>
-			</div>
-			<div id="imgWrapper">
-				<img id="canvasImg" alt="Right click to save me!">
-				<h1 class="rightClick">Right click to save me!</h1>
-			</div>
-	</div>
-
 	<footer>
 		<div class="foot-wrap">
 			<ul>

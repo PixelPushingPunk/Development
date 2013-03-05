@@ -9,7 +9,15 @@
 		
 		// Init Simple Colour
 		//
-		$('#titleColour, #dateColour, #lineColour, #bgColour, #timelineTitleColour').simpleColor();
+		$('.colourInit').simpleColor({
+			cellHeight: 15,
+			cellWidth: 15
+		});
+
+		$('.simpleColorCancelButton, .simpleColorSelectButton ').hide();
+		$('.simpleColorDisplay, .simpleColorCell, .simpleColorChooser, .simpleColorContainer').on('click', function(){
+			$('.simpleColorCancelButton, .simpleColorSelectButton ').hide();
+		});
 		
 		// Init Datepicker
 		//
@@ -135,10 +143,20 @@
 			CustomizeColor.lineColourfunc();
 		});
 		
-		// Background colour picker
+		// Background task colour picker
 		//
-		$('input#bgColour').change(function(){
-			CustomizeColor.backgroundColourfunc();
+		$('input#bgTaskColour').change(function(){
+			CustomizeColor.backgroundColourTaskfunc();
+		});
+
+		// Background date colour picker
+		//
+		$('input#bgDateColour').change(function () {
+			CustomizeColor.backgroundColourDatefunc();
+		});
+
+		$('input#bgTimelineTitleColour').change(function () {
+			CustomizeColor.backgroundColourTitlefunc();
 		});
 				
 		// Character validation
@@ -246,7 +264,8 @@
 		// Save as JSON and generate timeline - Preview button
 		//
 		$('#saveJSON').on('click', function(){
-			$('#timeline, #customize').css('display','none');
+			$('#timeline').hide();
+			$('.previewWrapper').hide();
 			$('#export').css('display','none');
 			$('#back, #print, #canvasPlay, #clear, #save').css('display','block');
 			
@@ -281,6 +300,18 @@
 				}
 			hideCanvasSupport();	
 		});
+
+		// Show hide timeline aggreation type
+		//
+		$('#individualTimelines .multiple').on('click', function (e) {
+			showMultipleTimeline();
+			e.preventDefault();
+		});
+
+		$('#multipleTimelines .individual').on('click', function (e) {
+			showIndividualTimeline();
+			e.preventDefault();
+		});
 			
 	});//END document.ready
 })(jQuery);
@@ -301,6 +332,16 @@
 
 // variables, function expresions and function declarations
 var stage, layer, data;
+
+var showIndividualTimeline = function () {
+ 	$('#individualTimelines').show();
+ 	$('#multipleTimelines').hide();
+};
+
+var showMultipleTimeline = function () {
+	$('#multipleTimelines').show();
+	$('#individualTimelines').hide();
+};
 
 // Customize timeline colour object
 var CustomizeColor = {
@@ -346,11 +387,23 @@ var CustomizeColor = {
 		$('.top, .bottom').css({'border-bottom-color': lineColourVal, 'border-right-color':lineColourVal});
 	},
 
-	// background colour
-	backgroundColourfunc: function () {
-		var bgColourVal = $('input#bgColour').val();
-		$('.mileTwrapper, .mileDwrapper').css({'background-color': bgColourVal});
+	// background colour task / title
+	backgroundColourTaskfunc: function () {
+		var bgColourTaskVal = $('input#bgTaskColour').val();
+		$('.mileTwrapper').css({'background-color': bgColourTaskVal});
 	}, 
+
+	// background colour date
+	backgroundColourDatefunc: function () {
+		var bgColourDateVal = $('input#bgDateColour').val();
+		$('.mileDwrapper').css({'background-color': bgColourDateVal});
+	},
+
+	// background colour timeline title
+	backgroundColourTitlefunc: function () {
+		var bgColourTimelineTitleVal = $('input#bgTimelineTitleColour').val();
+		$('.timelineTitle').css({'background-color': bgColourTimelineTitleVal});
+	},
 
 	// line thickness
 	lineThickfunc: function () {
@@ -799,8 +852,14 @@ var timeBlocksAddTaskStyle = function () {
 	//reconfigure line colour
 	CustomizeColor.lineColourfunc();
 			
-	//reconfigure bg colour
-	CustomizeColor.backgroundColourfunc();
+	//reconfigure bg task colour
+	CustomizeColor.backgroundColourTaskfunc();
+
+	//reconfigure bg date colour
+	CustomizeColor.backgroundColourDatefunc();
+
+	//reconfigure bg timeline title colour
+	CustomizeColor.backgroundColourTitlefunc();
 			
 	//update time inner width
 	var articleWidth = $('.timeBlocks').width();
