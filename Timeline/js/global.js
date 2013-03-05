@@ -263,7 +263,7 @@
 		
 		// Save as JSON and generate timeline - Preview button
 		//
-		$('#saveJSON').on('click', function(){
+		$('#saveJSON').on('click', function(e){
 			$('#timeline').hide();
 			$('.previewWrapper').hide();
 			$('#export').css('display','none');
@@ -298,7 +298,9 @@
 				} else {
 					generateTimeline2();
 				}
-			hideCanvasSupport();	
+			hideCanvasSupport();
+			e.preventDefault();
+			e.stopPropagation();	
 		});
 
 		// Show hide timeline aggreation type

@@ -43,9 +43,11 @@
     //
     $('.control')
       .bind('click', function(){
+        var $this = $(this);
       // Determine new position
-        currentPosition = ($(this).attr('id')=='rightControl')? currentPosition+1 : currentPosition-1;
-
+        //currentPosition = ($(this).attr('id')=='saveJSON')? currentPosition+1 : currentPosition-1;
+        currentPosition = ($(this).attr('id')==('rightControl'||'saveJSON'))? currentPosition+1 : currentPosition-1;
+  
         // Hide or show controls
         //
         manageControls(currentPosition);
@@ -55,6 +57,40 @@
         stepsPosition(currentPosition);
 
         console.log(currentPosition);
+
+        // Move slideInner using margin-left
+        //
+        $('#slideInner').animate({
+          'marginLeft' : slideWidth*(-currentPosition)
+        });
+      });
+
+      $('#saveJSON').on('click', function(){
+        currentPosition = ($(this).attr('id')=='saveJSON')? currentPosition+1 : currentPosition-1;
+         // Hide or show controls
+        //
+        manageControls(currentPosition);
+
+        // Display step position
+        //
+        stepsPosition(currentPosition);
+
+        //left current position
+        //
+        var secondToLast = numberOfSlides-2;
+        var lastPos = numberOfSlides-1;
+        console.log('lastPos: '+lastPos);
+        if(currentPosition==lastPos) {
+            $('#leftControl').on('click', function() {
+               // Display play about timeline on back click from canvas
+                  $('#timeline, #customize').css('display','block');
+                  $('.previewWrapper, .previewWrapp #saveJSON').show();
+                  $('#export').css('display','block');
+                  $('#back, #print, #canvasPlay, #clear, #save').css('display','none'); //#clone
+                  $('#canvasImg').attr('src',' ');
+                  $('#imgWrapper').css('display','none');
+            });
+        }
         // Move slideInner using margin-left
         //
         $('#slideInner').animate({
@@ -76,23 +112,12 @@
       }
       
       // Hide right arrow if position is last slide
-      if (position==numberOfSlides-1) { 
-        $('#rightControl').hide();
-        $('.previewWrapper #saveJSON').show();
-        
-        // Display play about timeline on back click from canvas
-        $('#leftControl').on('click', function(){
-          $('#timeline, #customize').css('display','block');
-          $('.previewWrapper, .previewWrapp #saveJSON').show();
-          $('#export').css('display','block');
-          $('#back, #print, #canvasPlay, #clear, #save').css('display','none'); //#clone
-          $('#canvasImg').attr('src',' ');
-          $('#imgWrapper').css('display','none');
-        }); 
-
-      } 
-      if (position==numberOfSlide-2) {
-
+      if (position==numberOfSlides-2) {
+          $('#rightControl').hide();
+          $('.previewWrapper #saveJSON').show();
+      } else if (position==numberOfSlides-1) { 
+          $('#rightControl').hide();
+          $('.previewWrapper, .previewWrapper #saveJSON').hide();
       } else { 
         $('#rightControl').show() 
         $('.previewWrapper #saveJSON').hide(); 
@@ -110,10 +135,15 @@
         step2.removeClass('bold');
         step3.removeClass('bold');
       }
-      if (position==numberOfSlides-1) {
-        step2.addClass('bold');
+      if(position==numberOfSlides-2){
         step1.removeClass('bold');
-        step3.removeClass('bold');
+        step2.addClass('bold');
+        step3.removeClass('bold'); 
+      }
+      if (position==numberOfSlides-1) {
+        step1.removeClass('bold');
+        step2.removeClass('bold');
+        step3.addClass('bold');
       }
       /*
       if (position==numberOfSlides-1) {

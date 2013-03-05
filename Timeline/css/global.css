@@ -19,6 +19,11 @@ header {
 	padding:40px 10% 0;
 }
 
+#headerWrap {
+	width:100%;
+	max-width:990px;
+}
+
 .kro {
 	float:left;
 	width:218px;
@@ -383,6 +388,7 @@ a#back {
 a#print {
 	margin-right:10px;
 	display:none;
+	float:right;
 }
 
 #clear, #save {
@@ -802,6 +808,7 @@ form ul li input.inputStyle {
 #canvasPlay {
 	margin:0 auto;
 	width:100%;
+	max-width:990px;
 	position:relative;
 	max-height:560px;
 	overflow-x:scroll;
