@@ -385,16 +385,22 @@ a#back {
 	width:37px;
 }
 
-a#print {
-	margin-right:10px;
-	display:none;
+#clear, #save, #print, #embed {
 	float:right;
+	display:block;
+	margin-right:10px;
 }
 
-#clear, #save {
-	float:right;
-	display:none;
-	margin-right:10px;
+.slide4-copy {
+	float: left;
+	width: 316px;
+}
+
+.slide4-copy p {
+	font-family: 'Sanchez', Arial, helvetica, sans-serif;
+	font-size: 26px;
+	line-height: 36px;
+	color: #333;
 }
 
 #jsonVal {

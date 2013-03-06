@@ -61,6 +61,9 @@
 		//	slideThick();
 		//});
 
+		// Init timelineTitle disable enable
+		//
+		//disableTimelineTitleBtn();
 
 		// Highlight tasks
 		//
@@ -939,6 +942,17 @@ ko.bindingHandlers.sortable = {
 // Knockout Functions
 // Task object
 //
+var disableTimelineTitleBtn = function () {
+	$('#submitTitleBtn').on('click', function() {
+		$(this).attr('disabled');
+		console.log('submit clicked');
+	});
+	$('#removeTitleBtn').on('click', function() {
+		$('#submitTitleBtn').removeAttr('disabled');
+		console.log('remove clicked');
+	});
+};
+
 var Task = function (data) {
 	this.title = ko.observable(data.title);//.extend({ required: "Please enter a task name" });
 	this.date = ko.observable(data.date);
@@ -949,6 +963,26 @@ var Task = function (data) {
 //
 var tfTitle = function (data) {
 	this.timelineTitle = ko.observable(data.timelineTitle);
+};
+
+// Footer list
+//
+var footerList = function () {
+	var self = this;
+	self.about = "about";
+	self.contact = "contact";
+	self.help = "help";
+	self.legals = "legals";
+	self.terms = "terms";
+};
+
+// Steps
+//
+var stepList = function () {
+	var self = this;
+	self.add = "1 Add Items";
+	self.stylize = "2 Stylize";
+	self.finalize = "3 Finalize & Download/Embed";
 };
 
 // View model
@@ -968,6 +1002,16 @@ var TaskListViewModel = function () {
 	});
 	
 	self.newTimelineTitle = ko.observable();
+	
+	// Footer list
+	self.foot = ko.observableArray([
+		new footerList()
+	]);
+
+	// Step list
+	self.stepList = ko.observableArray([
+		new stepList()
+	]);
 	
 	self.sortItems = function() {
 		self.tasks.sort();

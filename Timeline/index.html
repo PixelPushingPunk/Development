@@ -53,12 +53,12 @@
 	
 	<footer>
 		<div class="foot-wrap">
-			<ul>
-				<li><a href="#">About</a></li>
-				<li><a href="#">Contact</a></li>
-				<li><a href="#">Help</a></li>
-				<li><a href="#">Legals</a></li>
-				<li><a href="#">Terms</a></li>
+			<ul data-bind="foreach: foot">
+				<li><a href="#" data-bind="text: about"></a></li>
+				<li><a href="#" data-bind="text: contact"></a></li>
+				<li><a href="#" data-bind="text: help"></a></li>
+				<li><a href="#" data-bind="text: legals"></a></li>
+				<li><a href="#" data-bind="text: Terms"></a></li>
 			</ul>
 			<a class="bg-foot-logo" href="#">Big Group</a>
 		</div>
