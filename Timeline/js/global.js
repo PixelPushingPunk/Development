@@ -10,8 +10,8 @@
 		// Init Simple Colour
 		//
 		$('.colourInit').simpleColor({
-			cellHeight: 15,
-			cellWidth: 15
+			cellHeight: 12,
+			cellWidth: 12
 		});
 
 		$('.simpleColorCancelButton, .simpleColorSelectButton ').hide();
@@ -272,13 +272,12 @@
 			$('#export').css('display','none');
 			$('#back, #print, #canvasPlay, #clear, #save').css('display','block');
 			
-			//DATA
+			// Data
 			var jsonVal = $('#jsonVal').val();
 			data = JSON.parse(jsonVal);
 
 			console.debug(jsonVal);
-			
-			//data = $.makeArray(dataF);		
+				
 			for (i = 0; i < data.length; i++) {
 				data.sort(function(a,b){
 					var getDateA = new Date(a.date);
@@ -291,7 +290,7 @@
 				});	
 			}
 			
-			//GENERATE
+			// Generate Timeline
 			dataLength = data.length;
 				if ($('#container canvas').is(':visible')) {
 					clearCanvas();
@@ -324,12 +323,6 @@
 			
 	});//END document.ready
 })(jQuery);
-
-
-
-
-
-
 
 
 
@@ -466,24 +459,20 @@ var countProperties = function (obj) {
 //
 var generateTimeline = function (){
 	// Set defualt variables
-	//
-	var janWidth = 0; var febWidth = 0; var marWidth = 0; var aprilWidth = 0; var mayWidth = 0; var juneWidth = 0; var julWidth = 0; var augWidth = 0; var septWidth = 0; var octWidth = 0; var novWidth = 0; var decWidth = 0;
+	var janWidth, febWidth, marWidth, aprilWidth, mayWidth, juneWidth, julWidth, augWidth, septWidth, octWidth, novWidth, decWidth;
 	var janGroup, febGroup, marGroup, aprilGroup, mayGroup, juneGroup, julGroup, augGroup, septGroup, octGroup, novGroup, decGroup;	
 	var janText, febText, marText, aprilText, mayText, juneText, julText, augText, septText, octText, novText, decText;
 	var textText, dateText, timelineText;
 	var taskRect, dateRect;
-	var JAN, FEB, MAR, APR, MAY, JUNE, JUL, AUG, SEPT, OCT, NOV, DEC;
-	var janLine, febLine, marLine, aprilLine, mayLine, juneLine, JulLine, augLine, septLine, octLine, novLine, decLine;
+	var janLine, febLine, marLine, aprilLine, mayLine, juneLine, julLine, augLine, septLine, octLine, novLine, decLine;
 	var month, monthText, monthLine, monthGroup;
 	
 	var xPos = 0;
 
 	// Graph grid
 	var graphLineX, graphLineY;
-	var month;
 
 	// Set canvas width and height
-	//
 	var lineAmountWidth = (dataLength * 150); 
 	var canvasWidth = (lineAmountWidth < 990)? 1024: lineAmountWidth + 600;//(dataLength * 150) + 250;
 	var wholeWidth = (lineAmountWidth < 990)? 1024: lineAmountWidth + 600;
@@ -494,7 +483,6 @@ var generateTimeline = function (){
 	var setContainerWidth = $('#container').css('width', containerWidth);
 
 	// Set timeline title variables
-	//
 	var timelineTitle = $('h1.timelineTitle').text();
 	var containerWidthTrue = $('#container').width();
 	var timelineTextPos = containerWidthTrue / 2;
@@ -503,12 +491,10 @@ var generateTimeline = function (){
 	var timelineTextColour = $('#timelineTitleColour').val();
 	
 	// Set random colours
-	//
 	var colors = ['#ff0000','#00ff00','#0000ff','rgb(50,50,50)','rgb(200,200,200)','purple','orange','black'];
 	var color = colors[Math.floor(Math.random()*colors.length)];
 	
-	// Set text and date colours
-	//		
+	// Set text and date colours		
 	var textColour = $('#titleColour').val(); 
 	var dateColour = $('#dateColour').val();
 	var lineColour = $('#lineColour').val();
@@ -529,88 +515,12 @@ var generateTimeline = function (){
 	timelineText = new Kinetic.Text({ x: timelineTextPos, y: 10, text: timelineTitle, fontSize:  timelineTextSize, fontFamily: 'Calibri', fill: timelineTextColour, draggable: true });		
 	timelineText.on('mouseover', function() { document.body.style.cursor = 'pointer'; });
 	timelineText.on('mouseout', function() { document.body.style.cursor = 'default'; });
-
-	// Create new month groups
-	//
-	janGroup = new Kinetic.Group({ draggable:true });
-	febGroup = new Kinetic.Group({ draggable:true });
-	marGroup = new Kinetic.Group({ draggable:true });
-	aprilGroup = new Kinetic.Group({ draggable:true });	
-	mayGroup = new Kinetic.Group({ draggable:true });	
-	juneGroup = new Kinetic.Group({ draggable:true });
-	julGroup = new Kinetic.Group({ draggable:true });
-	augGroup = new Kinetic.Group({ draggable:true });
-	septGroup = new Kinetic.Group({ draggable:true }); 
-	octGroup = new Kinetic.Group({ draggable:true }); 
-	novGroup = new Kinetic.Group({ draggable:true });	
-	decGroup = new Kinetic.Group({ draggable:true });
-	
-	// Generate the top and bottom task, date and lines
-	//
-	var generateLinesPerMonth = function () {
-
-		// if value is odd
-		//
-		if (i % 2) {
-			// Task
-			textText = new Kinetic.Text({ x: xPosText-5, y: textTitlePosBottom + 5, text: data[i].title, fontSize: textSize, fontFamily: 'Calibri', fill: textColour, width: 150, padding: 10, align: 'center', draggable: true });
-			taskRect = new Kinetic.Rect({ x: xPosText, y: textTitlePosBottom, width: textText.getWidth(), height: textText.getHeight(), fill: textBGcolour, stroke: textBGcolour, strokeWidth: 0, cornerRadius: 4 });
-
-			// Date
-			//dateRect = new Kinectic.Rect({ x:xPosDate, y: dateTitlePosBottom, width: 100, height: 50, fill: 'green', stroke:'black', strokeWidth: 4 });
-			dateText = new Kinetic.Text({ x: xPosDate, y: dateTitlePosBottom, text: newDate, fontSize: dateSize, fontFamily: 'Calibri', fill: dateColour, padding: 4, align: 'center', draggable: true });				
-			dateRect = new Kinetic.Rect({ x: xPosDate-1, y: dateTitlePosBottom-4, width: dateText.getWidth(), height: dateText.getHeight(), fill: textBGcolour, stroke: textBGcolour, strokeWidth: 0, cornerRadius: 4 });
-			
-			// Timeline
-			timeLine = new Kinetic.Line({ points: [xPos, yPos, xPos2, yPos, xPos2, bottomTitlePos], stroke: lineColour, strokeWidth: lineThick, lineCap: 'round', lineJoin: 'round' });
-		}
-		// if value is even
-		// 
-		else {
-			// Task
-			textText = new Kinetic.Text({ x: xPosText-5, y: textTitlePosTop + 5, text: data[i].title, fontSize: textSize, fontFamily: 'Calibri', fill: textColour, width:150, padding: 10, align: 'center', draggable: true });				
-			taskRect = new Kinetic.Rect({ x:xPosText, y: textTitlePosTop-10, width: textText.getWidth(), height: textText.getHeight(), fill: textBGcolour, stroke:textBGcolour, strokeWidth: 0, cornerRadius: 4 });
-
-			// Date
-			//dateRect = new Kinectic.Rect({ x:xPosDate, y: dateTitlePosTop, width: 100, height: 50, fill: 'green', stroke:'black', strokeWidth: 4 });
-			dateText = new Kinetic.Text({ x: xPosDate, y: dateTitlePosTop, text: newDate, fontSize: dateSize, fontFamily: 'Calibri', fill: dateColour, padding: 4, align: 'center', draggable: true });								
-			dateRect = new Kinetic.Rect({ x: xPosDate-2, y: dateTitlePosTop+2, width: dateText.getWidth(), height: dateText.getHeight(), fill: textBGcolour, stroke: textBGcolour, strokeWidth: 0, cornerRadius: 4 });				
-			
-			// Timeline
-			timeLine = new Kinetic.Line({ points: [xPos, yPos, xPos2, yPos, xPos2, topTitlePos], stroke: lineColour, strokeWidth: lineThick, lineCap: 'round', lineJoin: 'round' });					
-		}
-
-			// Offset
-			textText.setOffset({ x: textText.getWidth() / 2 });
-			textText.setOffset({ y: textText.getHeight() / 2 });
-
-			taskRect.setOffset({ x: taskRect.getWidth() / 2 });
-			taskRect.setOffset({ x: taskRect.getHeight() / 2 });
-
-			dateText.setOffset({ x: dateText.getWidth() / 2 });
-			//dateText.setOffset({ x: dateText.getHeight() / 2 });
-
-			//dateRect.setOffset({ x: dateRect.getHeight() / 2 });
-			dateRect.setOffset({ x: dateRect.getWidth() / 2 });		
-
-			// reposition line, date and task text
-			timeLine.move(-170, 0);
-			dateText.move(-170, 0);
-			textText.move(-170, 0);
-			taskRect.move(-240, 0);
-			dateRect.move(-170, 0);
-
-			// Mouse over and out states
-			textText.on('mouseover', function() { document.body.style.cursor = 'pointer'; });
-			textText.on('mouseout', function() { document.body.style.cursor = 'default'; });
-			dateText.on('mouseover', function() { document.body.style.cursor = 'pointer'; });
-			dateText.on('mouseout', function() { document.body.style.cursor = 'default'; });
-	};
+	layer.add(timelineText);
 
 	// Add all layers to a group
 	//
-	var generateMonthGroup = function (monthGroup, monthWidth) {
-		//monthGroup = new Kinetic.Group({ draggable:true });
+	var generateMonthGroup = function (monthGroup, monthWidth, textMonth, monthText, monthLine) {
+		monthGroup = new Kinetic.Group({ draggable:true });
 		var monthTextYpos = 50;
 		var monthTextXplus = 25
 		var monthLineXplus = 45;
@@ -632,78 +542,136 @@ var generateTimeline = function (){
 		monthWidth = monthGroup.getWidth();
 		monthGroup.move(0, 0);
 
-		/*monthText = new Kinetic.Text({ x: monthWidth, y: monthTextYpos, text: 'something', fontSize:  16, fontFamily: 'Arial', fill: timelineTextColour, draggable: true });
+		monthText = new Kinetic.Text({ x: monthWidth+monthTextXplus, y: monthTextYpos, text: textMonth, fontSize:  16, fontFamily: 'Calibri', fill: timelineTextColour, draggable: true });
 		monthLine = new Kinetic.Line({ points: [monthWidth+monthLineXplus, monthLinePosition, monthWidth+monthLineXplus, monthLineYpos], stroke: monthLineColor, strokeWidth: monthLineThick, lineCap: 'square', lineJoin: 'square' });	
 							
 		monthGroup.add(monthText);
-		monthGroup.add(monthLine);*/
+		monthGroup.add(monthLine);
 
 		layer.add(monthGroup);
 	};	
+
+	// Generate the top and bottom task, date and lines
+	var generateLinesPerMonth = function () {
+
+		// if value is odd
+		if (i % 2) {
+			// Task
+			textText = new Kinetic.Text({ x: xPosText-5, y: textTitlePosBottom + 5, text: data[i].title, fontSize: textSize, fontFamily: 'Calibri', fill: textColour, width: 150, padding: 10, align: 'center', draggable: true });
+			taskRect = new Kinetic.Rect({ x: xPosText, y: textTitlePosBottom, width: textText.getWidth(), height: textText.getHeight(), fill: textBGcolour, stroke: textBGcolour, strokeWidth: 0, cornerRadius: 4 });
+
+			// Date
+			dateText = new Kinetic.Text({ x: xPosDate, y: dateTitlePosBottom, text: newDate, fontSize: dateSize, fontFamily: 'Calibri', fill: dateColour, padding: 4, align: 'center', draggable: true });				
+			dateRect = new Kinetic.Rect({ x: xPosDate-1, y: dateTitlePosBottom-4, width: dateText.getWidth(), height: dateText.getHeight(), fill: textBGcolour, stroke: textBGcolour, strokeWidth: 0, cornerRadius: 4 });
+			
+			// Timeline
+			timeLine = new Kinetic.Line({ points: [xPos, yPos, xPos2, yPos, xPos2, bottomTitlePos], stroke: lineColour, strokeWidth: lineThick, lineCap: 'round', lineJoin: 'round' });
+		}
+
+		// if value is even
+		else {
+			// Task
+			textText = new Kinetic.Text({ x: xPosText-5, y: textTitlePosTop + 5, text: data[i].title, fontSize: textSize, fontFamily: 'Calibri', fill: textColour, width:150, padding: 10, align: 'center', draggable: true });				
+			taskRect = new Kinetic.Rect({ x:xPosText, y: textTitlePosTop-10, width: textText.getWidth(), height: textText.getHeight(), fill: textBGcolour, stroke:textBGcolour, strokeWidth: 0, cornerRadius: 4 });
+
+			// Date
+			dateText = new Kinetic.Text({ x: xPosDate, y: dateTitlePosTop, text: newDate, fontSize: dateSize, fontFamily: 'Calibri', fill: dateColour, padding: 4, align: 'center', draggable: true });								
+			dateRect = new Kinetic.Rect({ x: xPosDate-2, y: dateTitlePosTop+2, width: dateText.getWidth(), height: dateText.getHeight(), fill: textBGcolour, stroke: textBGcolour, strokeWidth: 0, cornerRadius: 4 });				
+			
+			// Timeline
+			timeLine = new Kinetic.Line({ points: [xPos, yPos, xPos2, yPos, xPos2, topTitlePos], stroke: lineColour, strokeWidth: lineThick, lineCap: 'round', lineJoin: 'round' });					
+		}
+
+		// Offset
+		textText.setOffset({ x: textText.getWidth() / 2 });
+		textText.setOffset({ y: textText.getHeight() / 2 });
+
+		taskRect.setOffset({ x: taskRect.getWidth() / 2 });
+		taskRect.setOffset({ x: taskRect.getHeight() / 2 });
+
+		dateText.setOffset({ x: dateText.getWidth() / 2 });
+		//dateText.setOffset({ x: dateText.getHeight() / 2 });
+
+		//dateRect.setOffset({ x: dateRect.getHeight() / 2 });
+		dateRect.setOffset({ x: dateRect.getWidth() / 2 });		
+
+		// reposition line, date and task text
+		timeLine.move(-170, 0);
+		dateText.move(-170, 0);
+		textText.move(-170, 0);
+		taskRect.move(-240, 0);
+		dateRect.move(-170, 0);
+
+		// Mouse over and out states
+		textText.on('mouseover', function() { document.body.style.cursor = 'pointer'; });
+		textText.on('mouseout', function() { document.body.style.cursor = 'default'; });
+		dateText.on('mouseover', function() { document.body.style.cursor = 'pointer'; });
+		dateText.on('mouseout', function() { document.body.style.cursor = 'default'; });
+	};
 
 	// Segregate by month
 	//
 	var monthSeg = function () {
 		generateLinesPerMonth();
 		//JAN
-		if (month == 0) {	 
-			generateMonthGroup(janGroup, janWidth);
-			janWidth = janGroup.getWidth();
+		if (month == 1) {
+			var textMonth = "JAN";	 
+			generateMonthGroup(janGroup, janWidth, textMonth, janText, janLine);
 		} 
 		//FEB
-		if (month == 1) { 
-			generateMonthGroup(febGroup, febWidth);
-			febWidth = febGroup.getWidth();
+		if (month == 2) {
+			var textMonth = "FEB"; 
+			generateMonthGroup(febGroup, febWidth, textMonth, febText, febLine);
 		}
 		//MAR 
-		if  (month == 2) { 
-			generateMonthGroup(marGroup, marWidth);
-			marWidth = marGroup.getWidth();					
+		if  (month == 3) { 
+			var textMonth = "MAR";
+			generateMonthGroup(marGroup, marWidth, textMonth, marText, marLine);				
 		} 
 		//APR
-		if (month == 3) { 
-			generateMonthGroup(aprilGroup, aprilWidth);
-			aprilWidth = aprilGroup.getWidth();
+		if (month == 4) {
+			var textMonth = "APRIL"; 
+			generateMonthGroup(aprilGroup, aprilWidth, textMonth, aprilText, aprilLine);
 		} 
 		//MAY
-		if (month == 4) {
-			generateMonthGroup(mayGroup, mayWidth);
-			mayWidth = mayGroup.getWidth();
+		if (month == 5) {
+			var textMonth = "MAY";
+			generateMonthGroup(mayGroup, mayWidth, textMonth, mayText, mayLine);
 		} 
 		//JUNE
-		if (month == 5) { 
-			generateMonthGroup(juneGroup, juneWidth);
-			juneWidth = juneGroup.getWidth();
+		if (month == 6) {
+			var textMonth = "JUNE"; 
+			generateMonthGroup(juneGroup, juneWidth, textMonth, juneText, juneLine);
 		} 
 		//JULY
-		if (month == 6) { 
-			generateMonthGroup(julGroup, julWidth);
-			julWidth = julGroup.getWidth();
+		if (month == 7) {
+			var textMonth = "JUL"; 
+			generateMonthGroup(julGroup, julWidth, textMonth, julText, julLine);
 		}
 		//AUG  
-		if (month == 7) { 
-			generateMonthGroup(augGroup, augWidth);
-			augWidth = augGroup.getWidth();
+		if (month == 8) { 
+			var textMonth = "AUG";
+			generateMonthGroup(augGroup, augWidth, textMonth, augText, augLine);
 		}
 		//SEPT 
-		if (month == 8) { 
-			generateMonthGroup(septGroup, septWidth);
-			septWidth = septGroup.getWidth();
+		if (month == 9) {
+			var textMonth = "SEPT"; 
+			generateMonthGroup(septGroup, septWidth, textMonth, septText, septLine);
 		} 
 		//OCT
-		if (month == 9) { 
-			generateMonthGroup(octGroup, octWidth);
-			octWidth = octGroup.getWidth();
+		if (month == 10) { 
+			var textMonth = "OCT";
+			generateMonthGroup(octGroup, octWidth, textMonth, octText, octLine);
 		} 
 		//NOV
-		if (month == 10) { 
-			generateMonthGroup(novGroup, novWidth);
-			novWidth = novGroup.getWidth();
+		if (month == 11) {
+			var textMonth = "NOV"; 
+			generateMonthGroup(novGroup, novWidth, textMonth, novText, novLine);
 		} 
 		//DEC
-		if (month == 11) { 
-			generateMonthGroup(decGroup, decWidth);
-			decWidth = decGroup.getWidth();
+		if (month == 12) {
+			var textMonth = "DEC"; 
+			generateMonthGroup(decGroup, decWidth, textMonth, decText, decLine);
 		} else { }
 	};	
 
@@ -734,7 +702,7 @@ var generateTimeline = function (){
 	
 	// Loop through all values in array and position top and bottom
 	//
-	var num = 1;			
+	var num = 0;			
 	for (i = num; i < data.length; i++) {	
 		// Set x and y line values
 		//
@@ -752,80 +720,36 @@ var generateTimeline = function (){
 		var textTitlePosTop = topTitlePos - 30; var textTitlePosBottom = bottomTitlePos + 10;				
 		var dateTitlePosTop = topTitlePos + 75; var dateTitlePosBottom = bottomTitlePos - 90;
 		
+		// need to filter year
+
+		// need filter by month
+
+		// filter by date
+
 		// Order by month
 		//	
 		var dataValues = data[i].date;
 		var presentDate = new Date();
 		var presentYear = presentDate.getFullYear();
 		var getDate = new Date(dataValues);
-		var month = getDate.getMonth();
+		var day = getDate.getDate();
+		var month = ((getDate.getMonth())+(1));
 		var getYear = getDate.getFullYear();
-		var newDate = getDate.getDate() + '-' + ((getDate.getMonth())+(1)) + '-' + getDate.getFullYear();
+		var newDate = day + '-' + month + '-' + getYear;
+		console.log("Day: "+day);
+		console.log(newDate);
 		
-		if (presentYear == getYear) {
+		if (presentYear) {
 			monthSeg();
 		} 
 		else { } // do nothing
 	}//end loop
-
-	var stageWidthHalf = stage.getWidth() / 2;
-	var monthTextYpos = 50;
-	var monthTextXplus = 25
-	var monthLineXplus = 45;
-	var monthLineYpos = canvasHeight - 330;
-	var monthLinePosition = 70;
-	var monthLineThick = 4;
-	var monthTextFont = 18;
-	var monthLineColor = "#adc9be";
-	// Month Divider Text and Line
-	//
-	janText = new Kinetic.Text({ x: janWidth+monthTextXplus, y: monthTextYpos, text: "JAN", fontSize:  16, fontFamily: 'Calibri', fill: timelineTextColour, draggable: true });
-	janLine = new Kinetic.Line({ points: [janWidth+monthLineXplus, monthLinePosition, janWidth+monthLineXplus, monthLineYpos], stroke: monthLineColor, strokeWidth: monthLineThick, lineCap: 'square', lineJoin: 'square' });
-		
-	febText = new Kinetic.Text({ x:  febWidth+monthTextXplus, y: monthTextYpos, text: "FEB", fontSize:  monthTextFont, fontFamily: 'Calibri', fill: timelineTextColour, draggable: true });
-	febLine = new Kinetic.Line({ points: [febWidth+monthLineXplus, monthLinePosition, febWidth+monthLineXplus, monthLineYpos], stroke: monthLineColor, strokeWidth: monthLineThick, lineCap: 'square', lineJoin: 'square' });
 	
-	marText = new Kinetic.Text({ x: marWidth+monthTextXplus, y: monthTextYpos, text: "MAR", fontSize:  monthTextFont, fontFamily: 'Calibri', fill: timelineTextColour, draggable: true });
-	marLine = new Kinetic.Line({ points: [marWidth+monthLineXplus, monthLinePosition, marWidth+monthLineXplus, monthLineYpos], stroke: monthLineColor, strokeWidth: monthLineThick, lineCap: 'square', lineJoin: 'square' });
-
-	aprilText = new Kinetic.Text({ x:  aprilWidth+monthTextXplus, y: monthTextYpos, text: "APRIL", fontSize:  monthTextFont, fontFamily: 'Calibri', fill: timelineTextColour, draggable: true });
-	aprilLine = new Kinetic.Line({ points: [aprilWidth+monthLineXplus, monthLinePosition, aprilWidth+monthLineXplus, monthLineYpos], stroke: monthLineColor, strokeWidth: monthLineThick, lineCap: 'square', lineJoin: 'square' });
-
-	mayText = new Kinetic.Text({ x:  mayWidth+monthTextXplus, y: monthTextYpos, text: "MAY", fontSize:  monthTextFont, fontFamily: 'Calibri', fill: timelineTextColour, draggable: true });
-	mayLine = new Kinetic.Line({ points: [mayWidth+monthLineXplus, monthLinePosition, mayWidth+monthLineXplus, monthLineYpos], stroke: monthLineColor, strokeWidth: monthLineThick, lineCap: 'square', lineJoin: 'square' });
-
-	juneText = new Kinetic.Text({ x:  juneWidth+monthTextXplus, y: monthTextYpos, text: "JUNE", fontSize:  monthTextFont, fontFamily: 'Calibri', fill: timelineTextColour, draggable: true });
-	juneLine = new Kinetic.Line({ points: [juneWidth+monthLineXplus, monthLinePosition, juneWidth+monthLineXplus, monthLineYpos], stroke: monthLineColor, strokeWidth: monthLineThick, lineCap: 'square', lineJoin: 'square' });
-
-	julText = new Kinetic.Text({ x:  julWidth+monthTextXplus, y: monthTextYpos, text: "JUL", fontSize:  monthTextFont, fontFamily: 'Calibri', fill: timelineTextColour, draggable: true	});
-	julLine = new Kinetic.Line({ points: [julWidth+monthLineXplus, monthLinePosition, julWidth+monthLineXplus, monthLineYpos], stroke: monthLineColor, strokeWidth: monthLineThick, lineCap: 'square', lineJoin: 'square' });
-
-	augText = new Kinetic.Text({ x:  augWidth+monthTextXplus, y: monthTextYpos, text: "AUG", fontSize:  monthTextFont, fontFamily: 'Calibri', fill: timelineTextColour, draggable: true	});
-	augLine = new Kinetic.Line({ points: [augWidth+monthLineXplus, monthLinePosition, augWidth+monthLineXplus, monthLineYpos], stroke: monthLineColor, strokeWidth: monthLineThick, lineCap: 'square', lineJoin: 'square' });
-
-	septText = new Kinetic.Text({ x:  septWidth+monthTextXplus, y: monthTextYpos, text: "SEPT", fontSize:  monthTextFont, fontFamily: 'Calibri', fill: timelineTextColour, draggable: true });
-	septLine = new Kinetic.Line({ points: [septWidth+monthLineXplus, monthLinePosition, septWidth+monthLineXplus, monthLineYpos], stroke: monthLineColor, strokeWidth: monthLineThick, lineCap: 'square', lineJoin: 'square' });
-
-	octText = new Kinetic.Text({ x: octWidth+monthTextXplus, y: monthTextYpos, text: "OCT", fontSize:  monthTextFont, fontFamily: 'Calibri', fill: timelineTextColour, draggable: true });
-	octLine = new Kinetic.Line({ points: [octWidth+monthLineXplus, monthLinePosition, octWidth+monthLineXplus, monthLineYpos], stroke: monthLineColor, strokeWidth: monthLineThick, lineCap: 'square', lineJoin: 'square' });
-
-	novText = new Kinetic.Text({ x: novWidth+monthTextXplus, y: monthTextYpos, text: "NOV", fontSize:  monthTextFont, fontFamily: 'Calibri', fill: timelineTextColour, draggable: true });
-	novLine = new Kinetic.Line({ points: [novWidth+monthLineXplus, monthLinePosition, novWidth+monthLineXplus, monthLineYpos], stroke: monthLineColor, strokeWidth: monthLineThick, lineCap: 'square', lineJoin: 'square' });
-
-	decText = new Kinetic.Text({ x:  decWidth+monthTextXplus, y: monthTextYpos, text: "DEC", fontSize:  monthTextFont, fontFamily: 'Calibri', fill: timelineTextColour, draggable: true });
-	decLine = new Kinetic.Line({ points: [decWidth+monthLineXplus, monthLinePosition, decWidth+monthLineXplus, monthLineYpos], stroke: monthLineColor, strokeWidth: monthLineThick, lineCap: 'square', lineJoin: 'square' });
-	
-	// Set groups, layers and stage
-	//
-	janGroup.add(janText); febGroup.add(febText); marGroup.add(marText); aprilGroup.add(aprilText); mayGroup.add(mayText); juneGroup.add(juneText); julGroup.add(julText); augGroup.add(augText); septGroup.add(septText); octGroup.add(octText); novGroup.add(novText); decGroup.add(decText);
-	janGroup.add(janLine); febGroup.add(febLine); marGroup.add(marLine); aprilGroup.add(aprilLine); mayGroup.add(mayLine); juneGroup.add(juneLine); julGroup.add(julLine); augGroup.add(augLine); septGroup.add(septLine); octGroup.add(octLine); novGroup.add(novLine); decGroup.add(decLine);
-	
-	layer.add(timelineText);
 	stage.add(layer);
 	
 	// Json object of the canvas drawing
-	jsonCanvas = stage.toJSON();
-	console.log(jsonCanvas);
+	//jsonCanvas = stage.toJSON();
+	//console.log(jsonCanvas);
 };
 	
 // Save image function
