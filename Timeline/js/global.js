@@ -282,14 +282,20 @@
 				data.sort(function(a,b){
 					var getDateA = new Date(a.date);
 					var getDateB = new Date(b.date);
-					a = getDateA.getFullYear() + '-' + getDateA.getMonth() + '-' + getDateA.getDate();
-					b = getDateB.getFullYear() + '-' + getDateB.getMonth() + '-' + getDateB.getDate();
+					//a = getDateA.getFullYear() + '-' + getDateA.getMonth() + '-' + getDateA.getDate();
+					//b = getDateB.getFullYear() + '-' + getDateB.getMonth() + '-' + getDateB.getDate();
+					
+					a = getDateA.getTime();
+					b = getDateB.getTime();
+					console.log("A: "+a);
+					console.log("B: "+b);
 					//a = new Date(a.date);
 					//b = new Date(b.date);
 					return a<b?-1:a>b?1:0;
 				});	
 			}
 			
+
 			// Generate Timeline
 			dataLength = data.length;
 				if ($('#container canvas').is(':visible')) {
