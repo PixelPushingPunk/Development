@@ -56,8 +56,6 @@
         //
         stepsPosition(currentPosition);
 
-        console.log(currentPosition);
-
         // Move slideInner using margin-left
         //
         $('#slideInner').animate({
@@ -79,7 +77,6 @@
         //
         var secondToLast = numberOfSlides-2;
         var lastPos = numberOfSlides-1;
-        console.log('lastPos: '+lastPos);
         if(currentPosition==lastPos) {
             $('#leftControl').on('click', function() {
                // Display play about timeline on back click from canvas
