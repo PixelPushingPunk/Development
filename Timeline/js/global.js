@@ -32,6 +32,11 @@
 			}
 		});
 
+		// Init date picker event bubbling
+		$('body, html').on('click', '#editableTasks input.mileStoneDateInput', function() {
+			$('#editableTasks input.mileStoneDateInput').datepicker();
+		});
+
 		// Init Placeholder
 		//
 		$('input, textarea').placeholder();
