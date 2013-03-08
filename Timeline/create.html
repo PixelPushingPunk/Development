@@ -40,6 +40,10 @@
 		</div>
 		
 		<section id="timeline">
+			<!-- canvas support -->
+			<div class="cNotSupport canvasClass"><h1>Canvas is not supported in your browser, you will not be able to preview your timeline - download latest version of <a href="http://windows.microsoft.com/en-GB/internet-explorer/download-ie" target="_blank">Internet Explorer</a> or better yet upgrade to <a href="https://www.google.com/intl/en/chrome/browser/" target="_blank">Chrome browser</a> NOW!</h1></div>
+			<div class="cSupport canvasClass"><h1>Canvas is supported in your browser - your a star! </h1></div>
+
 			<div class="timelineTitleWrapper" data-bind="foreach: titleTimeline, visible: titleTimeline().length > 0, sortable: tasks">
 				<ul>
 					<li class="first"><h1 class="timelineTitle" data-bind="text: timelineTitle"></h1></li>
@@ -93,9 +97,6 @@
 		<div id="canvasPlay">
 			<div class="bottomBtnWrapper"></div>
 			<div class="clear"></div>
-
-			<div class="cNotSupport canvasClass"><h1>Canvas is not supported in your browser</h1></div>
-			<div class="cSupport canvasClass"><h1>Canvas is supported in your browser </h1></div>
 			<div id="canvasWrapper">
 				<section id="playCanvas" class="left">
 					<div id="container"></div>
@@ -153,8 +154,8 @@
 
 							<ul id="editableTasks" data-bind="foreach: tasks, visible: tasks().length > 0, sortable: tasks">
 								<li>
-									<input id="datepickerMileStone" class="inputStyle mileStoneTitleInput" data-bind="value: title, disable: isDone"> 
-									<input class="inputStyle mileStoneDateInput" data-bind="value: date, disable: isDone"> 
+									<input class="inputStyle mileStoneTitleInput" data-bind="value: title, disable: isDone" maxlength="50"> 
+									<input id="datepickerMileStone" class="inputStyle mileStoneDateInput" data-bind="value: date, disable: isDone"> 
 									<a title="delete" class="button deleteBtn" href="#" data-bind="click: $parent.removeTask">x</a>
 								</li>
 							</ul>
@@ -203,7 +204,8 @@
 										<div class="sizeWrap">
 											<label for="timelineTitleSize">Title Size:</label> 
 											<input id="timelineTitleSize" name="timelineTitleSize" class="CustomInputStyle" type="text"/> 
-											<button id="timelineTitleSizeBtn">+</button>
+											<!--<button id="timelineTitleSizeBtn">+</button>-->
+											<span class="tUnit">1</span><div id="timelineTitleSizeMaster" style="width: 260px; margin: 15px;"></div><span class="tUnit">30</span>
 										</div>
 
 										<div class="colourWrap">
@@ -220,7 +222,8 @@
 										<div class="sizeWrap">
 											<label for="titleSize">Task Size:</label> 
 											<input id="titleSize" name="titleSize" class="CustomInputStyle" type="text"/> 
-											<button id="titleSizeBtn">+</button>
+											<!--<button id="titleSizeBtn">+</button>-->
+											<span class="tUnit">1</span><div id="titleSizeMaster" style="width: 260px; margin: 15px;"></div><span class="tUnit">30</span>
 										</div>
 
 										<div class="colourWrap">
@@ -238,7 +241,8 @@
 										<div class="sizeWrap">
 											<label for="dateSize">Date Size:</label> 
 											<input id="dateSize" name="dateSize" class="CustomInputStyle" type="text"/> 
-											<button id="dateSizeBtn">+</button>
+											<!--<button id="dateSizeBtn">+</button>-->
+											<span class="tUnit">1</span><div id="dateSizeMaster" style="width: 260px; margin: 15px;"></div><span class="tUnit">30</span>
 										</div>
 
 										<div class="colourWrap">

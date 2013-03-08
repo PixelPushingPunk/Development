@@ -44,6 +44,7 @@
     $('.control')
       .bind('click', function(){
         var $this = $(this);
+        var slideThis = $(this);
       // Determine new position
         //currentPosition = ($(this).attr('id')=='saveJSON')? currentPosition+1 : currentPosition-1;
         currentPosition = ($(this).attr('id')==('rightControl'||'saveJSON'))? currentPosition+1 : currentPosition-1;
@@ -55,6 +56,9 @@
         // Display step position
         //
         stepsPosition(currentPosition);
+
+        // Manage hide
+        //manageHide(currentPosition, slideThis);
 
         // Move slideInner using margin-left
         //
@@ -97,6 +101,21 @@
 
       // Skip to step
       //
+
+    // manage Shown or Hidden Values
+    //
+    /*function manageHide (position, slideThis) {
+      var addPosition = position;
+      console.log(addPosition);
+      //slideThis.attr('class', position);
+      //$('.slide:not(:first)').addClass('hide');
+      if(position === position) {
+        
+      }
+      if(position === (position+1)) {
+
+      }
+    } */
 
     // manageControls: Hides and shows controls depending on currentPosition
     //

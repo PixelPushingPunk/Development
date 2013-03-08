@@ -1,3 +1,9 @@
+(function($) {
+	$(window).load(function() {
+		// do nothing for now
+	});// window.load
+})(jQuery); 
+
 (function($){
 	$(document).ready(function(){
 		if(typeof(Storage)!=="undefined") { console.log("Yes! localStorage and sessionStorage support!"); } 
@@ -18,10 +24,44 @@
 		$('.simpleColorDisplay, .simpleColorCell, .simpleColorChooser, .simpleColorContainer').on('click', function(){
 			$('.simpleColorCancelButton, .simpleColorSelectButton ').hide();
 		});
-		
+
+
+		// Disable tabbing
+		// /setTimeout(function() {$('input').attr('tabindex','-1'); }, 10);
+		$('body, html').on('keydown keypress', 'input', function (myfield, e) { 
+			$this = $(this);
+			//CatchTab($this, event);
+			var keycode;
+			if (window.event) {
+			    keycode = window.event.keyCode;
+			    //alert('test');
+			    console.log("keycode: " + keycode);
+			} else if (e) { 
+			    keycode = e.which;
+
+			    console.log("keycode: " + keycode);
+			} else {
+			    return true;
+			}
+
+			if (keycode === 9) { // if is the tab key
+			    // Do stuff, return false to prevent key from being output
+			    $this.focus();
+			    return false;
+			}
+
+			if (keycode === 75) {
+				setTimeout(function() { 
+					confirm('are you sure you\'re crazy you pressed K 5 seconds ago!!?');
+				}, 5000);
+			}
+
+		});
+
+
 		// Init Datepicker
 		//
-		$('#datepicker, #datepickerMileStone').datepicker({
+		/*$('#datepicker, #datepickerMileStone').datepicker({
 			dateFormat: "yy-mm-dd",
 			beforeShow: function (input, inst) {
 				var offset = $(input).offset();
@@ -30,12 +70,28 @@
 					inst.dpDiv.css({ top: (offset.top + height + 25) + 'px', left: offset.left + 'px' })
 				}, 1);
 			}
-		});
+		});*/
+		
+		// datepicker function initate
+		var datePickInit = function () {
+			$('#datepickerMileStone, #datepicker').datepicker({
+				dateFormat: "yy-mm-dd",
+				beforeShow: function (input, inst) {
+					var offset = $(input).offset();
+					var height = $(input).height();
+					window.setTimeout(function () {
+						inst.dpDiv.css({ top: (offset.top + height + 25) + 'px', left: offset.left + 'px' })
+					}, 1);
+				}
+			});
+		};
 
 		// Init date picker event bubbling
-		$('body, html').on('click', '#editableTasks input.mileStoneDateInput', function() {
-			$('#editableTasks input.mileStoneDateInput').datepicker();
+		setTimeout(function () { datePickInit(); }, 0);
+		$('body, html').on('click', '#datepickerMileStone, #datepicker', function(e) {
+			datePickInit();
 		});
+
 
 		// Init Placeholder
 		//
@@ -43,28 +99,69 @@
 		
 		// Init thickness slider
 		//
-		//var select = $('#thick');
 		$('#master').slider({
 			value:4,
 			orientation:"horizontal",
 			range:"min",
 			min: 1,
 			max: 7,
-			//value: select[ 0 ].selectedIndex + 1,//4,
 			slide: function( event, ui ) {
 				$('#thick').val( ui.value );
 			},
-			/*slide: function ( event, ui ) {
-				select[ 0 ].selectedIndex = ui.value - 1;
-			},*/
 			animate: true
 		});
 		var slideThick = $('#master').slider( 'value' );
 		$('#thick').val( slideThick );
-		//var slideThick = function() { $('#master').slider( 'value', this.selectedIndex + 1 ) };
-		//$('#thick').change(function () {
-		//	slideThick();
-		//});
+
+		// Init timeline title size slider
+		//
+		$('#timelineTitleSizeMaster').slider({
+			value:24,
+			orientation:"horizontal",
+			range:"min",
+			min: 1,
+			max: 30,
+			slide: function( event, ui ) {
+				$('#timelineTitleSize').val( ui.value );
+			},
+			animate: true
+		});
+		var slideTimelineSize = $('#timelineTitleSizeMaster').slider( 'value' );
+		$('#timelineTitleSize').val( slideTimelineSize );
+		
+
+		// Init task size slider
+		//
+		$('#titleSizeMaster').slider({
+			value:16,
+			orientation:"horizontal",
+			range:"min",
+			min: 1,
+			max: 30,
+			slide: function( event, ui ) {
+				$('#titleSize').val( ui.value );
+			},
+			animate: true
+		});
+		var slideTitleSize = $('#titleSizeMaster').slider( 'value' );
+		$('#titleSize').val( slideTitleSize );
+
+		// Init date size slider
+		//
+		$('#dateSizeMaster').slider({
+			value:12,
+			orientation:"horizontal",
+			range:"min",
+			min: 1,
+			max: 30,
+			slide: function( event, ui ) {
+				$('#dateSize').val( ui.value );
+			},
+			animate: true
+		});
+		var slideDateSize = $('#dateSizeMaster').slider( 'value' );
+		$('#dateSize').val( slideDateSize );
+
 
 		// Init timelineTitle disable enable
 		//
@@ -100,6 +197,9 @@
 		//
 		$('.ui-slider-handle').on('mousedown mouseup mouseenter mouseleave', function(e) {
 			CustomizeColor.lineThickfunc();
+			CustomizeColor.timelineTitleSizefunc();
+			CustomizeColor.titleSizefunc();
+			CustomizeColor.dateSizefunc();
 			e.preventDefault();
 		});
 
@@ -111,7 +211,7 @@
 		
 		// Timeline title size
 		//
-		$('#timelineTitleSize').val(25);
+		//$('#timelineTitleSize').val(25);
 		$('#timelineTitleSizeBtn').on('click', function(e){
 			CustomizeColor.timelineTitleSizefunc();
 			e.preventDefault();
@@ -125,7 +225,7 @@
 
 		// Title size
 		//
-		$('#titleSize').val(16);
+		//$('#titleSize').val(16);
 		$('#titleSizeBtn').on('click', function(e){
 			CustomizeColor.titleSizefunc();
 			e.preventDefault();
@@ -139,7 +239,7 @@
 
 		// Datesize
 		//
-		$('#dateSize').val(12);
+		//$('#dateSize').val(12);
 		$('#dateSizeBtn').on('click', function(e){
 			CustomizeColor.dateSizefunc();
 			e.preventDefault();
@@ -239,6 +339,7 @@
 			//HTML5 Canvas is supported in your browser
 			$('.cSupport').show();
 			$('.cNotSupport').hide();
+			setTimeout(function() { $('.cSupport').fadeOut('fast'); }, 5000);
 		} catch (e) {
 			//HTML5 Canvas is not supported in your browser
 			$('.cSupport').hide();
@@ -281,23 +382,45 @@
 			var jsonVal = $('#jsonVal').val();
 			data = JSON.parse(jsonVal);
 
-			console.debug(jsonVal);
-				
-			for (i = 0; i < data.length; i++) {
-				data.sort(function(a,b){
-					var getDateA = new Date(a.date);
-					var getDateB = new Date(b.date);
-					//a = getDateA.getFullYear() + '-' + getDateA.getMonth() + '-' + getDateA.getDate();
-					//b = getDateB.getFullYear() + '-' + getDateB.getMonth() + '-' + getDateB.getDate();
-					
-					a = getDateA.getTime();
-					b = getDateB.getTime();
-					console.log("A: "+a);
-					console.log("B: "+b);
-					//a = new Date(a.date);
-					//b = new Date(b.date);
-					return a<b?-1:a>b?1:0;
-				});	
+			//console.debug(jsonVal);
+			
+			var safari = $.browser.safari;
+			if (safari) {	
+				for (i = 0; i < data.length; i++) {
+					data.sort(function(a,b){
+						var aDate = parseDate(a.date);
+						var bDate = parseDate(b.date);
+						var getDateA = new Date(aDate);
+						var getDateB = new Date(bDate);
+						//a = getDateA.getFullYear() + '-' + getDateA.getMonth() + '-' + getDateA.getDate();
+						//b = getDateB.getFullYear() + '-' + getDateB.getMonth() + '-' + getDateB.getDate();
+						
+						a = getDateA.getTime();
+						b = getDateB.getTime();
+						console.log("A: "+a);
+						console.log("B: "+b);
+						//a = new Date(a.date);
+						//b = new Date(b.date);
+						return a<b?-1:a>b?1:0;
+					});	
+				}
+			} else {
+				for (i = 0; i < data.length; i++) {
+					data.sort(function(a,b){
+						var getDateA = new Date(a.date);
+						var getDateB = new Date(b.date);
+						//a = getDateA.getFullYear() + '-' + getDateA.getMonth() + '-' + getDateA.getDate();
+						//b = getDateB.getFullYear() + '-' + getDateB.getMonth() + '-' + getDateB.getDate();
+						
+						a = getDateA.getTime();
+						b = getDateB.getTime();
+						console.log("A: "+a);
+						console.log("B: "+b);
+						//a = new Date(a.date);
+						//b = new Date(b.date);
+						return a<b?-1:a>b?1:0;
+					});
+				}	
 			}
 			
 
@@ -346,6 +469,42 @@
 // variables, function expresions and function declarations
 var stage, layer, data, jsonCanvas;
 
+// Parse date for safri
+var parseDate = function (input) {
+	var parts = input.match(/(\d+)/g);
+	return new Date(parts[0], parts[1]-1, parts[2]);
+};
+
+// Disable tabbing
+var CatchTab = function (myfield, e) {
+    var keycode;
+    if (window.event) {
+        keycode = window.event.keyCode;
+        //alert('test');
+        console.log("keycode: " + keycode);
+    } else if (e) { 
+        keycode = e.which;
+    } else {
+        return true;
+    }
+
+    if ( keycode == 97 ) {
+    	alert('a clicked');
+    } 
+    if (keycode == 9) { // if is the tab key
+        // Do stuff, return false to prevent key from being output
+        //alert('test');
+        e.focus();
+        return false;
+      }  
+    /*} else if (keycode == 65) {
+    	alert('this is a clicked');
+    	//return true;
+	}*/
+    
+};
+
+// Adding events
 var showIndividualTimeline = function () {
  	$('#individualTimelines').show();
  	$('#multipleTimelines').hide();
@@ -360,8 +519,9 @@ var showMultipleTimeline = function () {
 var CustomizeColor = {
 	// timeline title size
 	timelineTitleSizefunc: function () {
-		var timelineTitleSizeVal = ($('#timelineTitleSize').val()) + 'px';
-		$('.timelineTitle').css({'font-size': timelineTitleSizeVal});
+		//var timelineTitleSizeVal = ($('#timelineTitleSize').val()) + 'px';
+		var slideTimelineSize = $('#timelineTitleSizeMaster').slider( 'value' );
+		$('.timelineTitle').css({'font-size': slideTimelineSize });
 	},
 
 	// timeline title colour
@@ -372,8 +532,9 @@ var CustomizeColor = {
 
 	// title size
 	titleSizefunc: function () {
-		var titleSizeVal = ($('#titleSize').val()) + 'px';
-		$('.mileStoneTitle').css({'font-size': titleSizeVal});
+		//var titleSizeVal = ($('#titleSize').val()) + 'px';
+		var slideTitleSize = $('#titleSizeMaster').slider( 'value' );
+		$('.mileStoneTitle').css({'font-size': slideTitleSize});
 	},
 
 	// title colour
@@ -384,8 +545,9 @@ var CustomizeColor = {
 
 	// data size
 	dateSizefunc: function () {
-		var dateSizeVal = ($('#dateSize').val()) + 'px';
-		$('.mileStoneDate').css({'font-size': dateSizeVal});
+		//var dateSizeVal = ($('#dateSize').val()) + 'px';
+		var slideDateSize = $('#dateSizeMaster').slider( 'value' );
+		$('.mileStoneDate').css({'font-size': slideDateSize});
 	},
 
 	// data colour
@@ -737,18 +899,32 @@ var generateTimeline = function (){
 
 		// filter by date
 
+		var safari = $.browser.safari;
 		// Order by month
-		//	
-		var dataValues = data[i].date;
-		var presentDate = new Date();
-		var presentYear = presentDate.getFullYear();
-		var getDate = new Date(dataValues);
-		var day = getDate.getDate();
-		var month = ((getDate.getMonth())+(1));
-		var getYear = getDate.getFullYear();
-		var newDate = day + '-' + month + '-' + getYear;
-		console.log("Day: "+day);
-		console.log(newDate);
+		//
+		if (safari) {
+			var dataValues = parseDate(data[i].date);
+			var presentDate = new Date();
+			var presentYear = presentDate.getFullYear();
+			var getDate = new Date(dataValues);
+			var day = getDate.getDate();
+			var month = ((getDate.getMonth())+(1));
+			var getYear = getDate.getFullYear();
+			var newDate = day + '-' + month + '-' + getYear;
+			console.log("Day: "+day);
+			console.log(newDate);
+		} else { 	
+			var dataValues = data[i].date;
+			var presentDate = new Date();
+			var presentYear = presentDate.getFullYear();
+			var getDate = new Date(dataValues);
+			var day = getDate.getDate();
+			var month = ((getDate.getMonth())+(1));
+			var getYear = getDate.getFullYear();
+			var newDate = day + '-' + month + '-' + getYear;
+			console.log("Day: "+day);
+			console.log(newDate);
+		}
 		
 		if (presentYear) {
 			monthSeg();

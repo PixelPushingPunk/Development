@@ -140,7 +140,7 @@ h1.mileStoneTitle {
 	width:175px;
 	text-align:center;
 
-	padding:15px 20px;
+	padding:5px 20px;
 }
 
  h1.mileStoneDate {
@@ -522,8 +522,12 @@ input.inputStyle, textarea {
 
 /*widget slider styling*/
 
-#master .ui-widget-header {
-	background:#333;
+.ui-widget-header {
+	background:#333 !important;
+}
+
+.ui-datepicker-title {
+	color:#fff;
 }
 
 #master {
@@ -537,7 +541,7 @@ input.inputStyle, textarea {
 	line-height:24px;
 	color:#333;
 
-	padding:11px 0 0;
+	padding:10px 0 0;
 	margin:0 5px;
 }
 
@@ -739,21 +743,21 @@ form ul li input.inputStyle {
 }
 
 #colorCustomize ul li div {
-	width:25%;
+	
 	float:left;
 }
 
 .sizeWrap {
-
+	width:55%;
 }
 
 .colourWrap {
-
+	width:15%;
 
 }
 
 .bgWrap {
-
+	width:30%;
 }
 
 /*Color Picker*/
@@ -852,14 +856,35 @@ form ul li input.inputStyle {
 
 .canvasClass {
 	position:absolute;
-	top:245px;
-	left:450px;
+	top:0;
+	left:0;
 	margin:0 auto;
+	height:auto;
+	width:100%;
+	background-color:yellow;
+	z-index:9999;
+	-moz-border-bottom-left:2px;
+	-moz-border-bottom-right:2px;
+	-webkit-border-bottom-left:2px;
+	-webkit-border-bottom-right:2px;
+	border-bottom-left:2px;
+	border-bottom-right:2px;
+
+	-webkit-opacity:0.5;
+	-moz-opacity:0.5;
+	filter: alpha(opacity=50);
+	-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
+	opacity:0.5;
 }
 
 .canvasClass h1 {
-	font-size:24px;
+	font-size:18px;
 	text-transform:capitalize;
+	text-align:left;
+	padding:10px;
+}
+
+.cSupport.canvasClass h1 {
 	text-align:center;
 }
 
@@ -1055,6 +1080,10 @@ footer ul li a {
 	width:44px;
 	height:60px;
 	background:url('../img/bg-both-logo.png') no-repeat scroll 0 -60px;
+}
+
+.hide {
+	display:none;
 }
 
 .intro {
