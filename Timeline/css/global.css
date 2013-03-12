@@ -12,11 +12,11 @@ h1 {
 
 header {
 	background-color:#9ab5a9;
-	height:80px;
+	height:65px;
 	width:100%;
 	border-bottom:1px solid #ccc;
 	overflow:hidden;
-	padding:40px 0 0;
+	padding:5px 0 0;
 }
 
 #headerWrap {
@@ -33,6 +33,7 @@ header {
 	background: url('../img/kronoline.png') no-repeat scroll 0 0 transparent;
 	text-decoration:none;
 	text-indent:-9999px;
+	display:none;
 }
 
 .bg-top-logo {
@@ -52,8 +53,8 @@ header {
 
 #header h1 { 
 	float:left; 
-	margin:10px 0 0; 
-	font-size:40px; 
+	margin:0; 
+	font-size:28px; 
 	color:#fff;
 }
 
@@ -78,7 +79,7 @@ header {
 
 #customize {
 	width:100%;
-	margin:30px auto 0;	
+	margin:10px auto 0;	
 	max-width:990px;
 }
 
@@ -386,7 +387,7 @@ a#back {
 	width:37px;
 }
 
-#clear, #save, #print, #embed {
+#clear, #save, #print, #embed, #saveALL {
 	float:right;
 	display:block;
 	margin-right:10px;
@@ -498,7 +499,7 @@ input.inputStyle, textarea {
 	width:25px;
 
 	font-family:'Sanchez', Arial, Helvetica, sans-serif;
-	font-size:18px;
+	font-size:13px;
 	line-height:24px;
 	color:#333;	
 }
@@ -516,6 +517,11 @@ input.inputStyle, textarea {
 
 .ui-widget-header {
 	background:#333 !important;
+}
+
+.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default {
+	background-image: none !important;
+	background-color: #adc9be !important;
 }
 
 .ui-datepicker-title {
@@ -590,7 +596,7 @@ label {
 	font-family: 'Sanchez', Arial, Helvetica, Sans-serif;
 	font-size: 2em;
 	color: #fff;
-	padding: 10px 15px;
+	padding: 3px 10px;
 	text-transform:capitalize;
 
 	 -moz-border-radius:3px;
@@ -600,6 +606,9 @@ label {
   	-webkit-box-shadow:0 0 3px rgba(255, 255, 255, 0.8);
   	-moz-box-shadow:0 0 3px rgba(255, 255, 255, 0.8);
   	box-shadow:0 0 3px rgba(255, 255, 255, 0.8);
+
+  	z-index:2;
+  	margin:0;
 }
 
 #saveJSON:hover {
@@ -638,7 +647,7 @@ form ul li input.inputStyle {
 	float:left;
 	overflow:hidden;
 	width:100%;
-	padding-bottom:25px;
+	padding-bottom:10px;
 }
 
 .trash {
@@ -739,12 +748,26 @@ form ul li input.inputStyle {
 	float:left;
 }
 
+.labelWrap {
+	float:left;
+	width:18%;
+	display:block;
+}
+
+.labelWrap2 {
+	float:left;
+	width:50%;
+	display:block;
+}
+
 .sizeWrap {
 	width:55%;
+	float:left;
 }
 
 .colourWrap {
 	width:15%;
+	float:left;
 
 }
 
@@ -834,7 +857,7 @@ form ul li input.inputStyle {
 }	
 
 .bottomBtnWrapper {
-	padding-bottom:20px;
+	padding-bottom:0;
 }
 
 #canvasWrapper {
@@ -918,11 +941,80 @@ form ul li input.inputStyle {
 	color:red;
 }
 
+#login {
+	margin:0 auto;
+	max-width:990px;
+	width:100%;
+	height:auto;
+	overflow:hidden;
+	position:relative;
+}
+
+.logCred {
+	margin: 0 auto;
+	max-width: 990px;
+	width:100%;
+	height: auto;
+	background-color: #fff;
+	padding: 24px 0;
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	border-radius: 2px;
+}
+
+.logCred ul {
+	margin:0 auto;
+	padding:0;
+	overflow:hidden;
+	max-width:654px;
+	width:100%;
+}
+
+.logCred ul li {
+	list-style-type:none;
+	float:left;
+	display:inline-block;
+	margin:0;
+	padding:10px;
+	background:#9ab5a9;
+}
+
+.logCred ul li.fb {
+	margin:0 1em 0 0;
+}
+
+.logCred ul li span {
+	display:inline-block;
+	float:left;
+	margin:0 0.5em 0 0;
+	padding:0;
+	width:32px;
+	height:30px;
+	background:url('../img/social.png') no-repeat scroll;
+}
+
+.logCred ul li.fb span {
+	background-position:0 0;
+}
+
+.logCred ul li.tw span {
+	background-position:0 -32px;
+}
+
+.logCred ul li a {
+	font-family:'Sanchez', Arial, Helvetica, sans-serif;
+	font-size:26px;
+	line-height:24px;
+	color:#fff;
+	text-decoration:none;
+	display:inline-block;
+	float:left;
+}
 /* Slide show */
 
 #slideshow {
 	position:relative;
-	padding-top:70px;
+	padding-top:10px;
 	width:100%;
 	min-width:990px;
 }
@@ -934,6 +1026,8 @@ form ul li input.inputStyle {
   	height:auto;
   	overflow:auto; /* allow scrollbar */
   	position:relative;
+
+  	z-index:1;
 }
 
 
@@ -944,7 +1038,7 @@ form ul li input.inputStyle {
   	height:auto;
   	background-color:#fff;
 
-  	padding:40px 0;
+  	padding:24px 0;
   	-webkit-border-radius:4px;
   	-moz-border-radius:4px;
   	border-radius:4px;
@@ -975,6 +1069,8 @@ form ul li input.inputStyle {
   	-webkit-box-shadow:0 0 3px rgba(255, 255, 255, 0.8);
   	-moz-box-shadow:0 0 3px rgba(255, 255, 255, 0.8);
   	box-shadow:0 0 3px rgba(255, 255, 255, 0.8);
+
+  	z-index:2;
 
 }
 
@@ -1126,6 +1222,17 @@ footer ul li a {
 
 .startBtn:hover {
  border:1px solid #fff;
+}
+
+.disableStart {
+	background-color:#333333 !important;
+	color:#adadad !important;
+	border:1px solid #adadad;
+}
+
+.startBtn.disableStart:hover {
+	border:1px solid #adadad;
+	cursor:default;
 }
 
 @meda only print {
