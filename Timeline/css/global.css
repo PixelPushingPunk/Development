@@ -510,14 +510,6 @@ input.inputStyle, textarea {
 #thick {
 	float:left;
 	border:0;
-	color:#f6931f;
-	font-weight:bold;
-	width:10px;
-	-moz-border-radius:40px;
-	-webkit-border-radius:40px;
-	border-radius:40px;
-	padding:10px;
-	margin:0;
 }
 
 /*widget slider styling*/
