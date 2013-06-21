@@ -1,0 +1,210 @@
+@media all {
+  #bestViewedIn { display: none; position: absolute; left: -10000px; top: -10000px; height: 0; width: 0;  z-index: -1; }
+
+  #version0 .ui-content { margin: 0 !important; padding-top: 5px !important; }
+  #version0 .ui-collapsible-set { margin: 0 !important; }
+  #version0 .small-header { display: block; }
+  #version0 .big-header { display: none; }
+  #version0 .header { background-color: #fff; background-image: none; color: #000; text-shadow: none; }
+  #version0 .header-item { display: inline-block; margin: 2px 10px; vertical-align: middle; }
+  #version0 .title { text-align: center; } 
+  #version0 .title h1, .title h2 { margin: 0; }
+  #version0 .login { border-left: solid 1px black; border-right: solid 1px black; color: #000; display: block; padding: 0 5px; text-align: center; text-decoration: none; }
+  #version0 .small-header        {  }
+  #version0 .small-header title  {  }
+  #version0 .small-header h1     { font-size: 12pt; }
+  #version0 .small-header h2     { font-size: 10pt; }  
+  #version0 .small-header .login { border: none; font-size: 8pt; padding: 0; position: absolute; right: 10px; top: 2px; text-align: right; }
+  #version0 .right-content { display: none; }
+  #version0 .info-page .left-content { display: none; }
+  #version0 .info-page .right-content { display: block; }
+  #version0 .sub-list { margin: 20px; }  
+  #version0 .sub-list li { padding: 10px 0 0 10px !important; }  
+  #version0 .sub-list li a { padding: 0 0 0 70px !important; }
+
+  #version1 h1 { color: #ffffff; font-family: "AvenirNextLTW01-Regular", "Helvetica W01 Roman", Helvetica, "Arial W01 Regular", Arial, sans-serif; font-weight: normal; font-size: 24px; }
+  #version1 h2 { color: #ffffff; font-family: "AvenirNextLTW01-Regular", "Helvetica W01 Roman", Helvetica, "Arial W01 Regular", Arial, sans-serif; font-weight: normal; font-size: 22px; }
+  #version1 h3 { color: #ffffff; font-family: "Helvetica W01 Roman", Helvetica, "Arial W01 Regular", Arial, sans-serif; font-size: 15px; font-weight: normal; margin: 5px 0; }
+  #version1 .bold-copy { color: #ffffff; font-family: "Helvetica W01 Roman", Helvetica, "Arial W01 Regular", Arial, sans-serif; font-size: 14px; margin: 3px 0; }
+  #version1 .copy { color: #ffffff; font-family: "Helvetica W01 Roman", Helvetica, "Arial W01 Regular", Arial, sans-serif; font-size: 14px; font-weight: normal; margin: 3px 0; }
+  #version1 .bold-grey-copy { color: #cccccc; font-family: "Helvetica W01 Roman", Helvetica, "Arial W01 Regular", Arial, sans-serif; font-size: 14px; margin: 3px 0; }
+  #version1 .grey-copy { color: #cccccc; font-family: "Helvetica W01 Roman", Helvetica, "Arial W01 Regular", Arial, sans-serif; font-size: 14px; font-weight: normal; margin: 3px 0; }
+  #version1 .ui-content { margin: 0 !important; padding: 14px 12px !important; }
+  #version1 .ui-btn { font-weight: normal !important; }
+  #version1 .ui-header .header-left { position: absolute; top: 3px; left: 5px; margin: 0; padding: 0; }
+  #version1 .ui-header .header-left .country { float: left; }
+  #version1 .ui-header .header-left .month { float: left; margin-left: 10px; }
+  #version1 .ui-header .header-middle { margin: 5px auto; width: 275px; }
+  #version1 .ui-header .header-middle .mc-logo-link { text-decoration: none; }
+  #version1 .ui-header .header-right { position: absolute; top: 3px; right: 12px; margin: 0; padding: 0; }  
+  #version1 .ui-header .language { float: left; }  
+  #version1 .ui-header .buttons { float: left; margin-left: 10px; }  
+  #version1 .clear { clear: both; }  
+  #version1 .left-content { display: none; } 
+  #version1 .categories-list { list-style-type: none; margin: 0; padding: 0; }
+  #version1 .categories-list li { height: 70px; margin-bottom: 10px; position: relative ; }
+  #version1 .categories-list li a { position: absolute; height: 100%; width: 100%; text-decoration: none; }
+  #version1 .categories-list li a h3 { display: inline; position: absolute; top: 20px; font-weight: normal; }
+  #version1 .categories-list li a .ui-icon { position: absolute; right: 5px; top: 25px; }
+  #version1 .offers-wrapper { margin: 0; }
+  #version1 .offers-wrapper ul { margin: 0; }
+  #version1 .offers-list { list-style-type: none; margin: 0; padding: 0; }
+  #version1 .offers-list li { background-color: #272727; float: left; height: 230px; margin: 0 0 20px 0; overflow: hidden; padding: 10px; width: 260px; }
+  #version1 .right-content { display: none; } 
+
+  #version2 h1 { color: #ffffff; font-family: "AvenirNextLTW01-Regular", "Helvetica W01 Roman", Helvetica, "Arial W01 Regular", Arial, sans-serif; font-weight: normal; font-size: 24px; }
+  #version2 h2 { color: #ffffff; font-family: "AvenirNextLTW01-Regular", "Helvetica W01 Roman", Helvetica, "Arial W01 Regular", Arial, sans-serif; font-weight: normal; font-size: 22px; }
+  #version2 h3 { color: #ffffff; font-family: "Helvetica W01 Roman", Helvetica, "Arial W01 Regular", Arial, sans-serif; font-size: 15px; font-weight: normal; margin: 5px 0; }
+  #version2 .bold-copy { color: #ffffff; font-family: "Helvetica W01 Roman", Helvetica, "Arial W01 Regular", Arial, sans-serif; font-size: 14px; margin: 3px 0; }
+  #version2 .copy { color: #ffffff; font-family: "Helvetica W01 Roman", Helvetica, "Arial W01 Regular", Arial, sans-serif; font-size: 14px; font-weight: normal; margin: 3px 0; }
+  #version2 .bold-grey-copy { color: #cccccc; font-family: "Helvetica W01 Roman", Helvetica, "Arial W01 Regular", Arial, sans-serif; font-size: 14px; margin: 3px 0; }
+  #version2 .grey-copy { color: #cccccc; font-family: "Helvetica W01 Roman", Helvetica, "Arial W01 Regular", Arial, sans-serif; font-size: 14px; font-weight: normal; margin: 3px 0; }
+  #version2 .ui-content { margin: 0 !important; padding: 14px 12px !important; }
+  #version2 .ui-btn { font-weight: normal !important; }
+  #version2 .ui-header .header-left { position: absolute; top: 3px; left: 5px; margin: 0; padding: 0; }
+  #version2 .ui-header .header-left .country { float: left; }
+  #version2 .ui-header .header-left .month { float: left; margin-left: 10px; }
+  #version2 .ui-header .header-middle { margin: 5px auto; width: 275px; }
+  #version2 .ui-header .header-middle .mc-logo-link { text-decoration: none; }
+  #version2 .ui-header .header-right { position: absolute; top: 3px; right: 12px; margin: 0; padding: 0; }  
+  #version2 .ui-header .language { float: left; }  
+  #version2 .ui-header .buttons { float: left; margin-left: 10px; }  
+  #version2 .clear { clear: both; }
+  #version2 .categories-wrapper { height: 100%; }
+  #version2 .categories-list { list-style-type: none; margin: 0; padding: 0; }
+  #version2 .categories-list li { height: 295px; margin-bottom: 10px; }
+  #version2 .category  { height: 41px; }
+  #version2 .category  h2 { display: inline; position: relative; top: -12px; font-weight: normal; }
+  #version2 .offers-wrapper { height: 250px; width: 100%; }
+  #version2 .offers-list { height: 250px; list-style-type: none; margin: 0; padding: 0;  }
+  #version2 .offers-list li { background-color: #272727; float: left; height: 230px; margin: 10px 10px 10px 0; overflow: hidden; padding: 10px; width: 260px; }
+
+  #version2-detail h1 { color: #ffffff; font-family: "AvenirNextLTW01-Regular", "Helvetica W01 Roman", Helvetica, "Arial W01 Regular", Arial, sans-serif; font-weight: normal; font-size: 24px; }
+  #version2-detail h2 { color: #ffffff; font-family: "AvenirNextLTW01-Regular", "Helvetica W01 Roman", Helvetica, "Arial W01 Regular", Arial, sans-serif; font-weight: normal; font-size: 22px; }
+  #version2-detail h3 { color: #ffffff; font-family: "Helvetica W01 Roman", Helvetica, "Arial W01 Regular", Arial, sans-serif; font-size: 15px; font-weight: normal; margin: 5px 0; }
+  #version2-detail .bold-copy { color: #ffffff; font-family: "Helvetica W01 Roman", Helvetica, "Arial W01 Regular", Arial, sans-serif; font-size: 14px; margin: 3px 0; }
+  #version2-detail .copy { color: #ffffff; font-family: "Helvetica W01 Roman", Helvetica, "Arial W01 Regular", Arial, sans-serif; font-size: 14px; font-weight: normal; margin: 3px 0; }
+  #version2-detail .bold-grey-copy { color: #cccccc; font-family: "Helvetica W01 Roman", Helvetica, "Arial W01 Regular", Arial, sans-serif; font-size: 14px; margin: 3px 0; }
+  #version2-detail .grey-copy { color: #cccccc; font-family: "Helvetica W01 Roman", Helvetica, "Arial W01 Regular", Arial, sans-serif; font-size: 14px; font-weight: normal; margin: 3px 0; }
+  #version2-detail .ui-content { margin: 0 !important; padding: 14px 12px !important; }
+  #version2-detail .ui-btn { font-weight: normal !important; }
+  #version2-detail .ui-header .header-left { position: absolute; top: 3px; left: 5px; margin: 0; padding: 0; }
+  #version2-detail .ui-header .header-left .country { float: left; }
+  #version2-detail .ui-header .header-left .month { float: left; margin-left: 10px; }
+  #version2-detail .ui-header .header-middle { margin: 5px auto; width: 275px; }
+  #version2-detail .ui-header .header-middle .mc-logo-link { text-decoration: none; }
+  #version2-detail .ui-header .header-right { position: absolute; top: 3px; right: 12px; margin: 0; padding: 0; }  
+  #version2-detail .ui-header .language { float: left; }  
+  #version2-detail .ui-header .buttons { float: left; margin-left: 10px; }  
+  #version2-detail .clear { clear: both; }
+  #version2-detail .backButton { background: transparent url('/Images/featured-category-arrows.png') no-repeat -108px 0; display: inline-block; height: 57px; width: 43px; }
+  #version2-detail .backButton:hover { background-position: -161px 0; }
+  #version2-detail .offerTitle { display: inline; position: relative; left: 10px; top: -20px; }
+  #version2-detail .nextOffer { display: inline; float: right; position: relative; right: 10px; top: -3px; }
+  #version2-detail .nextButton { background: transparent url('/Images/featured-category-arrows.png') no-repeat -54px 0; display: inline-block; float:right;  height: 57px; width: 44px; }
+  #version2-detail .nextButton:hover { background-position: 0 0; }
+  #version2-detail .offerImage { float: left; position: relative; width: 568px; height: 308px; }
+  #version2-detail .offerImage  img { position: absolute; bottom: 0; }
+  #version2-detail .offerImage  .overlay { position: absolute; bottom: 0; padding: 20px; height: 69px; width: 370px; }
+  #version2-detail .offerKeyInfo { 
+    background: #000000; /* Old browsers */
+    background: -moz-linear-gradient(top,  #000000 0%, #4b4c4c 24%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#000000), color-stop(24%,#4b4c4c)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,  #000000 0%,#4b4c4c 24%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,  #000000 0%,#4b4c4c 24%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top,  #000000 0%,#4b4c4c 24%); /* IE10+ */
+    background: linear-gradient(to bottom,  #000000 0%,#4b4c4c 24%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#000000', endColorstr='#4b4c4c',GradientType=0 ); /* IE6-9 */
+    float: left; width: 410px; height: 308px; margin-left: 20px; 
+  }
+  #version2-detail .offerKeyInfo  h2 { border-bottom: 1px dotted #ccc; margin: 10px; width: 390px; }
+  #version2-detail .offerDetails { width: 568px; }
+  #version2-detail .offerDetails  h2 { border-bottom: 1px dotted #ccc; }
+
+  #version3 h1 { color: #ffffff; font-family: "AvenirNextLTW01-Regular", "Helvetica W01 Roman", Helvetica, "Arial W01 Regular", Arial, sans-serif; font-weight: normal; font-size: 24px; }
+  #version3 h2 { color: #ffffff; font-family: "AvenirNextLTW01-Regular", "Helvetica W01 Roman", Helvetica, "Arial W01 Regular", Arial, sans-serif; font-weight: normal; font-size: 22px; }
+  #version3 h3 { color: #ffffff; font-family: "Helvetica W01 Roman", Helvetica, "Arial W01 Regular", Arial, sans-serif; font-size: 15px; font-weight: normal; margin: 5px 0; }
+  #version3 .bold-copy { color: #ffffff; font-family: "Helvetica W01 Roman", Helvetica, "Arial W01 Regular", Arial, sans-serif; font-size: 14px; margin: 3px 0; }
+  #version3 .copy { color: #ffffff; font-family: "Helvetica W01 Roman", Helvetica, "Arial W01 Regular", Arial, sans-serif; font-size: 14px; font-weight: normal; margin: 3px 0; }
+  #version3 .bold-grey-copy { color: #cccccc; font-family: "Helvetica W01 Roman", Helvetica, "Arial W01 Regular", Arial, sans-serif; font-size: 14px; margin: 3px 0; }
+  #version3 .grey-copy { color: #cccccc; font-family: "Helvetica W01 Roman", Helvetica, "Arial W01 Regular", Arial, sans-serif; font-size: 14px; font-weight: normal; margin: 3px 0; }
+  #version3 .ui-content { margin: 0 !important; padding: 14px 12px !important; }
+  #version3 .ui-btn { font-weight: normal !important; }
+  #version3 .ui-header .header-left { position: absolute; top: 3px; left: 5px; margin: 0; padding: 0; }
+  #version3 .ui-header .header-left .country { float: left; }
+  #version3 .ui-header .header-left .month { float: left; margin-left: 10px; }
+  #version3 .ui-header .header-middle { margin: 5px auto; width: 275px; }
+  #version3 .ui-header .header-middle .mc-logo-link { text-decoration: none; }
+  #version3 .ui-header .header-right { position: absolute; top: 3px; right: 12px; margin: 0; padding: 0; }  
+  #version3 .ui-header .language { float: left; }  
+  #version3 .ui-header .buttons { float: left; margin-left: 10px; }  
+  #version3 .clear { clear: both; }
+  #version3 .categories-wrapper { height: 100%; width: 100%; }
+  #version3 .categories-list { list-style-type: none; margin: 0; padding: 0; }
+  #version3 .categories-list li { height: 250px; margin-bottom: 10px; }
+  #version3 .category { float: left; height: 250px; padding: 0 5px; margin: 0 10px 0 0; text-align: center; width: 60px; }
+  #version3 .offers-wrapper { float: left; height: 250px; }
+  #version3 .offers-list { height: 250px; list-style-type: none; margin: 0; padding: 0; }
+  #version3 .offers-list li { background-color: #272727; float: left; height: 230px; margin: 0 20px 0 0; overflow: hidden; padding: 10px; width: 260px; }
+  #version3 #version3-offer-detail { display:none; border-style: solid; border-width: 2px; opacity: 0.95; overflow: hidden; position: absolute; right: 0; top: 0px; height: 99%; width: 588px; z-index: 9999; }
+  #version3 #version3-offer-detail.hidden { border-style: none; border-width: 0; z-index: -1; }
+  #version3 #version3-offer-detail .offer-detail-inner { background-color: #333; margin: 0; overflow-y: scroll; padding: 10px; height: 100%; width: 100%; }
+  #version3 #version3-offer-detail #backButton { background: transparent url('/Images/featured-category-arrows.png') no-repeat -108px 0; display: block; float: left; margin: 0 10px 10px 0; height: 57px; width: 43px; }
+  #version3 #version3-offer-detail #backButton:hover { background-position: -161px 0; }
+  #version3 #version3-offer-detail .offerTitle { display: block; margin: 0; }
+  #version3 #version3-offer-detail .offerImage { position: relative; width: 568px; height: 308px; }
+  #version3 #version3-offer-detail .offerImage  img { position: absolute; bottom: 0; }
+  #version3 #version3-offer-detail .offerImage  .overlay { position: absolute; bottom: 0; padding: 20px; height: 69px; width: 370px; }
+  
+  #version4 h1 { color: #ffffff; font-family: "AvenirNextLTW01-Regular", "Helvetica W01 Roman", Helvetica, "Arial W01 Regular", Arial, sans-serif; font-weight: normal; font-size: 24px; }
+  #version4 h2 { color: #ffffff; font-family: "AvenirNextLTW01-Regular", "Helvetica W01 Roman", Helvetica, "Arial W01 Regular", Arial, sans-serif; font-weight: normal; font-size: 22px; }
+  #version4 h3 { color: #ffffff; font-family: "Helvetica W01 Roman", Helvetica, "Arial W01 Regular", Arial, sans-serif; font-size: 15px; font-weight: normal; margin: 5px 0; }
+  #version4 .bold-copy { color: #ffffff; font-family: "Helvetica W01 Roman", Helvetica, "Arial W01 Regular", Arial, sans-serif; font-size: 14px; margin: 3px 0; }
+  #version4 .copy { color: #ffffff; font-family: "Helvetica W01 Roman", Helvetica, "Arial W01 Regular", Arial, sans-serif; font-size: 14px; font-weight: normal; margin: 3px 0; }
+  #version4 .bold-grey-copy { color: #cccccc; font-family: "Helvetica W01 Roman", Helvetica, "Arial W01 Regular", Arial, sans-serif; font-size: 14px; margin: 3px 0; }
+  #version4 .grey-copy { color: #cccccc; font-family: "Helvetica W01 Roman", Helvetica, "Arial W01 Regular", Arial, sans-serif; font-size: 14px; font-weight: normal; margin: 3px 0; }
+  #version4 .ui-content { margin: 0 !important; padding: 14px 12px !important; }
+  #version4 .ui-btn { font-weight: normal !important; }
+  #version4 .ui-header .header-left { position: absolute; top: 3px; left: 5px; margin: 0; padding: 0; }
+  #version4 .ui-header .header-left .country { float: left; }
+  #version4 .ui-header .header-left .month { float: left; margin-left: 10px; }
+  #version4 .ui-header .header-middle { margin: 5px auto; width: 275px; }
+  #version4 .ui-header .header-middle .mc-logo-link { text-decoration: none; }
+  #version4 .ui-header .header-right { position: absolute; top: 3px; right: 12px; margin: 0; padding: 0; }  
+  #version4 .ui-header .language { float: left; }  
+  #version4 .ui-header .buttons { float: left; margin-left: 10px; }  
+  #version4 .clear { clear: both; }
+  #version4 .offer-detail { background-color: #272727; padding: 10px; }
+  #version4 .offer-detail .offerTitle { margin: 0 0 10px 0; text-align: center; }
+  #version4 .offer-detail .offerImage { float: left; position: relative; width: 568px; height: 308px; }
+  #version4 .offer-detail .offerImage  img { position: absolute; bottom: 0; }
+  #version4 .offer-detail .offerImage  .overlay { position: absolute; bottom: 0; padding: 20px; height: 69px; width: 370px; }
+  #version4 .offer-detail .offerDetails { display: block; float: left; height: 308px; margin-left: 10px; overflow-y: scroll; }
+  #version4 .bottom { height: 250px; position: absolute; bottom: 0; left: 0; width: 100%; }
+  #version4 .categories-wrapper { height: 44px; margin-bottom: 10px; width: 100%; }
+  #version4 .categories-list { list-style-type: none; margin: 0; padding: 0; }
+  #version4 .categories-list li { float: left; min-width: 180px; width: 20%; }
+  #version4 .categories-list li a { display: block; height: 100%; position: relative; text-decoration: none; width: 100%; }
+  #version4 .categories-list li a .copy { position: relative; top: -20px; }
+  #version4 .categories-list li a .ui-icon { position: absolute; bottom: 0; right: 10px; }
+  #version4 .offers-wrapper { height: 184px; width: 100%; }
+  #version4 .offers-list { list-style-type: none; margin: 0; padding: 0; }
+  #version4 .offers-list li { background-color: #272727; float: left; margin: 0 10px 0 0; padding: 10px; height: 190px; width: 260px; }
+}
+
+@media all and (min-width: 1024px) {
+  #version0 .left-content { display: block; float: left; width: 320px; }
+  #version0 .right-content { border-left: solid 1px black; display: block; float: left; margin-left: 23px; padding-left: 10px; width: 625px; }  
+  #version0 .info-page .left-content { display: block; }
+  #version0 .info-page .right-content { display: block; }
+  #version0 .small-header { display: none; }
+  #version0 .big-header { display: block; }
+  
+  #version1 .left-content { display: block; float: left; width: 280px; }
+  #version1 .right-content { border-left: solid 1px black; display: block; float: left; margin-left: 10px; padding-left: 10px; width: 660px; }
+}
+
+@media only screen and (device-width: 768px) and (orientation: portrait) {
+  /* rules for iPad in portrait orientation */
+  #bestViewedIn { background-color: #000; display: block; left: 0; top: 0; height: 100%; width: 100%; z-index: 9999; }
+}

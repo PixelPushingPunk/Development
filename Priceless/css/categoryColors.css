@@ -1,0 +1,18 @@
+.categoryIcon.inactive{
+	background:#969696;
+}
+
+.categoryButton.inactive {
+	border-color:#969696;
+}
+
+.culinary, .culinary.selected {background:#861F41;border-color:#861F41;}
+.sports, .sports.selected {background:#00AB8E;border-color:#00AB8E;}
+.shopping, .shopping.selected {background:#EAAA00;border-color:#EAAA00;}
+.culture, .culture.selected {background:#702082;border-color:#702082;}
+.travel, .travel.selected {background:#0066CC;border-color:#0066CC;}
+.about-town, .about-town.selected {background:#B5BD00;border-color:#B5BD00;}
+.category-7, .category-7.selected {background:#0095C8;border-color:#0095C8;}
+.category-8, .category-8.selected {background:#D86018;border-color:#D86018;}
+.category-9, .category-9.selected {background:#CE0058;border-color:#CE0058;}
+.category-10, .category-10.selected {background:#7474C1;border-color:#7474C1;}

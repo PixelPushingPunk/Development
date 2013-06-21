@@ -1,0 +1,214 @@
+<!DOCTYPE html> 
+<html> 
+<head> 
+
+  <title>Priceless Cities Mobile App - Mobile</title> 
+  <meta name="viewport" content="height=device-height,width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no"> 
+  <meta name="apple-mobile-web-app-capable" content="yes" /> 
+  <meta name="apple-touch-fullscreen" content="yes" />  
+  
+  <link rel="apple-touch-icon" href="images/mc-touch-icon.png" />
+  <link rel="stylesheet" href="themes/PricelessCities.min.css" />
+  <link rel="stylesheet" href="http://code.jquery.com/mobile/1.2.0/jquery.mobile.structure-1.2.0.min.css" />
+  <link rel="stylesheet" href="css/fonts.css" />
+  <link rel="stylesheet" href="css/categoryColors.css" />
+  <link rel="stylesheet" href="css/mobile.css" />
+  
+  <script type="text/javascript" src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
+  <script type="text/javascript" src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>
+  
+  <!-- Our JavaScript templating / mvvm engine (see http://knockoutjs.com/) -->
+  <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/knockout/knockout-2.1.0.js"></script>
+  
+  <!-- Local third party scripts -->
+  <script type="text/javascript" src="js/iscroll.js"></script>
+  
+  <!-- Our JavaScript -->
+  <script type="text/javascript" src="js/mobile.js"></script>
+  
+</head> 
+<body> 
+
+<nav>
+
+<div id="leftmenu">
+	
+		<ul class="accordion mycities">
+		
+			<li><a href="#"><span class="homecity"></span> LONDON</a></li>	
+			
+			<li class="dropdown-menu">
+				<a href="#"><span class="changecity"></span> CHANGE CITY <span class="navarrow"></span></a>
+				<ul class="sub-menu">
+					<li><a href="#">London</a></li>
+					<li><a href="#">New York</a></li>
+					<li><a href="#">Singapore</a></li>
+					<li><a href="#">Dublin</a></li>
+					<li><a href="#">Paris</a></li>
+					<li><a href="#">Rome</a></li>
+					<li><a href="#">Monaco</a></li>
+					<li><a href="#">Rio</a></li>
+				</ul>
+			</li>
+			
+			<li class="dropdown-menu mycategories">
+				<a href="#"><span class="categories"></span> CATEGORIES <span class="navarrow"></span></a>
+				<ul class="sub-menu">
+					<li><a href="#"><span class="ticket"></span> Culinary</a></li>
+					<li><a href="#"><span class="ticket"></span> Sports</a></li>
+					<li><a href="#"><span class="ticket"></span> Entertainment</a></li>
+					<li><a href="#"><span class="ticket"></span> Shopping</a></li>
+					<li><a href="#"><span class="ticket"></span> About Town</a></li>
+					<li><a href="#"><span class="ticket"></span> Health &amp; Beauty</a></li>
+					<li><a href="#">World Elite Exclusives</a></li>					
+					<li><a href="#">HSBC Exclusives</a></li>					
+				</ul>	
+			</li>
+			
+			<li class="dropdown-menu">
+				<a href="#"><span class="vouchers"></span> VOUCHERS <span class="no">3</span><span class="navarrow"></span></a>
+				<ul class="sub-menu">
+					<li><a href="#">Offer 1</a></li>
+					<li><a href="#">Offer 2</a></li>
+					<li><a href="#">Offer 3</a></li>				
+				</ul>
+			</li>
+
+			<li><a href="#"><span class="reminders"></span> REMINDERS</a></li>	
+			<li><a href="#"><span class="settings"></span> SETTINGS</a></li>	
+			
+		</ul>
+		
+</div>
+
+<div id="rightmenu">
+
+		<ul class="accordion">
+		
+			<li class="dropdown-menu">
+				<a href="#"><span class="ticket"></span> CULINARY<span class="navarrow"></span></a>
+				<ul class="sub-menu">
+					<li><a href="#">Price range</a></li>
+					<li><a href="#">Rating</a></li>
+					<li><a href="#">Type of cuisine</a></li>
+				</ul>
+			</li>
+			
+			<li class="dropdown-menu">
+				<a href="#"><span class="ticket"></span> SPORTS<span class="navarrow"></span></a>
+				<ul class="sub-menu">
+					<li><a href="#">Price range</a></li>
+					<li><a href="#">Rating</a></li>
+					<li><a href="#">Type of cuisine</a></li>
+				</ul>
+			</li>
+			
+			<li class="dropdown-menu">
+				<a href="#"><span class="ticket"></span> ENTERTAINMENT<span class="navarrow"></span></a>
+				<ul class="sub-menu">
+					<li><a href="#">Price range</a></li>
+					<li><a href="#">Rating</a></li>
+					<li><a href="#">Type of cuisine</a></li>
+				</ul>
+			</li>
+			
+			<li class="dropdown-menu">
+				<a href="#"><span class="ticket"></span> SHOPPING<span class="navarrow"></span></a>
+				<ul class="sub-menu">
+					<li><a href="#">Price range</a></li>
+					<li><a href="#">Rating</a></li>
+					<li><a href="#">Type of cuisine</a></li>
+				</ul>
+			</li>
+			
+			<li class="dropdown-menu">
+				<a href="#"><span class="ticket"></span> ABOUT TOWN<span class="navarrow"></span></a>
+				<ul class="sub-menu">
+					<li><a href="#">Price range</a></li>
+					<li><a href="#">Rating</a></li>
+					<li><a href="#">Type of cuisine</a></li>
+				</ul>
+			</li>
+			
+			<li class="dropdown-menu">
+				<a href="#"><span class="ticket"></span> HEALTH &amp; BEAUTY<span class="navarrow"></span></a>
+				<ul class="sub-menu">
+					<li><a href="#">Price range</a></li>
+					<li><a href="#">Rating</a></li>
+					<li><a href="#">Type of cuisine</a></li>
+				</ul>
+			</li>
+
+			<li class="dropdown-menu">
+				<a href="#"><span class="date"></span> DATE<span class="navarrow"></span></a>
+				<ul class="sub-menu">
+					<li><a href="#">Price range</a></li>
+					<li><a href="#">Rating</a></li>
+					<li><a href="#">Type of cuisine</a></li>
+				</ul>
+			</li>
+			
+		</ul>
+</div>
+
+</nav>
+
+<div data-role="page" data-theme="a" class="page">
+
+    <div id="bestViewedIn">Please view in landscape on your iPad.</div>
+  
+    <div data-role="header">
+      <div class="header-middle">
+        <a href="#" class="showLeftMenu"><img src="images/mc-header-logo.png" width="77" height="46" border="0" /></a>
+        <img src="images/priceless-cities.png" width="192" height="46" />
+        <a href="#" class="showRightMenu"><img class="menu-button" src="images/bg-menu.gif" width="23" height="16" border="0" /></a>
+      </div>
+      <div class="clear"></div>
+    </div>
+
+    <div data-role="content">  
+	
+      <div class="offer-details" data-bind="with: ChosenOffer, visible: ChosenOffer() != null">
+        <a href="#" data-bind="click: $root.HideOffer">
+          <img class="close-button" src="images/bg-close.gif" width="19" height="20" />
+        </a>
+        
+        <h1 data-bind="html: OfferTitle"></h1>
+        
+        <img class="offer-item-image" alt="" data-bind="attr:{src: ImageMedium}" Width="310" />
+        <p data-bind="html: OfferSubtitle"></p>
+      
+        <div data-bind="html: OfferDetail"></div>
+      </div>
+
+      <div class="categories-wrapper" data-bind="visible: ChosenOffer() == null">
+	  
+        <ul class="categories-list offers-header" data-bind="template: { foreach: VisibleCategories, beforeRemove: HideCategory, afterAdd: ShowCategory }">
+          <li data-bind="attr:{class:'category '+ Class}">
+            <a href="#" data-bind="click: $root.ToggleOffers">
+              <img alt="" data-bind="attr:{src: Icon}" />
+              <h3 data-bind="text: Name"></h3>
+              <span data-bind="visible: $root.ChosenCategory() == null" class="ui-icon ui-icon-arrow-d ui-icon-shadow">&nbsp;</span>
+              <span data-bind="visible: $root.ChosenCategory() != null" class="ui-icon ui-icon-arrow-u ui-icon-shadow">&nbsp;</span>
+            </a>
+          </li>
+        </ul>
+		
+        <div class="offers-wrapper" data-bind="fadeVisible: ChosenCategory() != null, with: ChosenCategory">
+          <ul class="offers-list" data-bind="foreach: Offers">       
+             <li>
+                <h3 data-bind="html: OfferTitle"></h3>
+                <a href="#" data-bind="attr:{id: OfferID}, click: $root.ShowOffer">
+                  <img class="offer-item-image" alt="" data-bind="attr:{src: ImageMedium}" Width="310" />
+                </a>
+             </li>
+           </ul>
+        </div>
+		
+      </div>
+    </div>
+    <!-- /content -->
+  </div>
+  
+</body>
+</html>

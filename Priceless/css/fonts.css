@@ -1,0 +1,52 @@
+/*@font-face{
+font-family:"Avenir Next Medium";
+src:url("../fonts/Avenir-Next-Medium.eot") format("eot");
+src:url("../fonts/Avenir-Next-Medium.ttf") format("truetype");
+}
+@font-face{
+font-family:"Avenir Next Regular";
+src:url("../fonts/Avenir-Next-Regular.eot") format("eot");
+src:url("../fonts/Avenir-Next-Regular.ttf") format("truetype");
+}*/
+
+/*
+This CSS resource incorporates links to font software which is
+the valuable copyrighted property of Monotype Imaging and/or
+its suppliers. You may not attempt to copy, install, redistribute, convert,
+modify or reverse engineer this font software. Please contact Monotype Imaging
+with any questions regarding Web Fonts:  http://webfonts.fonts.com
+*/
+
+@import url("http://fast.fonts.com/t/1.css?apiType=css&projectid=98d46b5c-f7c1-4216-83de-6ad99a2b382a");
+@font-face{
+font-family:"Helvetica W01 Roman";
+src:url("../fonts/ea95b44a-eab7-4bd1-861c-e73535e7f652.eot?iefix") format("eot");}
+@font-face{
+font-family:"Helvetica W01 Roman";
+src:url("../fonts/ea95b44a-eab7-4bd1-861c-e73535e7f652.eot?iefix");
+src:url("../fonts/4021a3b9-f782-438b-aeb4-c008109a8b64.woff") format("woff"),url("../fonts/669f79ed-002c-4ff6-965c-9da453968504.ttf") format("truetype"),url("../fonts/d17bc040-9e8b-4397-8356-8153f4a64edf.svg#d17bc040-9e8b-4397-8356-8153f4a64edf") format("svg");
+}
+@font-face{
+font-family:"AvenirNextLTW01-Regular";
+src:url("../fonts/e9167238-3b3f-4813-a04a-a384394eed42.eot?iefix") format("eot");}
+@font-face{
+font-family:"AvenirNextLTW01-Regular";
+src:url("../fonts/e9167238-3b3f-4813-a04a-a384394eed42.eot?iefix");
+src:url("../fonts/1e9892c0-6927-4412-9874-1b82801ba47a.woff") format("woff"),url("../fonts/46cf1067-688d-4aab-b0f7-bd942af6efd8.ttf") format("truetype"),url("../fonts/52a192b1-bea5-4b48-879f-107f009b666f.svg#52a192b1-bea5-4b48-879f-107f009b666f") format("svg");
+}
+@font-face{
+font-family:"AvenirNextLTW01-Medium";
+src:url("../fonts/1a7c9181-cd24-4943-a9d9-d033189524e0.eot?iefix") format("eot");}
+@font-face{
+font-family:"AvenirNextLTW01-Medium";
+src:url("../fonts/1a7c9181-cd24-4943-a9d9-d033189524e0.eot?iefix");
+src:url("../fonts/f26faddb-86cc-4477-a253-1e1287684336.woff") format("woff"),url("../fonts/63a74598-733c-4d0c-bd91-b01bffcd6e69.ttf") format("truetype"),url("../fonts/a89d6ad1-a04f-4a8f-b140-e55478dbea80.svg#a89d6ad1-a04f-4a8f-b140-e55478dbea80") format("svg");
+}
+@font-face{
+font-family:"Arial W01 Regular";
+src:url("../fonts/6efc8731-df51-47d4-94f6-d20bbfa83f13.eot?iefix") format("eot");}
+@font-face{
+font-family:"Arial W01 Regular";
+src:url("../fonts/6efc8731-df51-47d4-94f6-d20bbfa83f13.eot?iefix");
+src:url("../fonts/34904d9f-aa74-4e54-96b2-c893c64d4649.woff") format("woff"),url("../fonts/4c8849d4-261c-445a-b013-663d9b3e42c6.ttf") format("truetype"),url("../fonts/821da903-3a46-4ec9-a459-afb6776bee53.svg#821da903-3a46-4ec9-a459-afb6776bee53") format("svg");
+}

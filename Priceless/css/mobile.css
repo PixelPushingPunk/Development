@@ -1,0 +1,197 @@
+@media all {
+
+  #bestViewedIn { display: none; position: absolute; left: -10000px; top: -10000px; height: 0; width: 0;  z-index: -1; }
+
+  html, body { height : 100%; }
+  
+  h1 { color: #ffffff; font-family: "AvenirNextLTW01-Regular", "Helvetica W01 Roman", Helvetica, "Arial W01 Regular", Arial, sans-serif; font-weight: normal; font-size: 24px; }
+  h2 { color: #ffffff; font-family: "AvenirNextLTW01-Regular", "Helvetica W01 Roman", Helvetica, "Arial W01 Regular", Arial, sans-serif; font-weight: normal; font-size: 22px; }
+  h3 { color: #ffffff; font-family: "Helvetica W01 Roman", Helvetica, "Arial W01 Regular", Arial, sans-serif; font-size: 15px; font-weight: normal; margin: 5px 0; }
+  .bold-copy { color: #ffffff; font-family: "Helvetica W01 Roman", Helvetica, "Arial W01 Regular", Arial, sans-serif; font-size: 14px; margin: 3px 0; }
+  .copy { color: #ffffff; font-family: "Helvetica W01 Roman", Helvetica, "Arial W01 Regular", Arial, sans-serif; font-size: 14px; font-weight: normal; margin: 3px 0; }
+  .bold-grey-copy { color: #cccccc; font-family: "Helvetica W01 Roman", Helvetica, "Arial W01 Regular", Arial, sans-serif; font-size: 14px; margin: 3px 0; }
+  .grey-copy { color: #cccccc; font-family: "Helvetica W01 Roman", Helvetica, "Arial W01 Regular", Arial, sans-serif; font-size: 14px; font-weight: normal; margin: 3px 0; }
+  .ui-content { margin: 0 !important; padding: 0 !important; }
+  .ui-btn { font-weight: normal !important; }
+  .ui-header .header-middle { margin: 5px auto; width: 305px; }
+  .ui-header .header-middle .menu-button { margin-bottom: 15px; }
+  .ui-header .language { float: left; }  
+  .ui-header .buttons { float: left; margin-left: 10px; }  
+  .clear { clear: both; }  
+  .categories-wrapper { margin: 0; padding: 0; width: 100%; }
+  .categories-list { list-style-type: none; margin: 0; padding: 0; }
+  .categories-list li { height: 50px; margin: 0; position: relative; }
+  .categories-list li a { position: absolute; height: 100%; width: 100%; text-decoration: none; }
+  .categories-list li a h3 { display: inline; position: absolute; top: 20px; font-weight: normal; }
+  .categories-list li a .ui-icon { position: absolute; right: 5px; top: 25px; }
+  .offers-wrapper { display:none; margin: 0; }
+  .offers-wrapper ul { margin: 0; }
+  .offers-list { list-style-type: none; margin: 0; padding: 0; }
+  .offers-list li { background-color: #272727; float: left; margin: 0 0 5px 0; overflow: hidden; padding: 5px; width: 100%; }
+  .offers-list li .offer-item-image { }
+  .offers-list li .offer-item-text { background-color: #777; display: block; float: left; height: 70px; width: 140px; text-overflow: ellipsis; }
+  .offers-list li h3 { margin: 0 5px 5px 5px; }
+  .offer-details { background-color: #272727; padding: 5px; position: absolute; left: 0; top: 0; }
+  .offer-details .close-button { position: absolute; right: 10px; top: 20px; }
+  
+  /* *** Sort out z-indexes for margins, but make sure the page is on top !! *** */
+  
+  .page { z-index: 1000; }
+
+  /* ***  stuff for facebook-style menu *** */
+  
+  a.showLeftMenu {  } 
+  a.showRightMenu {  } 
+  
+  ul.accordion, ul.sub-menu { margin:0; padding:0; }
+  ul.accordion li, ul.sub-menu li { list-style-type: none; }
+  
+	.accordion > li:hover > a,
+	.accordion > li:target > a,
+	.accordion > li > a.active {
+	 color: #ffffff;
+	 text-shadow: 1px 1px 1px rgba(255,255,255, .2);
+	 background: #333333;
+	 border-bottom: solid 1px #cccccc;
+	 display:block;
+	 width:100%;
+	 height:50px;
+	 line-height:50px;
+	 text-indent:5px;
+	 font-family: "AvenirNextLTW01-Regular", "Helvetica W01 Roman", Helvetica, "Arial W01 Regular", Arial, sans-serif; 
+	 font-weight: bold; 
+	 font-size: 14px;
+	 text-decoration:none;
+	}
+	
+	#leftmenu { position:absolute; top:0px; left:0px; width:75%; height:100%; background:#272727; z-index:1; }
+	#rightmenu { position:absolute; top:0px; right:0px; width:75%; height:100%; background:#272727; float:right; z-index:1; }
+	
+	#leftmenu h3,
+	#rightmenu h3 {
+	 background:none !important;
+	 border-bottom: none !important;
+	 height: 52px !important;
+	}
+	
+	#leftmenu h3, 
+	#rightmenu h3,
+	.accordion > li > a {
+	 color: #ffffff;
+	 text-shadow: 1px 1px 1px rgba(255,255,255, .2);
+	 background: #333333;
+	 
+	 background: -moz-linear-gradient(top,  #333 0%, #000 100%);
+	 background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#333), color-stop(100%,#000));
+	 background: -webkit-linear-gradient(top,  #333 0%,#000 100%);
+	 background: -o-linear-gradient(top,  #333 0%,#000 100%);
+	 background: -ms-linear-gradient(top,  #333 0%,#000 100%);
+	 background: linear-gradient(top,  #333 0%,#000 100%);
+	 
+	 display:block;
+	 width:100%;
+	 height:50px;
+	 line-height:50px;
+	 text-indent:5px;
+	 font-family: "AvenirNextLTW01-Regular", "Helvetica W01 Roman", Helvetica, "Arial W01 Regular", Arial, sans-serif; 
+	 font-weight: bold; 
+	 font-size: 14px; 
+	 text-decoration:none;
+	 border-bottom: solid 1px #cccccc; 
+	}
+
+	.accordion ul.sub-menu > li > a {
+	 color: #ffffff;
+	 text-shadow: 1px 1px 1px rgba(255,255,255, .2);
+	 background: #484848;
+	 
+	 /*
+	 background: -moz-linear-gradient(top,  #a5cd4e 0%, #6b8f1a 100%);
+	 background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#a5cd4e), color-stop(100%,#6b8f1a));
+	 background: -webkit-linear-gradient(top,  #a5cd4e 0%,#6b8f1a 100%);
+	 background: -o-linear-gradient(top,  #a5cd4e 0%,#6b8f1a 100%);
+	 background: -ms-linear-gradient(top,  #a5cd4e 0%,#6b8f1a 100%);
+	 background: linear-gradient(top,  #a5cd4e 0%,#6b8f1a 100%);
+	 */
+	 
+	 display:block;
+	 width:100%;
+	 height:50px;
+	 line-height:50px;
+	 text-indent:15px;
+	 font-family: "AvenirNextLTW01-Regular", "Helvetica W01 Roman", Helvetica, "Arial W01 Regular", Arial, sans-serif; 
+	 font-weight: bold; 
+	 font-size: 14px; 
+	 text-decoration:none;
+	 border-bottom: solid 1px #cccccc; 
+	}
+
+	.accordion li.files > a:before { background-position: 0px 0px; }
+	.accordion li.files:hover > a:before,
+	.accordion li.files:target > a:before,
+	.accordion li.files > a.active:before { background-position: 0px -24px; }
+	 
+	.accordion li.mail > a:before { background-position: -24px 0px; }
+	.accordion li.mail:hover > a:before,
+	.accordion li.mail:target > a:before,
+	.accordion li.mail > a.active:before { background-position: -24px -24px; }
+	 
+	.accordion li.cloud > a:before { background-position: -48px 0px; }
+	.accordion li.cloud:hover > a:before,
+	.accordion li.cloud:target > a:before,
+	.accordion li.cloud > a.active:before { background-position: -48px -24px; }
+	 
+	.accordion li.sign > a:before { background-position: -72px 0px; }
+	.accordion li.sign:hover > a:before,
+	.accordion li.sign:target > a:before,
+	.accordion li.sign > a.active:before { background-position: -72px -24px; }
+    
+	.dropdown-menu a { position:relative; }
+	
+	.no { position:absolute; width:20px; height:20px; color:#000000; font-size:12px; background:url(../images/no-back.png) no-repeat; text-align:center; display:block; top:30%; right:25%; text-indent: -1px !important; line-height: 18px !important; padding:0; margin: 0; }
+	
+	.navarrow { position:absolute; width:20px; height:20px; background:url(../images/arrows.png) no-repeat; display:block; top:30%; right:5%; padding:0; margin: 0; background-position: -2px 0px; }
+	.dropped { background-position: -52px 0px;  }
+
+	.ontop { z-index:1000 !important }
+}
+
+@media only screen and (min-width: 768px) {
+
+ body {
+
+ }
+ 
+}
+
+@media only screen and (min-width: 1024px) {
+
+ body {
+  background: #ff0000;
+ }
+ 
+ #leftmenu {
+  display:none;
+ }
+ 
+ #rightmenu {
+  display:none;
+ }
+ 
+ nav, .page {
+  float:none;
+  width:800px !important;
+  margin-left:auto;
+  margin-right:auto;
+ }
+ 
+}
+
+@media only screen and (device-width: 768px) and (orientation: portrait) {
+  /* rules for iPad in portrait orientation */
+  #bestViewedIn { background-color: #000; display: block; left: 0; top: 0; height: 100%; width: 100%; z-index: 9999; }
+}
+
+
+
+
